@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const router = express.Router();
 const passport = require('passport');
-const { loginUser, restoreUser } = require('../../config/passport');
+const { loginUser, restoreUser, logoutUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
@@ -53,7 +53,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
       try {
         newUser.hashedPassword = hashedPassword;
         const user = await newUser.save();
-        return res.json(await loginUser(user));  //error
+        return res.json(await loginUser(user));
       }
       catch(err) {
         next(err);
@@ -75,10 +75,17 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
+router.delete('/logout', async (req, res, next) => {
+  passport.authenticate('local', async function(user) {
+    return res.json(await logoutUser(user));
+  })(req, res, next);
+});
+
 router.get('/', function(req, res, next) {
   res.json({
     message: "GET /api/users"
   });
 });
+
 
 module.exports = router;

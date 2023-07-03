@@ -45,20 +45,23 @@ passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
 exports.loginUser = async function(user) {
   const userInfo = {
     _id: user._id,
-    username: user.username,
     email: user.email
   };
-  console.debug(secretOrKey)
   const token = await jwt.sign(
   userInfo, // payload
   secretOrKey, // sign with secret key
   { expiresIn: 3600 } // tell the key to expire in one hour
   );
-
   return {
     user: userInfo,
     token
   };
+};
+
+exports.logoutUser = async function() {
+    return {
+        
+    }
 };
 
 exports.requireUser = passport.authenticate('jwt', { session: false });
