@@ -17,14 +17,13 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
   }
   
   #modal-content {
     position: relative;
-    background-color:white;
+    background-color: rgba(255, 255, 255, 0.137);
     border-radius: 12px;
-    width: 567px;
+    width: 25vw;
     overflow: hidden;
   }
 

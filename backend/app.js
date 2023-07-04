@@ -8,9 +8,11 @@ const csurf = require('csurf');
 const {isProduction} = require('./config/keys');
 require('./models/Group');
 require('./models/User');
+require('./models/Trip');
 require('./config/passport');
 const passport = require('passport');
 const usersRouter = require('./routes/api/users');
+const tripsRouter = require('./routes/api/trips');
 const csrfRouter = require('./routes/api/csrf');
 
 
@@ -45,6 +47,7 @@ app.use(
 
 // Attach Express routers
 app.use('/api/users', usersRouter); // update the path
+app.use('/api/trips', tripsRouter);
 app.use('/api/csrf', csrfRouter);
 
 

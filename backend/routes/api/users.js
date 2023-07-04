@@ -81,10 +81,16 @@ router.delete('/logout', async (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/', function(req, res, next) {
-  res.json({
-    message: "GET /api/users"
-  });
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.find()
+                              .populate("email")
+                              .sort({ createdAt: -1 });
+    return res.json(users);
+  }
+  catch(err) {
+    return res.json([]);
+  }
 });
 
 
