@@ -2,8 +2,22 @@ import './Splash.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useState } from 'react';
+import { Modal } from "../../context/Modal"
+import { SignInPage } from "../../NavBar/UserAuthPages/SignInPage/SignInPage"
+import { SignUpPage } from "../../NavBar/UserAuthPages/SignUpPage/SignUpPage"
 
 export default function Splash () {
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
+    const handleModalClose = (e) => {
+        setShowLoginModal(false);
+        setShowSignUpModal(false);
+    }
+    const handleModalOpen = async (e) => {
+        setShowLoginModal(true);
+        setShowSignUpModal(true);
+    }
 
     return (
         <div className='splash-background'>
@@ -16,8 +30,14 @@ export default function Splash () {
                     {/* <br/> Don't trip, we've got you covered. */}
                 </p>
                 <ul className='splash-buttons'>
-                    <button>Sign In</button>
-                    <button>Sign Up</button>
+                    <button onClick={() => {setShowSignUpModal(true);}}>Sign Up</button>
+                    <button onClick={() => { setShowLoginModal(true)}}>Login</button>
+                    {showSignUpModal && (<Modal onClose={handleModalClose} >
+                            <SignUpPage/>
+                        </Modal>)}
+                    {showLoginModal && (<Modal onClose={handleModalClose} >
+                            <SignInPage/>
+                        </Modal>)}
                     <button>Demo</button>
                 </ul>
             </article>
