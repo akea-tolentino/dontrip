@@ -54,6 +54,12 @@ router.patch('/:tripId/users/:userId', requireUser, validateTripInput, async(req
     }
 });
 
+const deleteTrip = (trip) => {
+    return (
+        {message: "trip is deleted"}
+    )
+}
+
 router.delete('/:tripId/users/:userId', async(req, res, next) => { // should also use requireUser
     let user;
     try {
