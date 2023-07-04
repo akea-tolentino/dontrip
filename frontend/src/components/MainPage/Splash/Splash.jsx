@@ -1,4 +1,7 @@
 import './Splash.css';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useState } from 'react';
 import { Modal } from "../../context/Modal"
 import { SignInPage } from "../../NavBar/UserAuthPages/SignInPage/SignInPage"
