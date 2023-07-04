@@ -13,6 +13,10 @@ const groupSchema = new Schema({
     budget: {
         type: Number,
         required: true
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
   }, {
     timestamps: true

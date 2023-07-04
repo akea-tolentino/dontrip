@@ -70,7 +70,7 @@ router.delete('/:groupId/users/:userId', async(req, res, next) => {
         return next(error);
     }
     try {
-        const group = await group.findById(req.params.groupId);
+        const group = await Group.findById(req.params.groupId);
         return res.json(deleteGroup(group));
     } catch(err) {
         const error = new Error('Group not found');
@@ -92,7 +92,7 @@ router.get('/users/:userId', async(req, res, next) => {
         return next(error);
     }
     try {
-        const user_groups = await Group.find(req.params.userId)
+        const user_groups = await Group.find({owner: user._id})
                                        .sort({createdAt: -1 })
                                        .populate("name members budget");
         return res.json(user_groups)
@@ -110,16 +110,27 @@ router.post('/users/:userId', validateGroupInput, async(req, res, next) => {
         const newGroup = new Group({
             name: req.body.name,
             members: req.body.members,
-            budget: req.body.budget
+            budget: req.body.budget,
+            owner: req.body.owner
           });
         let group = await newGroup.save();
-        group = await group.populate("_id name members budget");
+        group = await group.populate("_id name members budget", "owner");
         return res.json(group);
      } catch(err) {
         next(err);
      }
 });
 
-router.get('/',)
+// router.get('/', async (req, res) => {
+//     try {
+//       const groups = await Group.find()
+//                                 .populate("name members budget")
+//                                 .sort({ createdAt: -1 });
+//       return res.json(groups);
+//     }
+//     catch(err) {
+//       return res.json([]);
+//     }
+//   });
 
 module.exports = router;
