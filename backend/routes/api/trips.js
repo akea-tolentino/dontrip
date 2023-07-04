@@ -7,6 +7,8 @@ const { requireUser } = require('../../config/passport');
 const validateTripInput = require('../../validations/trip');
 
 
+//ALL GETS AND DELETE ROUTES RETURN A 400 ERROR AND SAY CANNOT READ PROPERTIES OF NULL (READING '1')
+
 router.get('/:tripId/users/:userId', async(req, res, next) => {
     let user;
     try {
@@ -18,7 +20,8 @@ router.get('/:tripId/users/:userId', async(req, res, next) => {
         return next(error);
     }
     try {
-        const trip = Trip.findById(req.params.tripId);
+        const trip = await Trip.findById(req.params.tripId)
+                         .populate("month location experience");
         return res.json(trip);
     } catch(err) {
         const error = new Error('Trip not found');
@@ -29,18 +32,19 @@ router.get('/:tripId/users/:userId', async(req, res, next) => {
 });
 
 
-router.patch('/:tripId/users/:userId', validateTripInput, async(req, res, next) => { // should also use requireUser
-    let user;
+router.patch('/:tripId/users/:userId', requireUser, validateTripInput, async(req, res, next) => { // should also use requireUser
+    // let user;
+    // try {
+    //     user = await User.findById(req.params.userId);
+    // } catch(err) {
+    //     const error = new Error('User not found');
+    //     error.statusCode = 404;
+    //     error.errors = {message: "No user found with that id"};
+    //     return next(error);
+    // }
     try {
-        user = await User.findById(req.params.userId);
-    } catch(err) {
-        const error = new Error('User not found');
-        error.statusCode = 404;
-        error.errors = {message: "No user found with that id"};
-        return next(error);
-    }
-    try {
-        const trip = Trip.findById(req.params.tripId);
+        const trip = await Trip.findById(req.params.tripId);
+        //more logic needed for updating the trip object
         return res.json(trip);
     } catch(err) {
         const error = new Error('Trip not found');
@@ -61,7 +65,7 @@ router.delete('/:tripId/users/:userId', async(req, res, next) => { // should als
         return next(error);
     }
     try {
-        const trip = Trip.findById(req.params.tripId);
+        const trip = await Trip.findById(req.params.tripId);
         return res.json(await deleteTrip(trip));
     } catch(err) {
         const error = new Error('Trip not found');
@@ -82,20 +86,20 @@ router.get('/users/:userId', async(req, res, next) => {
         error.errors = {message: "No user found with that id"};
         return next(error);
     }
-    const user_trips = Trip.find(req.params.userId)
-                            .sort({createdAt: -1 })
-                            .populate("month location experience"); //check this out before testing
-    if (!user_trips) {
-        return res.json({
-            message: 'No trips planned'
-        })
-    } else {
+    try {
+        const user_trips = await Trip.find(req.params.userId)
+                                .sort({createdAt: -1 })
+                                .populate("month location experience");
         return res.json(user_trips)
+    } catch(err) {
+        const error = new Error('Trips not found');
+        error.statusCode = 404;
+        error.errors = {message: "No trips planned"};
+        return next(error);
     }
 });
 
 router.post('/users/:userId', validateTripInput, async(req, res, next) => { //somehow rneeds to require user
-    console.debug(req)
      try {
         const newTrip = new Trip({
             experience: req.body.experience,
