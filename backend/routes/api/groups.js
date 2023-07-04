@@ -7,9 +7,6 @@ const { requireUser } = require('../../config/passport');
 const validateGroupInput = require('../../validations/group');
 
 
-//Routes go below
-
-
 router.get('/:groupId/users/:userId', async(req, res, next) => {
     //group show route for a user
 });
