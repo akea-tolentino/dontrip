@@ -20,7 +20,7 @@ router.get('/:groupId/users/:userId', async(req, res, next) => {
     }
     try {
         const group = await Group.findById(req.params.groupId)
-                         .populate("month location experience");
+                                .populate("name members budget");
         return res.json(group);
     } catch(err) {
         const error = new Error('Group not found');
@@ -121,16 +121,17 @@ router.post('/users/:userId', validateGroupInput, async(req, res, next) => {
      }
 });
 
-// router.get('/', async (req, res) => {
-//     try {
-//       const groups = await Group.find()
-//                                 .populate("name members budget")
-//                                 .sort({ createdAt: -1 });
-//       return res.json(groups);
-//     }
-//     catch(err) {
-//       return res.json([]);
-//     }
-//   });
+
+router.get('/', async (req, res) => {
+    try {
+      const groups = await Group.find()
+                                .populate("name members budget")
+                                .sort({ createdAt: -1 });
+      return res.json(groups);
+    }
+    catch(err) {
+      return res.json([]);
+    }
+  });
 
 module.exports = router;
