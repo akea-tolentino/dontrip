@@ -6,8 +6,7 @@ import { MainPage } from "./components/MainPage/MainPage";
 function App() {
   return (
     <>
-      {/* <NavBar/> */}
-      <Splash/>
+      <NavBar/>
       <MainPage />
     </>
   );
