@@ -6,7 +6,7 @@ const debug = require('debug');
 const cors = require('cors');
 const csurf = require('csurf');
 const {isProduction} = require('./config/keys');
-
+require('./models/Group');
 require('./models/User');
 require('./config/passport');
 const passport = require('passport');
@@ -14,6 +14,7 @@ const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
 
 
+const groupRouter = require('./routes/api/groups');
 const app = express();
 
 app.use(logger('dev')); // log request components (URL/method) to terminal
@@ -46,6 +47,7 @@ app.use(
 app.use('/api/users', usersRouter); // update the path
 app.use('/api/csrf', csrfRouter);
 
+app.use('/api/groups', groupRouter);
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
 app.use((req, res, next) => {
