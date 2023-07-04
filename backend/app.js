@@ -47,6 +47,7 @@ app.use(
 app.use('/api/users', usersRouter); // update the path
 app.use('/api/csrf', csrfRouter);
 
+
 app.use('/api/groups', groupRouter);
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
