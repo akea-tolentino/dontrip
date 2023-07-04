@@ -32,7 +32,7 @@ router.get('/:tripId/users/:userId', async(req, res, next) => {
 });
 
 
-router.patch('/:tripId/users/:userId', requireUser, validateTripInput, async(req, res, next) => { // should also use requireUser
+router.patch('/:tripId/users/:userId', validateTripInput, async(req, res, next) => { // should also use requireUser
     // let user;
     // try {
     //     user = await User.findById(req.params.userId);
@@ -43,7 +43,7 @@ router.patch('/:tripId/users/:userId', requireUser, validateTripInput, async(req
     //     return next(error);
     // }
     try {
-        const trip = await Trip.findById(req.params.tripId);
+        const trip = await Trip.findByIdAndUpdate(req.params.tripId, req.body);
         //more logic needed for updating the trip object
         return res.json(trip);
     } catch(err) {
