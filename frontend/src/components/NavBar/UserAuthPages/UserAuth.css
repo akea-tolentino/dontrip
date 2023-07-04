@@ -1,0 +1,53 @@
+.user-auth-container {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 20px;
+}
+
+.user-auth-input-container {
+    display: flex;
+    height: 15%;
+    width: 90%;
+    justify-content: center;
+    margin: 0 0 5% 0;
+}
+
+.user-auth-input-container label {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.user-auth-input-container input {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background-color: white;
+}
+
+
+.user-auth-container form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-auth-title {
+    margin-bottom: 20px;
+    
+}
+
+.user-auth-button {
+    width: 60%;
+    height: 15%;
+    border-radius: 12px;
+    cursor: pointer;
+}
