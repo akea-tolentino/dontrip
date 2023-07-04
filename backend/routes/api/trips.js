@@ -105,7 +105,7 @@ router.get('/users/:userId', async(req, res, next) => {
     }
 });
 
-router.post('/users/:userId', validateTripInput, async(req, res, next) => { //somehow rneeds to require user
+router.post('/users/:userId', validateTripInput, async(req, res, next) => { //somehow needs to require user
      try {
         const newTrip = new Trip({
             experience: req.body.experience,
