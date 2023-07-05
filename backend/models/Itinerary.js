@@ -2,50 +2,48 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itinerarySchema = new Schema({
-    events: {
+    events: [
+    {
         description: {
-            type: Text,
+            type: String,
             required: true
         },
         date: {
-            type: Date,
-            required: true
-        },
-        time: {
             type: String,
             required: true
         },
-        adress: {
+        address: {
             type: String,
             required: true
         },
         cost: {
-            type: Number,
-            required: true
+            type: Number
         }
-    },
-    stays: {
+    }
+],
+    stays: [
+    {
         description: {
-            type: Text,
+            type: String,
             required: true
         },
         check_in_date: {
-            type: Date,
+            type: String,
             required: true
         },
         check_out_date: {
-            type: Date,
+            type: String,
             required: true
         },
-        adress: {
+        address: {
             type: String,
             required: true
         },
         cost: {
-            type: Number,
-            required: true
+            type: Number
         }
     }
+]
 }, {
     // tells mongoose to add and maintain `createdAt` and `updatedAt` fields with
     // datetime timestamps
