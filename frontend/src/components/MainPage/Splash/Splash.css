@@ -2,23 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: #09244E; */
-      background: radial-gradient(
-      circle at 50% 0,
-      rgba(4, 32, 79, 0.815),
-      rgba(11, 49, 102, 0.283) 70.71%
-    ), radial-gradient(
-      circle at 6.7% 75%,
-      rgba(2, 35, 97, 0.815),
-      rgba(2, 3, 43, 0.28) 70.71%
-    ),
-    radial-gradient(
-        circle at 93.3% 75%,
-        rgba(0, 0, 0, 0.815),
-        rgba(3, 11, 54, 0.282) 70.71%
-      ) beige;
     width: 100%;
     height: 100vh;
+    position: absolute;
+    z-index: 9999;
 }
 
 .splash {
@@ -28,11 +15,15 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     box-shadow: 1px 1px 1px 2px #ffffff,
     0.5em 0.5em 1em rgba(0, 0, 0, 0.356);
+    position: absolute;
+    backdrop-filter: blur(10px);
 }
+
+
 
 .splash-message {
     display: flex;
@@ -59,3 +50,4 @@
     cursor: pointer;
     color: #09234e90;
 }
+
