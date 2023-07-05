@@ -30,12 +30,15 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     box-shadow: 1px 1px 1px 2px #ffffff,
     0.5em 0.5em 1em rgba(0, 0, 0, 0.356);
     position: absolute;
+    backdrop-filter: blur(10px);
 }
+
+
 
 .splash-message {
     display: flex;
