@@ -1,0 +1,48 @@
+.choose-month {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 20px;
+}
+
+.choose-month select {
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.experience-container {
+    color: white;
+    width: 1200px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+}
+
+.experience-ul li {
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+    border: 1px solid black;
+    margin: 15px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.experience-ul li img {
+    height: 250px;
+    width: 250px;
+    border-radius: 10px;
+    opacity: 0.9;
+    box-shadow: 2px 2px 8px black;
+}
+
+.experience-ul li img:hover {
+    opacity: 0.75;
+    box-shadow: 4px 4px 12px black;
+}

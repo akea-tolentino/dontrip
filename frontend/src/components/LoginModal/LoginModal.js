@@ -1,11 +1,12 @@
 import { useState } from "react";
-import {Modal} from "../context/Modal";
+import { Modal } from "../context/Modal";
 import { SignInPage } from "../NavBar/UserAuthPages/SignInPage/SignInPage";
 import { SignUpPage } from "../NavBar/UserAuthPages/SignUpPage/SignUpPage";
 
 export default function LoginFormModal () {
 
     const[showModal, setShowModal] = useState(false);
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
 
     const [showSignUpModal, setShowSignUpModal] = useState(false);
 
@@ -19,12 +20,6 @@ export default function LoginFormModal () {
             <Modal onClose={()=> setShowSignUpModal(false)} >
                 <SignUpPage/>
             </Modal>)}
-
-            {showModal && (
-            <Modal onClose={()=> setShowModal(false)}>
-                <SignInPage/>
-            </Modal>
-            )}
      </>
     )
 }

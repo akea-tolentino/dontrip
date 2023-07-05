@@ -18,6 +18,7 @@ export default function NavBar () {
     } else {
       sessionLinks = (
         <>
+
           <LoginFormModal/>
         </>
       );
