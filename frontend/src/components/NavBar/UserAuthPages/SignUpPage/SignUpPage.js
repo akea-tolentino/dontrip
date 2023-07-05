@@ -21,7 +21,6 @@ export const SignUpPage = () => {
         }
 
         const res = await dispatch(signup(userInfo))
-        debugger
     }
 
 

@@ -21,7 +21,7 @@ export const SignInPage = () => {
         }
 
         const res = await dispatch(login(userInfo))
-        debugger
+        
     }
 
     return (
