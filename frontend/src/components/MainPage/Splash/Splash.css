@@ -31,6 +31,7 @@
     justify-content: space-between;
     line-height: 6vh;
     font-weight: 400;
+    font-size: 22px;
 }
 
 .splash-buttons {
@@ -40,10 +41,11 @@
 }
 
 .splash-buttons > button {
-    background-color: white;
+    background-color: #ffffff03;
     border: none;
-    font-weight: 600;
     color: #09244E;
+    font-family: 'Handlee';
+    font-size: 20px;
 }
 
 .splash-buttons > button:hover {
