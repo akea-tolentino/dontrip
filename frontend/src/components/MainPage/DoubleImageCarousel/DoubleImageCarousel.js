@@ -5,7 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import "./DoubleImageCarousel.css"
 
 export const DoubleImageCarousel = () => {
-    var settings1 = {
+
+    
+    let settings1 = {
         slidesToShow: 3.5,
         slidesToScroll: 1,
         infinite: true,
@@ -14,8 +16,9 @@ export const DoubleImageCarousel = () => {
         autoplaySpeed: 0,
         cssEase: 'linear',
         arrows: false,
+        
     };
-    var settings2 = {
+    let settings2 = {
         slidesToShow: 3.5,
         slidesToScroll: 1,
         infinite: true,
