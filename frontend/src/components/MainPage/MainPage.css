@@ -39,4 +39,10 @@
     width: 250px;
     border-radius: 10px;
     opacity: 0.9;
+    box-shadow: 2px 2px 8px black;
+}
+
+.experience-ul li img:hover {
+    opacity: 0.75;
+    box-shadow: 4px 4px 12px black;
 }
