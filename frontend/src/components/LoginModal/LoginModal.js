@@ -8,6 +8,8 @@ export default function LoginFormModal () {
     const[showModal, setShowModal] = useState(false);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
 
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
+
     return (
         <>
             <a onClick={()=>{setShowSignUpModal(true);}}> Sign up </a>
@@ -18,12 +20,6 @@ export default function LoginFormModal () {
             <Modal onClose={()=> setShowSignUpModal(false)} >
                 <SignUpPage/>
             </Modal>)}
-            
-            {showModal && (
-            <Modal onClose={()=> setShowModal(false)}>
-                <SignInPage/>
-            </Modal>
-            )}
      </>
     )
 }

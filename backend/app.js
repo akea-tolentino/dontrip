@@ -49,9 +49,31 @@ app.use(
 app.use('/api/users', usersRouter); // update the path
 app.use('/api/trips', tripsRouter);
 app.use('/api/csrf', csrfRouter);
-
-
 app.use('/api/groups', groupRouter);
+
+
+if (isProduction) {
+  const path = require('path');
+  // Serve the frontend's index.html file at the root route
+  app.get('/', (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'build', 'index.html')
+    );
+  });
+
+  // Serve the static assets in the frontend's build folder
+  app.use(express.static(path.resolve("../frontend/build")));
+
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'build', 'index.html')
+    );
+  });
+}
+
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
 app.use((req, res, next) => {
@@ -74,5 +96,7 @@ app.use((req, res, next) => {
       errors: err.errors
     })
   });
+
+  
 
 module.exports = app;

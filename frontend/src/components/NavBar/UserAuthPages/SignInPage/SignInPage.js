@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../UserAuth.css"
+import { login } from "../../../../store/session";
+
 
 export const SignInPage = () => {
 
@@ -10,11 +12,22 @@ export const SignInPage = () => {
     
     const [password, setPassword] = useState("")
 
+    const handleSignIn = async (e) => {
+        e.preventDefault();
+
+        const userInfo = {
+            email: email,
+            password: password
+        }
+
+        const res = await dispatch(login(userInfo))
+        debugger
+    }
 
     return (
         <>
             <div className="user-auth-container">
-                <form>
+                <form onSubmit={handleSignIn}>
                     <h2 className="user-auth-title">Sign In</h2>
                     <div className="user-auth-input-container">
                         <label>
