@@ -1,0 +1,9 @@
+.cool-slider-1, .cool-slider-2 {
+    margin-top: 5vh;
+}
+
+.cool-slider-1 img, .cool-slider-2 img {
+    width: 25vw;
+    height: 38.5vh;
+    margin-right: 4.1vw;
+}

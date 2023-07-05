@@ -21,6 +21,10 @@ const tripSchema = new Schema({
     group: {
         type: Schema.Types.ObjectId,
         ref: "Group"
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 }, {
     // tells mongoose to add and maintain `createdAt` and `updatedAt` fields with
