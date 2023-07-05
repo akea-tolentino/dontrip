@@ -15,7 +15,9 @@
 
 .logo {
     text-decoration: none;
+
     font-size: 26px;
+
     color: #09244E;
     padding-left: 20px;
 }
@@ -36,3 +38,5 @@
 #signin {
     padding-left: 20px;
 }
+
+
