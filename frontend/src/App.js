@@ -8,13 +8,10 @@ import { Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import Experiences from "./components/MainPage/Experiences/Experiences";
 import GlobePage from "./components/Globe/Globe";
-<<<<<<< HEAD
 import GroupIndex from "./components/Groups/GroupIndex";
-=======
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import UserShowPage from "./components/userShowPage/userShow.jsx";
 import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
->>>>>>> main
 
 
 function App() {
