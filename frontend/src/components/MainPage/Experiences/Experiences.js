@@ -12,6 +12,8 @@ export default function Experiences(props) {
 
     const history = useHistory();
 
+    const chatApiKey = process.env.REACT_APP_GPT_KEY;
+
     const handleAiRequest = async (e) => {
         e.preventDefault();
         let places = []
@@ -26,7 +28,7 @@ export default function Experiences(props) {
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer " + process.env.GPT_KEY,
+                "Authorization": "Bearer " + chatApiKey,
                 "Content-type": "application/json"
             },
             body: JSON.stringify(apiRequestBody)
