@@ -7,6 +7,8 @@ const { requireUser } = require('../../config/passport');
 const validateItineraryInput = require('../../validations/itinerary');
 
 
+
+
 router.get('trips/:tripId', async(req, res, next) => {
     //show for users trip itineraries
     let user;
@@ -45,7 +47,7 @@ router.post('/users/:userId', validateItineraryInput, async(req, res, next) => {
     }
 });
 
-const deleteTrip = (itinerary) => {
+const deleteItinerary = (itinerary) => {
     return (
         {message: "itinerary is deleted"}
     )
@@ -54,7 +56,19 @@ const deleteTrip = (itinerary) => {
 router.delete('/:itineraryId', async(req, res, next) => {
     try {
         const itinerary = await Itinerary.findById(req.params.itineraryId);
-        return res.json(deleteTrip(itinerary));
+        return res.json(deleteItinerary(itinerary));
+    } catch(err) {
+        const error = new Error('Itinerary not found');
+        error.statusCode = 404;
+        error.errors = {message: "No itinerary found with that id"};
+        return next(error);
+    }
+});
+
+router.patch('/:itineraryId', async(req, res, next) => {
+    try {
+        const itinerary = await Itinerary.findByIdAndUpdate(req.params.itineraryId, req.body);
+        return res.json(itinerary);
     } catch(err) {
         const error = new Error('Itinerary not found');
         error.statusCode = 404;
