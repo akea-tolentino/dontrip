@@ -7,6 +7,7 @@ import { getCurrentUser } from "./store/session";
 import { Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import Experiences from "./components/MainPage/Experiences/Experiences";
+import GlobePage from "./components/Globe/Globe";
 
 
 function App() {
@@ -20,8 +21,9 @@ function App() {
     <>
       <NavBar/>
       <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
+        <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
+        <AuthRoute exact path="/" component={MainPage} />
       </Switch>
     </>
   );

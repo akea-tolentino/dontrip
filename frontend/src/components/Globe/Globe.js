@@ -2,27 +2,24 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
 import './Globe.css'
 
-export default function GlobePage() {
+export default function GlobePage(props) {
     const [data, setData] = useState(null);
     const [mapCenter, setMapCenter] = useState({lat: 37.70091, lng: -122.18210, altitude: 2.5});
 
+    const [userLocation, setUserLocation] = useState("")
     const globeEl = useRef();
 
+    const locations = props.location.state.params
+  
     useEffect(() => {
         globeEl.current.controls().autoRotate = true;
         globeEl.current.controls().autoRotateSpeed = 0.15;
         globeEl.current.pointOfView(mapCenter, 2000);
       }, [mapCenter]);
       
-      const locations = [
-        {latitude: "39.0968° N", location: "Lake Tahoe California United States", longitude: "120.0324° W"}, 
-        {latitude: "45.9650° N", location: "Lake Como Lombardy Italy", longitude: "9.1859° E"}, 
-        {latitude: "51.4253° N", location: "Lake Louise Alberta Canada", longitude: "116.1776° W"}, 
-        {latitude: "46.36269 N", location: "Lake Bled Julian Alps Slovenia", longitude: "14.0937° E"}, 
-        {latitude: "15.9254° S", location: "Lake Titicaca Andes Mountains Peru and Bolivia", longitude: "69.3356° W"}];
-    
+   
     const newLocations = locations.map(place=> ({
-        lat: place.latitude.replace(/[°NS]/gi, "")*(place.longitude.includes("S") ? -1 : 1), 
+        lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1), 
         lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1), 
         location: place.location
     }))
@@ -41,6 +38,7 @@ export default function GlobePage() {
         if (selectedLocation) {
           setMapCenter({ lat: selectedLocation.lat, lng: selectedLocation.lng, altitude: 2.5 });
         }
+        debugger
       };
 
     return (
