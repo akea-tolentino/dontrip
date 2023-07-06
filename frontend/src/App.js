@@ -8,6 +8,7 @@ import { Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import Experiences from "./components/MainPage/Experiences/Experiences";
 import GlobePage from "./components/Globe/Globe";
+import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
 
 
 function App() {
@@ -23,7 +24,10 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
-        <AuthRoute exact path="/" component={MainPage} />
+        <ProtectedRoute path="/" component={CoolCarousel} />        
+        <AuthRoute path="/" component={MainPage} />        
+
+
        
       </Switch>
     </>
