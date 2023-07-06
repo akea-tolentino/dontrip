@@ -17,6 +17,8 @@ export default function GlobePage(props) {
     const globeEl = useRef();
 
     const locations = props.location.state.params
+
+    const chatApiKey = process.env.REACT_APP_GPT_KEY;
   
     useEffect(() => {
         globeEl.current.controls().autoRotate = true;
@@ -62,18 +64,18 @@ export default function GlobePage(props) {
                 "content": `return only a un-numbered list of 20 activities to do in ${userLocation.location}, formatted in a string of "activity name, activity company website", split by a | without any text before and after, without line breaks`
             }]
         };
-        debugger
+  
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer " + "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",
+                "Authorization": "Bearer " + chatApiKey,
                 "Content-type": "application/json"
             },
             body: JSON.stringify(apiRequestBody)
         }).then((data) => {
             return data.json();
         }).then((data) => {
-            debugger
+  
             events = data.choices[0].message.content.split("|")
         });
 
@@ -85,7 +87,7 @@ export default function GlobePage(props) {
                 "website": info[1],
             }
         })
-        debugger
+    
 
         if (eventsObject.length !== 20) return handleAiRequest(e)
         setloading(false)

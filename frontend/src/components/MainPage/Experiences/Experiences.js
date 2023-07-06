@@ -7,7 +7,7 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 
 export default function Experiences(props) {
 
-    debugger
+
 
     const[category, setCategory] = useState('');
     const[experience, setExperience] = useState('');
@@ -32,7 +32,7 @@ export default function Experiences(props) {
                 "content": `return only a list of 5 ${experience} destinations in ${category}, formatted in a string of city, country, destination, and coordinates", split by a | without any text before and after`
             }]
         };
-        debugger
+
 
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
@@ -58,7 +58,7 @@ export default function Experiences(props) {
             }
         })
 
-        debugger
+   
 
         if (placesObject.length !== 5) return handleAiRequest(e)
         setloading(false)
