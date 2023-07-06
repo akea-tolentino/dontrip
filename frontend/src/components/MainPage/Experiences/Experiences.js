@@ -1,6 +1,5 @@
 import { useState } from "react"
 import '../MainPage.css'
-import img from './snow.png'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Experiences(props) {
@@ -28,7 +27,7 @@ export default function Experiences(props) {
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer " + "",
+                "Authorization": "Bearer " + "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",
                 "Content-type": "application/json"
             },
             body: JSON.stringify(apiRequestBody)
@@ -38,7 +37,9 @@ export default function Experiences(props) {
             places = data.choices[0].message.content.split("|")
         });
 
-        const placesObject = places.map( (place) => {
+        debugger
+
+        const placesObject = await places.map( (place) => {
             let info = place.split(', ')
             return {
                 "location": info[0] + " " + info[1] + " " + info[2],
@@ -49,7 +50,7 @@ export default function Experiences(props) {
 
 
      
-        return history.push("/", {params: placesObject})
+        return history.push("/location", {params: placesObject})
         
     }
 

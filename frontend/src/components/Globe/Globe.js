@@ -2,12 +2,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
 import './Globe.css'
 
-export default function GlobePage({locations}) {
+export default function GlobePage(props) {
     const [data, setData] = useState(null);
     const [mapCenter, setMapCenter] = useState({lat: 37.70091, lng: -122.18210, altitude: 2.5});
 
+    const [userLocation, setUserLocation] = useState("")
     const globeEl = useRef();
 
+    const locations = props.location.state.params
+  
     useEffect(() => {
         globeEl.current.controls().autoRotate = true;
         globeEl.current.controls().autoRotateSpeed = 0.15;
@@ -22,14 +25,14 @@ export default function GlobePage({locations}) {
     //     {latitude: "15.9254° S", location: " Lake Titicaca Andes Mountains Peru and Bolivia", longitude: "69.3356° W"}];
     
     const newLocations = locations.map(place=> ({
-        lat: place.latitude.replace(/[°NS]/gi, "")*(place.longitude.includes("S") ? -1 : 1), 
+        lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1), 
         lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1), 
         location: place.location
     }))
     
     useEffect(()=>{
         const loc = locations.map(place=>({ 
-            lat: place.latitude.replace(/[°NS]/gi, "")*(place.longitude.includes("S") ? -1 : 1), 
+            lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1), 
             lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1), 
             label:'' 
         }))
@@ -41,6 +44,7 @@ export default function GlobePage({locations}) {
         if (selectedLocation) {
           setMapCenter({ lat: selectedLocation.lat, lng: selectedLocation.lng, altitude: 2.5 });
         }
+        debugger
       };
 
     return (
