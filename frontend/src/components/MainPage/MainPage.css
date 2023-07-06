@@ -51,3 +51,9 @@
     opacity: 0.7 !important;
     box-shadow: 4px 4px 12px 4px orange, -4px -4px 12px 4px orange !important;
 }
+
+.experiences-loading-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40vh;
+}

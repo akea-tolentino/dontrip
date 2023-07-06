@@ -11,7 +11,7 @@ const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });
-  
+
 // To show authentication errors on the frontend.
 const receiveErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -32,7 +32,7 @@ export const signup = user => startSession(user, '/api/users/register');
 export const login = user => startSession(user, '/api/users/login');
 
 const startSession = (userInfo, route) => async dispatch => {
-  try {  
+  try {
     const res = await jwtFetch(route, {
       method: "POST",
       body: JSON.stringify(userInfo)

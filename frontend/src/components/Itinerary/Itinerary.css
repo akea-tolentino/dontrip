@@ -1,0 +1,138 @@
+.itinerary-page-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 5px;
+}
+
+.itinerary-page-h1 {
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.itinerary-intro {
+    color: white;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.select-events-list {
+    color: white;
+}
+
+.select-events-container {
+    grid-column: 1;
+}
+
+.selected-events-container li {
+    list-style: none;
+    color: white;
+}
+
+.selected-events-container {
+    grid-column: 3;
+}
+
+.create-own-event-container, .itinerary-submit-button {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.create-own-event-container button, .itinerary-submit-button button {
+    width: 350px;
+    height: 30px;
+    border-radius: 5px;
+    z-index: 0;
+    font-size: 15px;
+    position: absolute;
+    top: 50vh;
+}
+
+.itinerary-submit-button button {
+    font-size: 18px;
+}
+
+.create-own-event-container button {
+    position: absolute;
+    top: 46vh;
+}
+
+.events-button {
+    grid-column: 1;
+    width: 100px;
+}
+
+.stays-button {
+    grid-column: 1;
+    width: 100px;
+}
+
+.select-events-add-button {
+    width: 100px;
+}
+
+.select-events-container h2, .selected-events-container h2 {
+    color: white;
+    font-size: 24px;
+}
+
+.dropdown {
+    border: 1px solid black;
+    grid-column: 2;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 250px;
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px black;
+}
+
+.dropdown label {
+    padding: 20px;
+}
+
+.dropdown label input {
+    margin: 5px;
+    margin-top: 15px;
+}
+
+.add-event-button {
+    display: flex;
+    justify-content: center;
+}
+
+.add-event-button button {
+    width: 150px;
+    margin-top: 15px;
+}
+
+.x {
+    text-align: end;
+    padding-right: 10px;
+    padding-top: 6px;
+    cursor: pointer;
+}
+
+.select-events-container, .selected-events-container {
+    text-align: center;
+}
+
+.select-events-list h3 {
+    font-size: 20px;
+    color: #ddd;
+}
+
+.selected-events-list h3 {
+    font-size: 20px;
+    color: #ddd;
+}
