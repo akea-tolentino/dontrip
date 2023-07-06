@@ -6,7 +6,7 @@ const debug = require('debug');
 const cors = require('cors');
 const csurf = require('csurf');
 const {isProduction} = require('./config/keys');
-
+require('./models/Group');
 require('./models/User');
 require('./models/Trip');
 require('./models/Itinerary');
@@ -17,6 +17,7 @@ const tripsRouter = require('./routes/api/trips');
 const csrfRouter = require('./routes/api/csrf');
 const itinerariesRouter = require('./routes/api/itineraries');
 
+const groupRouter = require('./routes/api/groups');
 const app = express();
 
 app.use(logger('dev')); // log request components (URL/method) to terminal
@@ -50,6 +51,30 @@ app.use('/api/users', usersRouter); // update the path
 app.use('/api/trips', tripsRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/itineraries', itinerariesRouter);
+app.use('/api/groups', groupRouter);
+
+
+if (isProduction) {
+  const path = require('path');
+  // Serve the frontend's index.html file at the root route
+  app.get('/', (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'build', 'index.html')
+    );
+  });
+
+  // Serve the static assets in the frontend's build folder
+  app.use(express.static(path.resolve("../frontend/build")));
+
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'build', 'index.html')
+    );
+  });
+}
 
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
@@ -73,5 +98,7 @@ app.use((req, res, next) => {
       errors: err.errors
     })
   });
+
+
 
 module.exports = app;

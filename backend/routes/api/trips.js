@@ -72,7 +72,7 @@ router.delete('/:tripId/users/:userId', async(req, res, next) => { // should als
     }
     try {
         const trip = await Trip.findById(req.params.tripId);
-        return res.json(await deleteTrip(trip));
+        return res.json(deleteTrip(trip));
     } catch(err) {
         const error = new Error('Trip not found');
         error.statusCode = 404;
@@ -93,7 +93,7 @@ router.get('/users/:userId', async(req, res, next) => {
         return next(error);
     }
     try {
-        const user_trips = await Trip.find(req.params.userId)
+        const user_trips = await Trip.find({owner: user._id})
                                 .sort({createdAt: -1 })
                                 .populate("month location experience");
         return res.json(user_trips)
@@ -111,11 +111,12 @@ router.post('/users/:userId', validateTripInput, async(req, res, next) => { //so
             experience: req.body.experience,
             month: req.body.month,
             location: req.body.location,
-            itinerary: req.body.itinerary // these are not working
+            itinerary: req.body.itinerary, // these are not working
+            owner: req.body.owner
             // group: req.body.group // these are not working
-          });
+        });
         let trip = await newTrip.save();
-        trip = await trip.populate("month location experience itinerary");
+        trip = await trip.populate("owner month location experience itinerary");
         return res.json(trip);
      } catch(err) {
         next(err);
