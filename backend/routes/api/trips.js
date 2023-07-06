@@ -112,11 +112,11 @@ router.post('/users/:userId', validateTripInput, async(req, res, next) => { //so
             month: req.body.month,
             location: req.body.location,
             itinerary: req.body.itinerary, // these are not working
-            owner: req.body.owner
-            // group: req.body.group // these are not working
+            owner: req.body.owner,
+            group: req.body.group // these are not working
         });
         let trip = await newTrip.save();
-        trip = await trip.populate("owner month location experience itinerary");
+        trip = await trip.populate("owner month location experience itinerary group");
         return res.json(trip);
      } catch(err) {
         next(err);
