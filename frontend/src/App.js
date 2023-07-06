@@ -31,16 +31,13 @@ function App() {
         <ProtectedRoute exact path = "/users/:userId/trips" component={UserShowPage} />
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
-<<<<<<< HEAD
         <ProtectedRoute exact path="/groups" component={GroupIndex} />
         <AuthRoute exact path="/" component={MainPage} />
-=======
         <ProtectedRoute path="/" component={CoolCarousel} />        
         <AuthRoute path="/" component={MainPage} />        
 
 
        
->>>>>>> main
       </Switch>
     </>
   );
