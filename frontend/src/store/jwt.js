@@ -13,6 +13,7 @@ async function jwtFetch(url, options = {}) {
         options.headers["Content-Type"] =
           options.headers["Content-Type"] || "application/json";
         options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
+  
       }
     // Call fetch with the url and the updated options hash.
     const res = await fetch(url, options);
@@ -27,6 +28,7 @@ function getCookie(cookieName) {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
         const [name, value] = cookie.split('=');
+  
         if (name.trim() === cookieName) return value;
     }
     return null;

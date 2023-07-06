@@ -11,6 +11,11 @@ import { BrowserRouter } from 'react-router-dom';
 //creates the store
 const store = configureStore();
 
+if (process.env.NODE_ENV !== 'production') {
+  window.store = store;
+}
+
+
 
 const Root = () => {
   return (
