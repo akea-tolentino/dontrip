@@ -8,6 +8,7 @@ import { Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import Experiences from "./components/MainPage/Experiences/Experiences";
 import GlobePage from "./components/Globe/Globe";
+import GroupIndex from "./components/Groups/GroupIndex";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import UserShowPage from "./components/userShowPage/userShow.jsx";
 import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
@@ -28,6 +29,7 @@ function App() {
         <ProtectedRoute exact path = "/users/:userId/trips" component={UserShowPage} />
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
+        <ProtectedRoute exact path="/groups" component={GroupIndex} />
         <ProtectedRoute exact path="/itinerary" component={Itinerary} />
         <ProtectedRoute path="/" component={CoolCarousel} />        
         <AuthRoute path="/" component={MainPage} />        
