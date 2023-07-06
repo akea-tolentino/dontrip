@@ -10,6 +10,8 @@ import Experiences from "./components/MainPage/Experiences/Experiences";
 import GlobePage from "./components/Globe/Globe";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import UserShowPage from "./components/userShowPage/userShow.jsx";
+import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -25,7 +27,10 @@ function App() {
         <ProtectedRoute exact path = "/users/:userId/trips" component={UserShowPage} />
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
-        <AuthRoute exact path="/" component={MainPage} />
+        <ProtectedRoute path="/" component={CoolCarousel} />        
+        <AuthRoute path="/" component={MainPage} />        
+
+
        
       </Switch>
     </>
