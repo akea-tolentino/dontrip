@@ -1,6 +1,5 @@
 import { useState } from "react"
 import '../MainPage.css'
-import img from './snow.png'
 
 export default function Experiences() {
     const[category, setCategory] = useState('');
