@@ -8,6 +8,7 @@ import { Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import Experiences from "./components/MainPage/Experiences/Experiences";
 import GlobePage from "./components/Globe/Globe";
+import GroupIndex from "./components/Groups/GroupIndex";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
+        <ProtectedRoute exact path="/groups" component={GroupIndex} />
         <AuthRoute exact path="/" component={MainPage} />
       </Switch>
     </>

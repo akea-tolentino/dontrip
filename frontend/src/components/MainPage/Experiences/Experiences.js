@@ -1,6 +1,5 @@
 import { useState } from "react"
 import '../MainPage.css'
-// import img from './snow.png'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Experiences(props) {
