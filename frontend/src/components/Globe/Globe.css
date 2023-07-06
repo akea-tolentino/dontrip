@@ -1,0 +1,40 @@
+.globe-page-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px; 
+}
+
+.globe-container {
+    grid-column: 1;
+}
+
+canvas {
+    border-radius: 10px;
+    background-color: #eee;
+}
+
+.location-radio-ul {
+    padding: 10px;
+    font-size: 22px;
+    color: #eee;
+}
+
+.location-radio-ul li {
+    padding: 5px;
+}
+
+.location-radio-ul h2 {
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+.radio {
+    transform: scale(1.5);
+    margin-right: 15px;
+}
+
+.globe-submit-button {
+    margin-left: 50px;
+    width: 100px;
+    font-size: 18px;
+}

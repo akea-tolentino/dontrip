@@ -22,7 +22,7 @@ const Root = () => {
     <ModalProvider>
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+            <App />
         </BrowserRouter>
       </Provider>
     </ModalProvider>

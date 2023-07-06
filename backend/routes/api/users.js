@@ -75,7 +75,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
-router.delete('/logout', async (req, res, next) => {
+router.delete('/logout', async (req, res, next) => { 
   passport.authenticate('local', async function(user) {
     return res.json(await logoutUser(user));
   })(req, res, next);

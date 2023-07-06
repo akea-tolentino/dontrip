@@ -36,37 +36,37 @@ export const DoubleImageCarousel = () => {
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/club_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/backpacking_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://plus.unsplash.com/premium_photo-1669050702468-d91e80be4126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/snow_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://plus.unsplash.com/premium_photo-1669050702468-d91e80be4126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/beach_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/lake_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/wine_trip.png"
                         />
                     </div>
 
@@ -77,37 +77,37 @@ export const DoubleImageCarousel = () => {
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/surf_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/snow_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://plus.unsplash.com/premium_photo-1669050702468-d91e80be4126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/lake_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://plus.unsplash.com/premium_photo-1669050702468-d91e80be4126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/wine_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/beach_trip.png"
                         />
                     </div>
                     <div>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1682686578601-e7851641d52c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                            src="https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/dontrip2/camping_trip.png"
                         />
                     </div>
 
