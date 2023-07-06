@@ -1,6 +1,6 @@
 import { useState } from "react"
 import '../MainPage.css'
-import img from './snow.png'
+// import img from './snow.png'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Experiences(props) {
@@ -28,7 +28,7 @@ export default function Experiences(props) {
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer " + "",
+                "Authorization": "Bearer " + process.env.GPT_KEY,
                 "Content-type": "application/json"
             },
             body: JSON.stringify(apiRequestBody)
