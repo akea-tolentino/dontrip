@@ -12,8 +12,6 @@ export default function Experiences(props) {
 
     const history = useHistory();
 
-
-
     const handleAiRequest = async (e) => {
         e.preventDefault();
         let places = []

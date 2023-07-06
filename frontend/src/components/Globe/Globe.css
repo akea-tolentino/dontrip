@@ -10,6 +10,7 @@
 
 canvas {
     border-radius: 10px;
+    background-color: #eee;
 }
 
 .location-radio-ul {
@@ -18,7 +19,22 @@ canvas {
     color: #eee;
 }
 
+.location-radio-ul li {
+    padding: 5px;
+}
+
 .location-radio-ul h2 {
     padding-bottom: 20px;
-    /* text-shadow: ; */
+    padding-top: 50px;
+}
+
+.radio {
+    transform: scale(1.5);
+    margin-right: 15px;
+}
+
+.globe-submit-button {
+    margin-left: 50px;
+    width: 100px;
+    font-size: 18px;
 }
