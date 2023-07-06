@@ -28,6 +28,8 @@
 
 .select-events-container {
     grid-column: 1;
+    height: 80vh;
+    overflow-y: scroll;
 }
 
 .selected-events-container li {

@@ -12,6 +12,7 @@ import GroupIndex from "./components/Groups/GroupIndex";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import UserShowPage from "./components/userShowPage/userShow.jsx";
 import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
+import Itinerary from "./components/Itinerary/Itinerary";
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
         <ProtectedRoute exact path="/groups" component={GroupIndex} />
-        <AuthRoute exact path="/" component={MainPage} />
+        <ProtectedRoute exact path="/itinerary" component={Itinerary} />
         <ProtectedRoute path="/" component={CoolCarousel} />        
         <AuthRoute path="/" component={MainPage} />        
 

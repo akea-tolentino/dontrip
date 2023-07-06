@@ -7,7 +7,6 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 export default function GlobePage(props) {
 
     const history = useHistory();
-
     const[loading, setloading] = useState(false);
     
     const [data, setData] = useState(null);
@@ -17,6 +16,8 @@ export default function GlobePage(props) {
     const globeEl = useRef();
 
     const locations = props.location.state.params
+    const experience = props.location.state.experience
+    const month = props.location.state.month
 
     const chatApiKey = process.env.REACT_APP_GPT_KEY;
   
@@ -92,7 +93,7 @@ export default function GlobePage(props) {
         if (eventsObject.length !== 20) return handleAiRequest(e)
         setloading(false)
      
-        return history.push("/experiences", {params: eventsObject})
+        return history.push("/itinerary", {params: eventsObject, location: userLocation.location, experience: experience, month: month})
         
         
     }
