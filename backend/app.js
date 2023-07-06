@@ -9,12 +9,13 @@ const {isProduction} = require('./config/keys');
 require('./models/Group');
 require('./models/User');
 require('./models/Trip');
+require('./models/Itinerary');
 require('./config/passport');
 const passport = require('passport');
 const usersRouter = require('./routes/api/users');
 const tripsRouter = require('./routes/api/trips');
 const csrfRouter = require('./routes/api/csrf');
-
+const itinerariesRouter = require('./routes/api/itineraries');
 
 const groupRouter = require('./routes/api/groups');
 const app = express();
@@ -49,6 +50,7 @@ app.use(
 app.use('/api/users', usersRouter); // update the path
 app.use('/api/trips', tripsRouter);
 app.use('/api/csrf', csrfRouter);
+app.use('/api/itineraries', itinerariesRouter);
 app.use('/api/groups', groupRouter);
 
 
@@ -97,6 +99,6 @@ app.use((req, res, next) => {
     })
   });
 
-  
+
 
 module.exports = app;

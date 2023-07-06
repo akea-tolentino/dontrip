@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session'
 
 export default function ProfileButton({user}) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
-
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -14,13 +13,13 @@ export default function ProfileButton({user}) {
 
     useEffect(()=> {
         if (!showMenu) return;
-        
+
         const closeMenu = () => {
             setShowMenu(false);
         }
 
         document.addEventListener('click', closeMenu);
-      
+
         return () => document.removeEventListener("click", closeMenu);
 
     },[showMenu])
@@ -30,7 +29,7 @@ export default function ProfileButton({user}) {
         dispatch(sessionActions.logout());
     };
 
-    return ( 
+    return (
         <>
         <button onClick={openMenu}>
             Profile
@@ -38,15 +37,15 @@ export default function ProfileButton({user}) {
 
         {showMenu && (
             <ul className="profile-dropdown">
-                
+
                 <li>
                     {user.email}
                 </li>
 
                 <li>
-                    <Link to="">My Trips</Link> {/* need to add link for my trips */}
+                    <NavLink to={`/users/${user._id}/trips`}>My Trips</NavLink> {/* need to add link for my trips */}
                 </li>
-                
+
                 <li className="logout-button">
                     <button onClick={logout}>Log Out</button>
                 </li>
