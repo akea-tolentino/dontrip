@@ -1,6 +1,7 @@
 import { useState } from "react"
 import SelectEvents from "./Events/SelectEvents";
 import SelectStays from "./Stays/SelectStays";
+import './Itinerary.css'
 
 export default function Itinerary ( { chatEventsList, chatStaysList } ) {
     const [showEvents, setShowEvents] = useState(true);
@@ -19,14 +20,28 @@ export default function Itinerary ( { chatEventsList, chatStaysList } ) {
     }
 
     return (
-        <div className="itinerary-page-container">
+        <>
+
+        <div className="itinerary-page-h1">
             <h1>Create your Itinerary</h1>
-            <button onClick={()=> handleEventsClick}>Events</button>
+        </div>
+
+        <div className="itinerary-page-container">
+            {/* <button className="events-button" onClick={()=> handleEventsClick}>
+                Events
+            </button> */}
+
             {showEvents &&
             <SelectEvents availableEvents={chatEventsList} /> }
-            <button onClick={()=> handleStaysClick}>Stays</button>
+{/* 
+            <button className="stays-button" onClick={()=> handleStaysClick}>
+                Stays
+            </button> */}
+
             {showStays && 
             <SelectStays availableStays={chatStaysList} /> }
         </div>
+
+        </>
     )
 }
