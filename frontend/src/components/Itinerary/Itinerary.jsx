@@ -1,4 +1,6 @@
 import { useState } from "react"
+import SelectEvents from "./Events/SelectEvents";
+import SelectStays from "./Stays/SelectStays";
 
 export default function Itinerary ( { chatEventsList, chatStaysList } ) {
     const [showEvents, setShowEvents] = useState(true);
