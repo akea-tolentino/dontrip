@@ -24,6 +24,7 @@ function App() {
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
         <AuthRoute exact path="/" component={MainPage} />
+       
       </Switch>
     </>
   );

@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
 import './Globe.css'
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 export default function GlobePage(props) {
+
+    const history = useHistory();
+
+    const[loading, setloading] = useState(false);
+    
     const [data, setData] = useState(null);
     const [mapCenter, setMapCenter] = useState({lat: 37.70091, lng: -122.18210, altitude: 2.5});
 
@@ -17,7 +24,6 @@ export default function GlobePage(props) {
         globeEl.current.pointOfView(mapCenter, 2000);
       }, [mapCenter]);
       
-   
     const newLocations = locations.map(place=> ({
         lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1), 
         lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1), 
@@ -38,50 +44,107 @@ export default function GlobePage(props) {
         if (selectedLocation) {
           setMapCenter({ lat: selectedLocation.lat, lng: selectedLocation.lng, altitude: 2.5 });
         }
+        setUserLocation(selectedLocation);
+    };
+
+    const handleAiRequest = async (e) => {
+        e.preventDefault();
+
+        let events = []
+
+        setloading(true)
+
+
+        const apiRequestBody = {
+            "model": "gpt-3.5-turbo",
+            "messages": [{
+                "role": "user",
+                "content": `return only a un-numbered list of 20 activities to do in ${userLocation.location}, formatted in a string of "activity name, activity company website", split by a | without any text before and after, without line breaks`
+            }]
+        };
         debugger
-      };
+        await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + "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",
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(apiRequestBody)
+        }).then((data) => {
+            return data.json();
+        }).then((data) => {
+            debugger
+            events = data.choices[0].message.content.split("|")
+        });
+
+
+        const eventsObject = await events.map( (event) => {
+            let info = event.split(', ')
+            return {
+                "activity": info[0],
+                "website": info[1],
+            }
+        })
+        debugger
+
+        if (eventsObject.length !== 20) return handleAiRequest(e)
+        setloading(false)
+     
+        return history.push("/experiences", {params: eventsObject})
+        
+        
+    }
 
     return (
         <>
-        <div className='globe-page-container'>
-            <div className='globe-container'>
-                <Globe 
-                ref={globeEl}
-                
-                backgroundColor='rgba(4, 32, 79, 0.815)' 
-                globeImageUrl='https://cdn.jsdelivr.net/npm/three-globe@2.27.4/example/img/earth-blue-marble.jpg'
-                width={800}
-                height={700}
-                
-                labelsData={data}
-                labelText={"label"}
-                labelSize={1.6}
-                labelColor={useCallback(() => "red", [])}
-                labelDotRadius={1}
-                labelAltitude={0.01}
-                // onLabelClick={()=>console.log('yaa')}	
-                />
-            </div>
+            {loading ? (
+                    <div className="experiences-loading-container">
+                        <ScaleLoader color={"white"} height={100} width={30} radius={20} margin={5}/>    
+                    </div>
+                    
+                ) : <div className='globe-page-container'>
+                <div className='globe-container'>
+                    <Globe 
+                    ref={globeEl}
+                    
+                    backgroundColor='rgba(4, 32, 79, 0.815)' 
+                    globeImageUrl='https://cdn.jsdelivr.net/npm/three-globe@2.27.4/example/img/earth-blue-marble.jpg'
+                    width={800}
+                    height={700}
+                    
+                    labelsData={data}
+                    labelText={"label"}
+                    labelSize={1.6}
+                    labelColor={() => "red"}
+                    labelDotRadius={1}
+                    labelAltitude={0.01}
+                    // onLabelClick={()=>console.log('yaa')}	
+                    />
+                </div>
 
-            <div className='location-options-container'>
-                <ul className='location-radio-ul'>
-                    <h2>
-                        Choose a location from the following selections: 
-                    </h2> 
-                    {newLocations.map(place=>(
-                        <li>
-                            <input name='location-radio' id={place.location} type='radio' value={place.latitude} 
-                            onClick={handleRadioClick} className='radio'
-                            />
-                                <label htmlFor={place.location}>
-                                    {place.location}
-                                </label>
-                        </li>
-                    ))}
-                </ul>
-                <button type='submit' className="globe-submit-button">don'trip</button>
-            </div>
-        </div>
+                <div className='location-options-container'>
+                    <form onSubmit={handleAiRequest}>
+                        <ul className='location-radio-ul'>
+                            <h2>
+                                Choose a location from the following selections: 
+                            </h2> 
+                            {newLocations.map(place=>(
+                                <li>
+                                    <input name='location-radio' id={place.location} type='radio' value={place.latitude} 
+                                    onClick={handleRadioClick} className='radio'
+                                    />
+                                        <label htmlFor={place.location}>
+                                            {place.location}
+                                        </label>
+                                </li>
+                            ))}
+                        </ul>
+                        <button type='submit' className="globe-submit-button">don'trip</button>                    
+                    </form>
+
+                </div>
+            </div>}
+
         </>
     )
 }
