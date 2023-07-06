@@ -9,10 +9,10 @@ export const MainPage = () => {
 
     return (
         <>
-            {/* <Splash/> */}
-            {/* <DoubleImageCarousel /> */}
+            <Splash/>
+            <DoubleImageCarousel />
             {/* <Experiences/> */}
-            <GlobePage/>
+            {/* <GlobePage/> */}
         </>
     )
 }
