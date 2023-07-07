@@ -22,7 +22,7 @@ export const postItinerary = (itineraryInfo, userId) => async dispatch => {
 }
 
 export const itineraryReducer = (state = {}, action) => {
-  debugger
+
   Object.freeze(state);
   const nextState = {...state};
 

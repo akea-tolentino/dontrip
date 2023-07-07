@@ -18,10 +18,11 @@ const receiveErrors = errors => ({
     errors
 });
 
-const receiveGroups = (groups) => {
+const receiveGroups = (payload, userId) => {
     return {
         type: RECEIVE_GROUPS,
-        groups
+        payload,
+        userId
     }
 }
 
@@ -37,27 +38,12 @@ export const getGroup = (groupId) => (state) => (
 )
 
 export const fetchGroups = (userId) => async dispatch => {
-    debugger
     const res = await fetch(`/api/groups/users/${userId}`);
 
     const data = await res.json()
-    debugger
-    dispatch(receiveGroups(data))
+    dispatch(receiveGroups(data, userId))
     return data
 
-
-    // try {
-    //   const res = await fetch(`/api/groups/users/${userId}`);
-    //   const groups = await res.json();
-    //   debugger
-    //   dispatch(receiveGroups(groups));
-    // } catch (err) {
-    //   const resBody = await err.json();
-    //   debugger
-    //   if (resBody.statusCode === 400) {
-    //     dispatch(receiveErrors(resBody.errors));
-    //   }
-    // }
 };
 
 export const fetchGroup = (groupId) => async dispatch => {
@@ -74,8 +60,9 @@ export const fetchGroup = (groupId) => async dispatch => {
   };
 
 export const createGroup = data => async dispatch => {
+
     try {
-        const res = await jwtFetch('/api/groups/', {
+        const res = await jwtFetch(`/api/groups/users/${data.owner}`, {
         method: 'POST',
         body: JSON.stringify(data)
         });
@@ -124,13 +111,14 @@ export const deleteGroup = groupId => async dispatch => {
 
 // Reducer
 
-export default function groupsReducer (state = { all: {}, new: undefined }, action) {
-    debugger
+export default function groupsReducer (state = {}, action) {
+ 
     Object.freeze(state);
     let newState = {...state};
     switch(action.type) {
         case RECEIVE_GROUPS:
-            return { ...newState, ...action.groups, new: undefined};
+            newState[action.userId] = action.payload
+            return newState
         case RECEIVE_GROUP:
             return { ...newState, ...action.group, new: undefined};
         case REMOVE_GROUP:
