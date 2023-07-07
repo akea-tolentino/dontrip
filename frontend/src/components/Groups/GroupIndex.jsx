@@ -1,11 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchGroups, getUserGroups } from '../../store/groups';
 import GroupItem from './GroupItem';
 import GroupForm from './GroupForm';
+import { createTrip } from '../../store/trips';
+
 
 export default function GroupIndex ( props ) {
-    debugger
+   
     //VARIABLES FROM PREVIOUS QUERIES
     const experience = props.location.state.experience;
     const month = props.location.state.month;
@@ -17,28 +19,69 @@ export default function GroupIndex ( props ) {
     const dispatch = useDispatch();
 
     //CUSTOM SELECTOR TO GET USER GROUPS
-    let groups = useSelector(state => state.groups)
+    let groups = useSelector(state => state.groups[userId])
 
     //FETCH GROUPS EVERY LOAD
     useEffect(()=> {
         dispatch(fetchGroups(userId));
     }, [dispatch, userId])
 
+    //STATE VARIABLE FOR USER GROUP INPUT
+    const [userGroup, setUserGroup] = useState()
 
-    debugger
+
+    const handleRadioClick = (event) => {
+        const selectedGroup = groups.find(group => group._id === event.target.id)
+        setUserGroup(selectedGroup)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const tripData = {
+            experience: experience,
+            month: month,
+            location: location,
+            itinerary: itineraryId,
+            group: userGroup._id,
+            owner: userId
+        }
+
+        const res = await dispatch(createTrip(tripData));
+        debugger
+    }
+
+
+  
     return (
         <>
             <div className='group-index-page-wrapper'>   
                 <section className="group-index-container">
-                    <GroupForm />
-                    {groups === undefined ?
-                        <p>no groups yet!</p> :
-                        <ul>
-                            {groups.map(group =>
-                            <GroupItem key={group.id} group={group} />
-                            )}
-                        </ul>
-                    }
+                    <form onSubmit={handleSubmit}>
+                        <GroupForm userId={userId}/>
+                        {groups === undefined ?
+                            <p>no groups yet!</p> :
+                            <ul>
+                                {groups.map(group =>{
+                                    return (
+                                        <li>
+                                            <GroupItem key={group._id} group={group} />
+                                            <input name='location-radio' id={group._id} type='radio' 
+                                            onClick={handleRadioClick} className='radio'
+                                            />
+                                                <label >
+                                                    cool
+                                                </label>
+                                            
+                                        </li>
+                                    )
+                                }
+                                )}
+                            
+                            </ul>
+                        }  
+                        <button type='Submit'>Submit Trip</button>                      
+                    </form>
+
                 </section>
             </div>
         </>
