@@ -5,8 +5,8 @@ export default function GroupItem ( { group } ) {
     return (
         <ul className="group-item-wrapper">
             <li>{group.name}</li>
-            <li>{group.members}</li>
-            <li>{group.budget}</li>
+            <li>members: {group.members}</li>
+            <li>budget: ${group.budget}</li>
             <GroupForm groupId={group._id}/>
         </ul>
     )
