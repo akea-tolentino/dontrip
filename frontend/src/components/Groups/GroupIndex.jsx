@@ -73,7 +73,7 @@ export default function GroupIndex ( props ) {
                         {showForm && (
                         <GroupForm />
                     )}
-                    <form onSubmit={handleSubmit}>
+                    <form >
                         {groups === undefined ?
                             <p>no groups yet!</p> :
                             <ul className='group-list'>
@@ -88,9 +88,9 @@ export default function GroupIndex ( props ) {
                                     )
                                 })}
                             </ul>
-                        }
-                        <button className="trip-submit" type='Submit'>Submit Trip</button>                      
+                        }                    
                     </form>
+                    <button className="trip-submit" onClick={handleSubmit}>Submit Trip</button>
                 </section>
             </div>
         </>
