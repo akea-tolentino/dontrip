@@ -59,7 +59,6 @@ export default function GroupIndex ( props ) {
                 <section className="group-index-container">
                     <h2>Select a group to add to your trip</h2>
                     <form onSubmit={handleSubmit}>
-                        <GroupForm userId={userId}/>
                         {groups === undefined ?
                             <p>no groups yet!</p> :
                             <ul className='group-list'>
@@ -72,15 +71,13 @@ export default function GroupIndex ( props ) {
                                             <GroupItem key={group._id} group={group} />
                                         </li>
                                     )
-                                }
-                                )}
-                            
+                                })}
                             </ul>
-                        }  
+                        }
                         <button className="trip-submit" type='Submit'>Submit Trip</button>                      
                     </form>
-
                 </section>
+                <GroupForm userId={userId}/>
             </div>
         </>
     )
