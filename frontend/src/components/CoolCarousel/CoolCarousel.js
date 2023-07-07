@@ -22,7 +22,6 @@ export const CoolCarousel = ({userTrips}) => {
   const [goToSlide, setGoToSlide] = useState(0)
 
   const slides = []
-  debugger
   if (userTrips) {
     userTrips.map( (trip, index) => {
       slides.push({

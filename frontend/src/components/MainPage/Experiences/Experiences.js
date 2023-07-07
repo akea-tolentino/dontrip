@@ -50,10 +50,8 @@ export default function Experiences(props) {
                 setErrors(true)
                 return handleAiRequest(e)
             }
-            debugger
             places = data.choices[0].message.content.split("|")
         });
-        debugger
 
         const placesObject = await places.map( (place) => {
             let info = place.split(', ')

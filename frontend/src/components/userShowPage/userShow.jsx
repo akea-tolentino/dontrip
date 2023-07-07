@@ -22,7 +22,7 @@ export default function UserShowPage () {
     const handleCreateNewMemory = () => {
         return history.push("/experiences")
     }
-    debugger
+    
     return (
         <>
             {userTrips.length > 0 ?
