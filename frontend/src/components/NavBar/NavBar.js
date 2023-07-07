@@ -27,17 +27,12 @@ export default function NavBar () {
     return (
         <>
         <header className="header">
-            {/* <nav className="header-nav"> */}
-                <ul className="header-list">
-                    <li > 
                         <NavLink exact to="/" className="logo">don'trip</NavLink>
-                    </li>
-
+                <ul className="header-list">
                     <li className="signin">
                         {sessionLinks}
                     </li>
                 </ul>
-            {/* </nav> */}
         </header>
         </>
     );
