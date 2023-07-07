@@ -13,9 +13,20 @@
     border-color: white;
     border-width: 4px;
     border-style: double;
-    text-align: center;
+    text-align: right;
     border-radius: 14px;
     justify-content: space-around;
+}
+
+.group-index-container button:hover {
+    cursor: pointer;
+}
+
+.group-index-container button {
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    margin: 5px 10px 0 0;
 }
 
 .group-list {
@@ -48,6 +59,10 @@ button.trip-submit:hover {
 button.trip-submit {
     background-color: white;
     border-radius: 8px;
+    color: #09234e90;
+    position: fixed;
+    bottom: 16vh;
+    right: 38vw
 }
 
 .group-list-item {
@@ -58,4 +73,5 @@ button.trip-submit {
     font-size: 24px;
     color: white;
     padding-top: 15px;
+    text-align: center;
 }

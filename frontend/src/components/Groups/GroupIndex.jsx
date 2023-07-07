@@ -32,6 +32,7 @@ export default function GroupIndex ( props ) {
 
     //STATE VARIABLE FOR USER GROUP INPUT
     const [userGroup, setUserGroup] = useState()
+    const [showForm, setShowForm] = useState(false);
 
 
     const handleRadioClick = (event) => {
@@ -51,6 +52,11 @@ export default function GroupIndex ( props ) {
         }
 
         const res = await dispatch(createTrip(tripData));
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        (showForm === false ? setShowForm(true) : setShowForm(false))
 
         return history.push(`/users/${userId}/trips`)
     }
@@ -62,6 +68,10 @@ export default function GroupIndex ( props ) {
             <div className='group-index-page-wrapper'>   
                 <section className="group-index-container">
                     <h2>Select a group to add to your trip</h2>
+                    <button onClick={handleClick}>Or start a new group!</button>
+                        {showForm && (
+                        <GroupForm />
+                    )}
                     <form onSubmit={handleSubmit}>
                         {groups === undefined ?
                             <p>no groups yet!</p> :
@@ -81,7 +91,6 @@ export default function GroupIndex ( props ) {
                         <button className="trip-submit" type='Submit'>Submit Trip</button>                      
                     </form>
                 </section>
-                <GroupForm userId={userId}/>
             </div>
         </>
     )
