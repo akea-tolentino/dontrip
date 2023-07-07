@@ -29,15 +29,6 @@ const removeTrip = tripId => ({
     tripId
 })
 
-const receiveItinerary = itinerary => ({
-    type: RECEIVE_ITINERARY,
-    itinerary
-})
-
-const removeItinerary = itineraryId => ({
-    type: REMOVE_ITINERARY,
-    itineraryId
-})
 
 const receiveErrors = errors => ({
     type: RECEIVE_TRIP_ERRORS,
@@ -79,15 +70,18 @@ export const fetchTrips = () => async dispatch => {
   };
 
 export const createTrip = data => async dispatch => {
+  debugger
     try {
-        const res = await jwtFetch('/api/trips/', {
+        const res = await jwtFetch(`/api/trips/users/${data.owner}`, {
         method: 'POST',
         body: JSON.stringify(data)
         });
-
+        debugger
         const trip = await res.json();
+        debugger
         dispatch(receiveTrip(trip));
     } catch(err) {
+        debugger
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
         return dispatch(receiveErrors(resBody.errors));
@@ -110,36 +104,7 @@ export const deleteTrip = tripId => async dispatch => {
     }
 };
 
-export const fetchItinerary = itineraryId => async dispatch => {
-    try {
-        const res = await jwtFetch(`/api/trips/${itineraryId}`, {
-        method: 'GET'
-        });
 
-        const trip = await res.json();
-        dispatch(receiveItinerary(trip));
-    } catch(err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-        return dispatch(receiveErrors(resBody.errors));
-        }
-    }
-};
-
-export const deleteItinerary = itineraryId => async dispatch => {
-    try {
-        const res = await jwtFetch(`/api/trips/${itineraryId}`, {
-        method: 'DELETE'
-        });
-        const trip = await res.json();
-        dispatch(removeItinerary(trip));
-    } catch(err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-        return dispatch(receiveErrors(resBody.errors));
-        }
-    }
-};
 
 // reducers -----------------------------------------------
 
@@ -157,6 +122,7 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
 };
 
 const tripsReducer = (state = { all: {}, new: undefined }, action) => {
+  debugger
     Object.freeze(state);
     let newState = {...state};
     switch(action.type) {

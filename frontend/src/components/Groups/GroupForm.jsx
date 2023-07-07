@@ -1,20 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { createGroup, fetchGroup, getGroup, updateGroup} from '../../store/groups'
+import { createGroup, fetchGroup, fetchGroups, getGroup, updateGroup} from '../../store/groups'
 
-export default function GroupForm ( { groupId } ) {
+export default function GroupForm ( { userId, groupId } ) {
+
+    //DEPENDENCIES
     const dispatch = useDispatch();
+
     let group = useSelector(getGroup(groupId));
     const formType = (groupId !== undefined ? 'Edit Group' : 'Create Group');
     const sessionUser = useSelector(state => state.session.user);
     const [showForm, setShowForm] = useState(true);
+
+   
 
     if (formType === 'Create Group') {
         group = {
             name: '',
             members: 1,
             budget: 0,
-            owner: sessionUser.id
+            owner: userId
         }
     }
 
@@ -24,9 +29,9 @@ export default function GroupForm ( { groupId } ) {
         }
     }, [groupId, dispatch])
 
-    const [name, setName] = useState(group.name);
-    const [members, setMembers] = useState(group.members);
-    const [budget, setBudget] = useState(group.budget);
+    const [name, setName] = useState("");
+    const [members, setMembers] = useState("");
+    const [budget, setBudget] = useState("group.budget");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,19 +41,20 @@ export default function GroupForm ( { groupId } ) {
             name,
             members,
             budget,
-            owner: sessionUser.id
+            owner: userId
         }
 
         if (newGroup !== undefined && formType === 'Create Group') {
             dispatch(createGroup(newGroup))
+            dispatch(fetchGroups(userId))
         } else {
             dispatch(updateGroup(newGroup))
         }
     }
 
     return (
-        <form className='group-form'>
-            <h2>{formType}</h2>
+        <form className='group-form' onSubmit={handleSubmit}>
+            {/* <h2>{formType}</h2>
             <section className='group-name'>
                 <label>
                     <input
@@ -79,7 +85,7 @@ export default function GroupForm ( { groupId } ) {
                     />
                 </label>
             </section>
-            <button className='submit-group'>{formType}</button>
+            <button className='submit-group'>{formType}</button> */}
         </form>
     )
 }
