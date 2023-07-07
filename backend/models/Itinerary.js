@@ -10,11 +10,11 @@ const itinerarySchema = new Schema({
         },
         date: {
             type: String,
-            required: true
+            optional: true
         },
         address: {
             type: String,
-            required: true
+            optional: true
         },
         cost: {
             type: Number

@@ -84,13 +84,13 @@ export default function GlobePage(props) {
         const eventsObject = await events.map( (event) => {
             let info = event.split(', ')
             return {
-                "activity": info[0],
-                "website": info[1],
+                "description": info[0],
+                "address": info[1],
             }
         })
     
 
-        if (eventsObject.length !== 20) return handleAiRequest(e)
+
         setloading(false)
      
         return history.push("/itinerary", {params: eventsObject, location: userLocation.location, experience: experience, month: month})
