@@ -14,8 +14,9 @@ const receiveTrips = trips => ({
     trips
 })
 
-const receiveUserTrips = userId => ({
+const receiveUserTrips = (trips, userId) => ({
     type: RECEIVE_USER_TRIPS,
+    trips,
     userId
 })
 
@@ -57,12 +58,15 @@ export const fetchTrips = () => async dispatch => {
   };
 
   export const fetchUserTrips = (userId) => async dispatch => {
+
     try {
       const res = await jwtFetch (`/api/trips/users/${userId}`);
       const trips = await res.json();
-      dispatch(receiveUserTrips(trips));
+
+      dispatch(receiveUserTrips(trips, userId));
     } catch (err) {
       const resBody = await err.json();
+  
       if (resBody.statusCode === 400) {
         dispatch(receiveErrors(resBody.errors));
       }
@@ -70,18 +74,18 @@ export const fetchTrips = () => async dispatch => {
   };
 
 export const createTrip = data => async dispatch => {
-  debugger
+
     try {
         const res = await jwtFetch(`/api/trips/users/${data.owner}`, {
         method: 'POST',
         body: JSON.stringify(data)
         });
-        debugger
+
         const trip = await res.json();
-        debugger
+   
         dispatch(receiveTrip(trip));
     } catch(err) {
-        debugger
+    
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
         return dispatch(receiveErrors(resBody.errors));
@@ -121,15 +125,16 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-const tripsReducer = (state = { all: {}, new: undefined }, action) => {
-  debugger
+const tripsReducer = (state = {}, action) => {
+
     Object.freeze(state);
     let newState = {...state};
+
     switch(action.type) {
       case RECEIVE_TRIPS:
-        return { ...newState, ...action.trips, new: undefined};
+          return state
       case RECEIVE_USER_TRIPS:
-        return { ...newState, ...action.trips, new: undefined};
+        return action.trips;
       case RECEIVE_TRIP:
         return { ...newState, ...action.trip, new: undefined};
       case REMOVE_TRIP:

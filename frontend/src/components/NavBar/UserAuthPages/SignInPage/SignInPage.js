@@ -27,7 +27,7 @@ export const SignInPage = () => {
 
     
         const res = await dispatch(login(userInfo))
-        return history.push("/experiences")
+        return history.push(`/users/${res.currentUser._id}/trips`)
 
     }
 
