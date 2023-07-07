@@ -5,65 +5,62 @@ import './Itinerary.css'
 import { useDispatch, useSelector } from "react-redux";
 import { postItinerary } from "../../store/itinerary";
 import { getCurrentUser } from "../../store/session";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 
 export default function Itinerary ( props ) {
 
+    //dependent functions
+    const history = useHistory();
     const dispatch = useDispatch();
 
-    const [showEvents, setShowEvents] = useState(true);
-    const [showStays, setShowStays] = useState(false);
-
-
-    const [staysList, setStaysList] = useState([])
-
-    const user = useSelector(state => state.session.user)
-
-    useEffect(() => {
-        dispatch(getCurrentUser())
-    }, [])
-
-
+    //VARIABLES FROM PREVIOUS QUERIES
     const experience = props.location.state.experience;
     const location = props.location.state.location;
     const month = props.location.state.month;
     const events = props.location.state.params
 
-    const handleEventsClick = () => {
-        showEvents ? setShowEvents(false) : setShowEvents(true)
-    }
 
-    const handleStaysClick = () => {
-        showStays ? setShowStays(false) : setShowStays(true)
-    }
+    //STATE VARIABLE FOR STAYS
+    const [staysList, setStaysList] = useState([])
 
+    //GETS USER FROM CURRENT USER
+    const user = useSelector(state => state.session.user)
+
+    useEffect(() => {
+        dispatch(getCurrentUser())
+    }, [dispatch])
+
+
+    //ON SUBMIT FOR ITINERARIES
     const changeEvents = async (eventsArray) => {
 
-
+        //takes in events array and makes a itinerary body 
         const itineraryBody = {
             events: eventsArray,
             stays: staysList
         }
-        dispatch(postItinerary(itineraryBody, user._id));
-        debugger
+
+        //dispatches itinerary post request
+        const res = await dispatch(postItinerary(itineraryBody, user._id));
+
+        const id = res._id
+        return history.push("/groups", {itinerary: id, location: location, experience: experience, month: month, userId: user._id})
     }
 
 
     return (
         <>
 
-        <div className="itinerary-page-h1">
-            <h1>Create your Itinerary</h1>
-        </div>
+            <div className="itinerary-page-h1">
+                <h1>Create your Itinerary</h1>
+            </div>
 
-        <div className="itinerary-page-container">
-
-            {showEvents &&
-            <SelectEvents changeEvents={changeEvents} availableEvents={events} experience={experience} location={location} month={month} /> }
-
-            {showStays && 
-            <SelectStays  /> }
-        </div>
+            <div className="itinerary-page-container">
+                <SelectEvents changeEvents={changeEvents} availableEvents={events} experience={experience} location={location} month={month} /> 
+                <SelectStays /> 
+            </div>
 
         </>
     )

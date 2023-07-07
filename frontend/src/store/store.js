@@ -2,8 +2,9 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { itineraryReducer } from './itinerary';
 import sessionReducer, { sessionErrorsReducer } from './session';
-import groupsReducer from './groups';
 import tripsReducer, { tripErrorsReducer} from './trips';
+import groupsReducer from './groups';
+
 
 const rootReducer = combineReducers({
   session: sessionReducer,
