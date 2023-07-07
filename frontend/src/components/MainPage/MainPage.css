@@ -1,8 +1,17 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 90vh;
+}
+
 .choose-month {
     display: flex;
     justify-content: center;
     color: white;
     margin-top: 20px;
+    align-items: center;
 }
 
 .choose-month select {
@@ -20,6 +29,13 @@
 .main-container {
     display: flex;
     justify-content: center;
+}
+
+.experience-ul {
+    margin-top: 3vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .experience-ul li {
@@ -56,4 +72,21 @@
     display: flex;
     justify-content: center;
     margin-top: 40vh;
+}
+
+.experience-submit:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border-color: white;
+
+}
+
+.experience-submit {
+    width: 5vw;
+    padding: 10px;
+    margin: 5vh 5vw;
+    border-radius: 18px;
+    background-color: white;
+    color: black;
 }
