@@ -9,20 +9,20 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
 
     const handleClick = (e, event) => {
         e.preventDefault();
-        if (selectedEventsDescription.includes(event.activity)) {
+        if (selectedEventsDescription.includes(event.description)) {
             const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.id !== event.id);
             setSelectedEvents(updatedSelectedEvents);
-            setSelectedEventsDescription(updatedSelectedEvents.map((e) => e.activity));
+            setSelectedEventsDescription(updatedSelectedEvents.map((e) => e.description));
         } else {
             setSelectedEvents((prevSelectedEvents) => [...prevSelectedEvents, event]);
-            setSelectedEventsDescription((prevSelectedEventsDesc) => [...prevSelectedEventsDesc, event.activity]);
+            setSelectedEventsDescription((prevSelectedEventsDesc) => [...prevSelectedEventsDesc, event.description]);
         }
     }
 
     const handleDelete = (e, event) => {
         e.preventDefault();
         debugger
-        const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.activity !== event.activity);
+        const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.description !== event.description);
         setSelectedEvents(updatedSelectedEvents);
     }
 
@@ -43,7 +43,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
         e.preventDefault();
         let id = selectedEvents.length + 1;
         let newEvent = {
-           id: id, activity: event, website: site, price: price
+           id: id, description: event, address: site, cost: price
         }
         setSelectedEvents([...selectedEvents, newEvent]);
         setEvent('');
@@ -64,10 +64,10 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 {availableEvents.map(event =>
                 <li key={event.id}>
                     <br/>
-                    <h3>{event.activity}</h3>
-                    <h3>{event.website}</h3>
+                    <h3>{event.description}</h3>
+                    <h3>{event.address}</h3>
                     <button className="select-events-add-button" onClick={(e)=>handleClick(e, event)}>
-                        {/* {selectedEventsDescription.includes(event.activity) ? "remove" : "add"} */}add
+                        {/* {selectedEventsDescription.includes(event.description) ? "remove" : "add"} */}add
                     </button>
                 </li>)}
             </ul>
@@ -86,8 +86,8 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 <li key={event.id}>
                     <br/>
 
-                    <h3>{event.activity}</h3>
-                    <h3>{event.website}</h3>
+                    <h3>{event.description}</h3>
+                    <h3>{event.address}</h3>
                     <button className="select-events-add-button" onClick={(e)=>handleDelete(e, event)}>
                         remove
                     </button>

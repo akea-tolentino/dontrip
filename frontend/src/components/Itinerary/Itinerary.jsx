@@ -1,15 +1,28 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SelectEvents from "./Events/SelectEvents";
 import SelectStays from "./Stays/SelectStays";
 import './Itinerary.css'
+import { useDispatch, useSelector } from "react-redux";
+import { postItinerary } from "../../store/itinerary";
+import { getCurrentUser } from "../../store/session";
+
 
 export default function Itinerary ( props ) {
-    debugger
+
+    const dispatch = useDispatch();
+
     const [showEvents, setShowEvents] = useState(true);
     const [showStays, setShowStays] = useState(false);
 
-    const [eventsList, setEventsList] = useState([]);
+
     const [staysList, setStaysList] = useState([])
+
+    const user = useSelector(state => state.session.user)
+
+    useEffect(() => {
+        dispatch(getCurrentUser())
+    }, [])
+
 
     const experience = props.location.state.experience;
     const location = props.location.state.location;
@@ -24,8 +37,14 @@ export default function Itinerary ( props ) {
         showStays ? setShowStays(false) : setShowStays(true)
     }
 
-    const changeEvents = (eventsArray) => {
-        setEventsList(eventsArray)
+    const changeEvents = async (eventsArray) => {
+
+
+        const itineraryBody = {
+            events: eventsArray,
+            stays: staysList
+        }
+        dispatch(postItinerary(itineraryBody, user._id));
         debugger
     }
 
