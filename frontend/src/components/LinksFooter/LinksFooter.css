@@ -1,0 +1,43 @@
+.links-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgb(251, 251, 251);
+}
+
+.Anthony-links {
+    width: 50px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.Akea-links {
+    width: 50px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.Thomas-links {
+    width: 50px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.Rocco-links {
+    width: 50px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.links {
+    color: blue
+}
