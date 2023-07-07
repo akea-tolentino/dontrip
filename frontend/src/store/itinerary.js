@@ -10,7 +10,7 @@ const createItinerary = payload => ({
 
 
 export const postItinerary = (itineraryInfo, userId) => async dispatch => {
-  debugger
+    //post request to create an itinerary
     const res = await jwtFetch(`/api/itineraries/users/${userId}`, {
       method: "POST",
       body: JSON.stringify(itineraryInfo)
@@ -18,6 +18,7 @@ export const postItinerary = (itineraryInfo, userId) => async dispatch => {
 
     const data = await res.json()
     dispatch(createItinerary(data))
+    return data
 }
 
 export const itineraryReducer = (state = {}, action) => {

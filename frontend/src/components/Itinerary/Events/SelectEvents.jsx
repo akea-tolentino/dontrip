@@ -21,7 +21,6 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
 
     const handleDelete = (e, event) => {
         e.preventDefault();
-        debugger
         const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.description !== event.description);
         setSelectedEvents(updatedSelectedEvents);
     }
