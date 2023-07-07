@@ -63,11 +63,10 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 {availableEvents.map(event =>
                 <li key={event.id}>
                     <br/>
-                    <h3>{event.description}</h3>
-                    <h3>{event.address}</h3>
-                    <button className="select-events-add-button" onClick={(e)=>handleClick(e, event)}>
-                        {/* {selectedEventsDescription.includes(event.description) ? "remove" : "add"} */}add
-                    </button>
+                    <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleClick(e, event)}>
+                        {/* {selectedEventsDescription.includes(event.description) ? "remove" : "add"} */}select
+                    </button></h3>
+                    <h3><a href={event.address} target="_blank">{event.address}</a></h3>
                 </li>)}
             </ul>
         </section>
@@ -76,6 +75,16 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
             <h3>
                 Please choose any number of events to add to your itinerary
             </h3>
+            <section className="event-buttons">
+                <div className="create-own-event-container">
+                    <button onClick={handleCreate}>Create your own event</button>
+                </div>
+                <div className="itinerary-submit-button" onClick={handleSubmit}>
+                    <button>
+                        don'trip, let's go!
+                    </button>
+                </div>
+            </section>
         </div>
 
         <div className="selected-events-container">
@@ -85,19 +94,18 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 <li key={event.id}>
                     <br/>
 
-                    <h3>{event.description}</h3>
-                    <h3>{event.address}</h3>
-                    <button className="select-events-add-button" onClick={(e)=>handleDelete(e, event)}>
+                    <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleDelete(e, event)}>
                         remove
-                    </button>
+                    </button></h3>
+                    <h3><a href={event.address} target="_blank">{event.address}</a></h3>
                 </li>
                 )}
             </ul>
         </div>
 
-        <div className="create-own-event-container">
+        {/* <div className="create-own-event-container">
             <button onClick={handleCreate}>Create your own event</button>
-        </div>
+        </div> */}
 
         {dropDown && (
             <form className="dropdown">
@@ -132,11 +140,11 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
             </form>
         )}
 
-        <div className="itinerary-submit-button" onClick={handleSubmit}>
+        {/* <div className="itinerary-submit-button" onClick={handleSubmit}>
             <button>
                 don'trip, let's go!
             </button>
-        </div>
+        </div> */}
         </>
     )
 }
