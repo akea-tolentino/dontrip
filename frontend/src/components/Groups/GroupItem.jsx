@@ -17,10 +17,10 @@ export default function GroupItem ( { group } ) {
                 <li>members: {group.members}</li>
                 <li>budget: ${group.budget}</li>
             </ul>
-            <button onClick={handleClick}>edit</button>
+            {/* <button onClick={handleClick}>edit</button>
             {showForm && (
                 <GroupForm groupId={group._id} />
-                )}
+                )} */}
         </article>
     )
 }

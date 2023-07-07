@@ -52,13 +52,14 @@ export default function GroupIndex ( props ) {
         }
 
         const res = await dispatch(createTrip(tripData));
+        return history.push(`/users/${userId}/trips`)        
     }
 
     const handleClick = (e) => {
         e.preventDefault();
         (showForm === false ? setShowForm(true) : setShowForm(false))
 
-        return history.push(`/users/${userId}/trips`)
+
     }
 
 
