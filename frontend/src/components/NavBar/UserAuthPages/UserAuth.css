@@ -23,12 +23,17 @@
     box-sizing: border-box;
 }
 
+.user-auth-input-container input:focus {
+    background-color: rgba(255, 255, 0, 0.314);
+}
+
 .user-auth-input-container input {
     height: 100%;
     width: 100%;
     box-sizing: border-box;
     border-radius: 12px;
     background-color: white;
+    text-align: center;
 }
 
 
@@ -45,9 +50,16 @@
     
 }
 
+.user-auth-button:hover {
+    cursor: pointer;
+    background-color: white
+}
+
 .user-auth-button {
     width: 60%;
     height: 15%;
     border-radius: 12px;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.453);
+    
 }
