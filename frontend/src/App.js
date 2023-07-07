@@ -26,14 +26,16 @@ function App() {
     <>
       <NavBar/>
       <Switch>
-        <ProtectedRoute exact path = "/users/:userId/trips" component={UserShowPage} />
+        
+        
+        <ProtectedRoute path="/users/:userId/trips" component={UserShowPage} />
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
         <ProtectedRoute exact path="/groups" component={GroupIndex} />
         <ProtectedRoute exact path="/itinerary" component={Itinerary} />
-        <ProtectedRoute path="/" component={CoolCarousel} />        
-        <AuthRoute path="/" component={MainPage} />        
-
+             
+        <AuthRoute path="/" component={MainPage} />  
+        
 
        
       </Switch>

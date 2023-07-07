@@ -2,7 +2,7 @@ import { useState } from "react"
 import '../MainPage.css'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ScaleLoader from 'react-spinners/ScaleLoader';
-
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
 
 export default function Experiences(props) {
 
@@ -14,6 +14,8 @@ export default function Experiences(props) {
 
     const[toggle, setToggle] = useState("");
 
+    const[errors, setErrors] = useState(false)
+
     const history = useHistory();
 
     const chatApiKey = process.env.REACT_APP_GPT_KEY;
@@ -22,13 +24,14 @@ export default function Experiences(props) {
         e.preventDefault();
         let places = []
 
+        let counter = 0
         setloading(true)
 
         const apiRequestBody = {
             "model": "gpt-3.5-turbo",
             "messages": [{
                 "role": "user",
-                "content": `return only a list of 5 ${experience} destinations in ${category}, formatted in a string of city, country, destination, and coordinates", split by a | without any text before and after`
+                "content": `return only a string of 5 ${experience} destinations in ${category}, formatted in city, country, destination, and coordinates", split by a |, on a single line, without any text before and after`
             }]
         };
 
@@ -41,12 +44,16 @@ export default function Experiences(props) {
             },
             body: JSON.stringify(apiRequestBody)
         }).then((data) => {
-
             return data.json();
         }).then((data) => {
+            if (data.error) {
+                setErrors(true)
+                return handleAiRequest(e)
+            }
+            debugger
             places = data.choices[0].message.content.split("|")
         });
-
+        debugger
 
         const placesObject = await places.map( (place) => {
             let info = place.split(', ')
@@ -57,11 +64,11 @@ export default function Experiences(props) {
             }
         })
 
-   
+        
 
         if (placesObject.length !== 5) return handleAiRequest(e)
         setloading(false)
-     
+        setErrors(false)
         return history.push("/location", {params: placesObject, experience: experience, month: category})
         
     }
@@ -75,10 +82,17 @@ export default function Experiences(props) {
     return (
         <> 
             {loading ? (
-                <div className="experiences-loading-container">
-                    <ScaleLoader color={"white"} height={100} width={30} radius={20} margin={5}/>    
-                </div>
-                
+                <>
+                    { errors ? (
+                    <div className="experiences-loading-container">
+                        <ClimbingBoxLoader color={"white"} height={100} width={30} radius={20} margin={5}/>    
+                    </div>
+                    ) : (
+                    <div className="experiences-loading-container">
+                        <ScaleLoader color={"white"} height={100} width={30} radius={20} margin={5}/>    
+                    </div>
+                    )}
+                </>
             ) :
             <div className="page">
                 <form className="experience-form">
