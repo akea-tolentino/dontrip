@@ -9,30 +9,21 @@ const validateItineraryInput = [
   check('events')
     .exists({ checkFalsy: true })
     .withMessage('Events is invalid'),
-  check('stays')
-    .exists({ checkFalsy: true })
-    .withMessage('Stays is invalid'),
   check('events.**.description')
     .exists({ checkFalsy: true })
     .withMessage('Event description is invalid'),
-  check('events.**.date')
-    .exists({ checkFalsy: true })
-    .withMessage('Event date is invalid'),
-  check('events.**.address')
-    .exists({ checkFalsy: true })
-    .withMessage('Event address is invalid'),
-  check('stays.**.description')
-    .exists({ checkFalsy: true })
-    .withMessage('Stay description is invalid'),
-  check('stays.**.check_in_date')
-    .exists({ checkFalsy: true })
-    .withMessage('Stays check in date is invalid'),
-  check('stays.**.check_out_date')
-    .exists({ checkFalsy: true })
-    .withMessage('Stays check out date is invalid'),
-  check('stays.**.address')
-    .exists({ checkFalsy: true })
-    .withMessage('Stays address is invalid'),
+  // check('stays.**.description')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Stay description is invalid'),
+  // check('stays.**.check_in_date')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Stays check in date is invalid'),
+  // check('stays.**.check_out_date')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Stays check out date is invalid'),
+  // check('stays.**.address')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Stays address is invalid'),
   handleValidationErrors
 ];
 
