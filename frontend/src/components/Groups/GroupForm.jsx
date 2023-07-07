@@ -33,7 +33,8 @@ export default function GroupForm ( { userId, groupId } ) {
     const [members, setMembers] = useState("");
     const [budget, setBudget] = useState("group.budget");
 
-    const handleSubmit = (e) => {
+    const handleCoolSubmit = (e) => {
+        debugger
         e.preventDefault();
 
         const newGroup = {
@@ -44,6 +45,7 @@ export default function GroupForm ( { userId, groupId } ) {
             owner: userId
         }
 
+        debugger
         if (newGroup !== undefined && formType === 'Create Group') {
             dispatch(createGroup(newGroup))
             dispatch(fetchGroups(userId))
@@ -53,7 +55,8 @@ export default function GroupForm ( { userId, groupId } ) {
     }
 
     return (
-        <form className='group-form' onSubmit={handleSubmit}>
+        <>
+        <form className='group-form' >
             <h2>{formType}</h2>
             <section className='group-name'>
                 <label>
@@ -85,7 +88,9 @@ export default function GroupForm ( { userId, groupId } ) {
                     />
                 </label>
             </section>
-            <button className='submit-group'>{formType}</button>
+            
         </form>
+         <button className='submit-group' onClick={(e) => console.log(e)}>{formType}</button>
+        </>
     )
 }

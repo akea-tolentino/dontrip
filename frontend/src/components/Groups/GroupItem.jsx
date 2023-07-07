@@ -7,6 +7,7 @@ export default function GroupItem ( { group } ) {
 
     const handleClick = (e) => {
         e.preventDefault();
+        debugger
         (showForm === false ? setShowForm(true) : setShowForm(false))
     }
 

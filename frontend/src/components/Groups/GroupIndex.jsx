@@ -42,6 +42,9 @@ export default function GroupIndex ( props ) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const tripSubmit = document.querySelector(".cool-form");
+        debugger
+        if (e.target !== tripSubmit) return
         const tripData = {
             experience: experience,
             month: month,
@@ -52,13 +55,14 @@ export default function GroupIndex ( props ) {
         }
 
         const res = await dispatch(createTrip(tripData));
+        return history.push(`/users/${userId}/trips`)
     }
 
     const handleClick = (e) => {
         e.preventDefault();
         (showForm === false ? setShowForm(true) : setShowForm(false))
 
-        return history.push(`/users/${userId}/trips`)
+        
     }
 
 
@@ -72,7 +76,7 @@ export default function GroupIndex ( props ) {
                         {showForm && (
                         <GroupForm />
                     )}
-                    <form onSubmit={handleSubmit}>
+                    <form className="cool-form" onSubmit={handleSubmit}>
                         {groups === undefined ?
                             <p>no groups yet!</p> :
                             <ul className='group-list'>
@@ -88,7 +92,7 @@ export default function GroupIndex ( props ) {
                                 })}
                             </ul>
                         }
-                        <button className="trip-submit" type='Submit'>Submit Trip</button>                      
+                        <button className="trip-submit" >Submit Trip</button>                      
                     </form>
                 </section>
             </div>

@@ -80,7 +80,7 @@ export const createGroup = data => async dispatch => {
 export const updateGroup = data => async dispatch => {
     try {
         const res = await jwtFetch(`/api/groups/${data.id}`, {
-        method: 'POST',
+        method: 'PATCH',
         body: JSON.stringify(data)
         });
 
@@ -112,7 +112,7 @@ export const deleteGroup = groupId => async dispatch => {
 // Reducer
 
 export default function groupsReducer (state = {}, action) {
- 
+    debugger
     Object.freeze(state);
     let newState = {...state};
     switch(action.type) {

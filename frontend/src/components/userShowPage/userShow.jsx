@@ -14,7 +14,7 @@ export default function UserShowPage () {
     const dispatch = useDispatch();
     const { userId } = useParams();
     const userTrips = useSelector(state => Object.values(state.trips));
-    
+    debugger
     useEffect(() => {
         dispatch(fetchUserTrips(userId))
     }, [dispatch])
