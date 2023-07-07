@@ -76,12 +76,9 @@ export const createTrip = data => async dispatch => {
         method: 'POST',
         body: JSON.stringify(data)
         });
-        debugger
         const trip = await res.json();
-        debugger
         dispatch(receiveTrip(trip));
     } catch(err) {
-        debugger
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
         return dispatch(receiveErrors(resBody.errors));

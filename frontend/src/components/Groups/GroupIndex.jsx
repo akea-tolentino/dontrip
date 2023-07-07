@@ -4,6 +4,7 @@ import { fetchGroups, getUserGroups } from '../../store/groups';
 import GroupItem from './GroupItem';
 import GroupForm from './GroupForm';
 import { createTrip } from '../../store/trips';
+import './Group.css';
 
 
 export default function GroupIndex ( props ) {
@@ -56,22 +57,19 @@ export default function GroupIndex ( props ) {
         <>
             <div className='group-index-page-wrapper'>   
                 <section className="group-index-container">
+                    <h2>Select a group to add to your trip</h2>
                     <form onSubmit={handleSubmit}>
                         <GroupForm userId={userId}/>
                         {groups === undefined ?
                             <p>no groups yet!</p> :
-                            <ul>
+                            <ul className='group-list'>
                                 {groups.map(group =>{
                                     return (
-                                        <li>
-                                            <GroupItem key={group._id} group={group} />
+                                        <li className='group-list-item'>
                                             <input name='location-radio' id={group._id} type='radio' 
                                             onClick={handleRadioClick} className='radio'
                                             />
-                                                <label >
-                                                    cool
-                                                </label>
-                                            
+                                            <GroupItem key={group._id} group={group} />
                                         </li>
                                     )
                                 }
@@ -79,7 +77,7 @@ export default function GroupIndex ( props ) {
                             
                             </ul>
                         }  
-                        <button type='Submit'>Submit Trip</button>                      
+                        <button className="trip-submit" type='Submit'>Submit Trip</button>                      
                     </form>
 
                 </section>
