@@ -6,10 +6,6 @@ export default function SelectEvents ( { availableEvents } ) {
     const [selectedEventsDescription, setSelectedEventsDescription] = useState([]);
     const [dropDown, setDropDown] = useState(false);
 
-    availableEvents = [
-        {id:1, activity:'Hiking', website:'www.youhike.com'}, 
-        {id:2, activity:'Biking', website:'www.bikenow.com'}
-        ]
 
     const handleClick = (e, event) => {
         e.preventDefault();
@@ -25,7 +21,8 @@ export default function SelectEvents ( { availableEvents } ) {
 
     const handleDelete = (e, event) => {
         e.preventDefault();
-        const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.id !== event.id);
+        debugger
+        const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.activity !== event.activity);
         setSelectedEvents(updatedSelectedEvents);
     }
 

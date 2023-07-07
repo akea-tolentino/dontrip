@@ -3,9 +3,15 @@ import SelectEvents from "./Events/SelectEvents";
 import SelectStays from "./Stays/SelectStays";
 import './Itinerary.css'
 
-export default function Itinerary ( { chatEventsList, chatStaysList } ) {
+export default function Itinerary ( props ) {
+    debugger
     const [showEvents, setShowEvents] = useState(true);
     const [showStays, setShowStays] = useState(false);
+
+    const experience = props.location.state.experience;
+    const location = props.location.state.location;
+    const month = props.location.state.month;
+    const events = props.location.state.params
 
     const handleEventsClick = () => {
         showEvents ? setShowEvents(false) : setShowEvents(true)
@@ -32,14 +38,14 @@ export default function Itinerary ( { chatEventsList, chatStaysList } ) {
             </button> */}
 
             {showEvents &&
-            <SelectEvents availableEvents={chatEventsList} /> }
+            <SelectEvents availableEvents={events} /> }
 {/* 
             <button className="stays-button" onClick={()=> handleStaysClick}>
                 Stays
             </button> */}
 
             {showStays && 
-            <SelectStays availableStays={chatStaysList} /> }
+            <SelectStays  /> }
         </div>
 
         </>
