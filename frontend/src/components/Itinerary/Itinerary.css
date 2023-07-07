@@ -139,13 +139,16 @@
     grid-column: 2;
     z-index: 1;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 250px;
+    height: 28vh;
+    width: 25vw;
     background-color: #eee;
     border-radius: 10px;
     box-shadow: 3px 3px 6px black;
+    justify-content: space-evenly;
+    padding-top: 10px;
 }
 
 .dropdown label {
@@ -168,9 +171,9 @@
 }
 
 .x {
-    text-align: end;
-    padding-right: 10px;
-    padding-top: 6px;
+    position: fixed;
+    top: 1.5vh;
+    right: 1vw;
     cursor: pointer;
 }
 
