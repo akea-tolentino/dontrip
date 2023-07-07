@@ -90,7 +90,7 @@ export default function GlobePage(props) {
         })
     
 
-
+        if (eventsObject.length !== 10) return handleAiRequest(e)
         setloading(false)
      
         return history.push("/itinerary", {params: eventsObject, location: userLocation.location, experience: experience, month: month})
