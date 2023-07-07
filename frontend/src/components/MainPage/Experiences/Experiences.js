@@ -95,7 +95,7 @@ export default function Experiences(props) {
                 </>
             ) :
             <div className="page">
-                <form className="experience-form" >
+                <form className="experience-form">
                     <label className="choose-month"> Choose a time of month 
                         <select onChange={(e)=>setCategory(e.target.value)}>
                             <option value={'January'}>January</option>

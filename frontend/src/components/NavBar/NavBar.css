@@ -1,6 +1,10 @@
-.header-list {
+.header {
     font-family: 'Gloria Hallelujah', cursive;
-    padding-top: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    width: 100vw;
 }
 
 .header ul li {
@@ -44,4 +48,44 @@
     color: #09234e90;
 }
 
+.profile-dropdown {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        justify-content: space-evenly;
+        position: fixed;
+        top: 6vh;
+        right: 1.5vw;
+        background-color: white;
+        padding: 21px;
+        box-shadow: 0 2px 4px #2d333f33;
+        width: 10vw;
+        height: 15vh;
+        transition: transform .15s ease-out,
+            opacity .15s ease-out,
+                position .15s ease-out,
+                max-height 0s;
+        border-radius: 8px;
+        z-index: 2;
+}
 
+.logout-button button:hover {
+    cursor: pointer;
+    color: #09234e5f;
+}
+
+.logout-button button {
+    background-color: white;
+    border: none;
+    color: #09244E;
+}
+
+.trips-link:hover {
+    cursor: pointer;
+    color: #09234e5f;
+}
+
+.trips-link {
+    text-decoration: none;
+    color: #09244E;
+}

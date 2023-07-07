@@ -54,7 +54,7 @@ export default function GroupForm ( { userId, groupId } ) {
 
     return (
         <form className='group-form' onSubmit={handleSubmit}>
-            {/* <h2>{formType}</h2>
+            <h2>{formType}</h2>
             <section className='group-name'>
                 <label>
                     <input
@@ -85,7 +85,7 @@ export default function GroupForm ( { userId, groupId } ) {
                     />
                 </label>
             </section>
-            <button className='submit-group'>{formType}</button> */}
+            <button className='submit-group'>{formType}</button>
         </form>
     )
 }
