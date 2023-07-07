@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchGroups } from '../../store/groups';
 import GroupItem from './GroupItem';

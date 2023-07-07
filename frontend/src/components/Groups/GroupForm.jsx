@@ -36,7 +36,7 @@ export default function GroupForm ( { groupId } ) {
             name,
             members,
             budget,
-            owner
+            owner: sessionUser.id
         }
 
         if (newGroup !== undefined && formType === 'Create Group') {

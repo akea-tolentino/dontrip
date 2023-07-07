@@ -1,3 +1,5 @@
+import { createSelector } from '@reduxjs/toolkit'
+
 const RECEIVE_GROUP = 'groups/RECEIVE_GROUP';
 const RECEIVE_GROUPS = 'groups/RECEIVE_GROUPS';
 const REMOVE_GROUP = 'groups/REMOVE_GROUP';
@@ -23,11 +25,11 @@ const removeGroup = (groupId) => {
     }
 }
 
-const getGroup = (groupId) => (state) => (
+export const getGroup = (groupId) => (state) => (
     state.groups ? state.groups[groupId] : null
 )
 
-const getUserGroups = (userId) => state => createSelector(
+export const getUserGroups = (userId) => state => createSelector(
     state => state.groups,
     groups => groups ? Object.values(groups).filter(group => group.owner === userId) : []
 )
