@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-export default function SelectEvents ( { availableEvents } ) {
+export default function SelectEvents ( { changeEvents, availableEvents, experience, location, month } ) {
     const [selectedEvents, setSelectedEvents] = useState([]);
     const [selectedEventsDescription, setSelectedEventsDescription] = useState([]);
     const [dropDown, setDropDown] = useState(false);
@@ -49,7 +49,12 @@ export default function SelectEvents ( { availableEvents } ) {
         setEvent('');
         setSite('');
         setPrice('')
-    }    
+    }  
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        changeEvents(selectedEvents)
+    }
 
     return (
         <>
@@ -128,7 +133,7 @@ export default function SelectEvents ( { availableEvents } ) {
             </form>
         )}
 
-        <div className="itinerary-submit-button">
+        <div className="itinerary-submit-button" onClick={handleSubmit}>
             <button>
                 don'trip, let's go!
             </button>

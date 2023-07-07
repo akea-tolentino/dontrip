@@ -8,6 +8,9 @@ export default function Itinerary ( props ) {
     const [showEvents, setShowEvents] = useState(true);
     const [showStays, setShowStays] = useState(false);
 
+    const [eventsList, setEventsList] = useState([]);
+    const [staysList, setStaysList] = useState([])
+
     const experience = props.location.state.experience;
     const location = props.location.state.location;
     const month = props.location.state.month;
@@ -21,9 +24,11 @@ export default function Itinerary ( props ) {
         showStays ? setShowStays(false) : setShowStays(true)
     }
 
-    const handleSubmit = () => {
-
+    const changeEvents = (eventsArray) => {
+        setEventsList(eventsArray)
+        debugger
     }
+
 
     return (
         <>
@@ -33,16 +38,9 @@ export default function Itinerary ( props ) {
         </div>
 
         <div className="itinerary-page-container">
-            {/* <button className="events-button" onClick={()=> handleEventsClick}>
-                Events
-            </button> */}
 
             {showEvents &&
-            <SelectEvents availableEvents={events} /> }
-{/* 
-            <button className="stays-button" onClick={()=> handleStaysClick}>
-                Stays
-            </button> */}
+            <SelectEvents changeEvents={changeEvents} availableEvents={events} experience={experience} location={location} month={month} /> }
 
             {showStays && 
             <SelectStays  /> }
