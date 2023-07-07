@@ -10,16 +10,19 @@
     font-size: 30px;
     padding: 10px;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 3vh;
+    height: 5vh;
 }
 
 .itinerary-intro {
     color: white;
     grid-column: 2;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     font-size: 20px;
+    margin: 5vh 5vw;
+    text-align: center;
 }
 
 .select-events-list {
@@ -28,8 +31,16 @@
 
 .select-events-container {
     grid-column: 1;
-    height: 80vh;
+    border-width: 2px;
+    border-color: #ddd;
+    border-style: double;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 12px;
     overflow-y: scroll;
+    height: 71vh;
+    box-shadow: 2px 3px 2px rgba(255, 255, 255, 0.196);
+
 }
 
 .selected-events-container li {
@@ -39,31 +50,43 @@
 
 .selected-events-container {
     grid-column: 3;
+    border-width: 2px;
+    border-color: #ddd;
+    border-style: double;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 12px;
+    overflow-y: scroll;
+    height: 71vh;
+    box-shadow: 2px 3px 2px rgba(255, 255, 255, 0.196);
+
+
+
 }
 
 .create-own-event-container, .itinerary-submit-button {
-    grid-column: 2;
+    /* grid-column: 2; */
     display: flex;
     justify-content: center;
 }
 
+.create-own-event-container button:hover, .itinerary-submit-button button:hover {
+    cursor: pointer;
+    background-color: #dddddd2d;
+    color: white;
+    border-color: white;
+}
+
 .create-own-event-container button, .itinerary-submit-button button {
-    width: 350px;
-    height: 30px;
-    border-radius: 5px;
+    width: 20vw;
+    height: 4vh;
+    border-radius: 15px;
     z-index: 0;
     font-size: 15px;
-    position: absolute;
-    top: 50vh;
 }
 
 .itinerary-submit-button button {
     font-size: 18px;
-}
-
-.create-own-event-container button {
-    position: absolute;
-    top: 46vh;
 }
 
 .events-button {
@@ -76,14 +99,40 @@
     width: 100px;
 }
 
+.select-events-add-button:hover {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.874);
+}
+
 .select-events-add-button {
     width: 100px;
+    background-color: #ffffff00;
+    border: none;
+    color: white;
 }
 
 .select-events-container h2, .selected-events-container h2 {
     color: white;
     font-size: 24px;
+    text-underline-position: below;
+    text-decoration: underline;
 }
+
+.select-events-list > li, .selected-events-list > li {
+    margin-top: 5px;
+    padding-left: 12px;
+}
+
+.select-events-list a:hover, .selected-events-list a:hover {
+    color: rgba(255, 255, 255, 0.874);
+}
+
+.select-events-list a, .selected-events-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
 
 .dropdown {
     border: 1px solid black;
@@ -137,4 +186,11 @@
 .selected-events-list h3 {
     font-size: 20px;
     color: #ddd;
+}
+
+.event-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 15vh;
+    justify-content: space-around;
 }

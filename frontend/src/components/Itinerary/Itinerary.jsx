@@ -45,7 +45,6 @@ export default function Itinerary ( props ) {
             stays: staysList
         }
         dispatch(postItinerary(itineraryBody, user._id));
-        debugger
     }
 
 
