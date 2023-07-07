@@ -4,10 +4,13 @@ import { fetchGroups, getUserGroups } from '../../store/groups';
 import GroupItem from './GroupItem';
 import GroupForm from './GroupForm';
 import { createTrip } from '../../store/trips';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './Group.css';
 
 
 export default function GroupIndex ( props ) {
+
+    const history = useHistory();
    
     //VARIABLES FROM PREVIOUS QUERIES
     const experience = props.location.state.experience;
@@ -54,6 +57,8 @@ export default function GroupIndex ( props ) {
     const handleClick = (e) => {
         e.preventDefault();
         (showForm === false ? setShowForm(true) : setShowForm(false))
+
+        return history.push(`/users/${userId}/trips`)
     }
 
 

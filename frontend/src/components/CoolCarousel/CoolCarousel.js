@@ -3,47 +3,52 @@ import "./CoolCarousel.css"
 import { useState } from 'react';
 
 
-export const CoolCarousel = () => {
+export const CoolCarousel = ({userTrips}) => {
+
+  const images = {
+    Ski: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/ski.png',
+    Lake: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/lake.png',
+    Beach: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/beach.png',
+    Surf: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/surf.png',
+    Clubbing: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/clubbing.png',
+    Backpacking: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/backpacking.png',
+    Camping: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/camping.png',
+    "Wine tasting": 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/winetasting.png'
+
+  }
+
+
 
   const [goToSlide, setGoToSlide] = useState(0)
 
-  const slides = [
-    {
-      key: 1,
-      content: <img onClick={() => setGoToSlide(0)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/ski.png'} alt="snow"/>
-    },
-    {
-      key: 2,
-      content: <img onClick={() => setGoToSlide(1)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/lake.png'} alt="lake"/>
-    },
-    {
-      key: 3,
-      content: <img onClick={() => setGoToSlide(2)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/beach.png'} alt="beach"/>   
-    },
-    {
-      key: 4,
-      content: <img onClick={() => setGoToSlide(3)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/surf.png'} alt="surf"/>     
-    },
-    {
-      key: 5,
-      content: <img onClick={() => setGoToSlide(4)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/clubbing.png'} alt="clubbing"/>    
-    },
-    {
-      key: 6,
-      content: <img onClick={() => setGoToSlide(5)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/backpacking.png'} alt="backpacking"/>  
-    },
-    {
-      key: 7,
-      content: <img onClick={() => setGoToSlide(6)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/camping.png'} alt="camping"/>     
-    },
-    {
-      key: 8,
-      content: <img onClick={() => setGoToSlide(7)} className='cool-images' src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/winetasting.png'} alt="wine tasting"/> 
-    }
-  ]
+  const slides = []
+  debugger
+  if (userTrips) {
+    userTrips.map( (trip, index) => {
+      slides.push({
+        key: index,
+        content: (
+        <div className='cool-image-container'>
+          <img onClick={() => setGoToSlide(index)} className='cool-images' src={images[trip.experience]} alt={trip.experience} />
+          <p>{trip.experience}</p>
+          <p>{trip.month}</p>
+          <p>{trip.location}</p>
+  
+        </div>
+        )
+        
+      }) 
+    })
+
+  }
+  
+
   return (
     <>
-      <Carousel goToSlide={goToSlide} slides={slides} offsetRadius={4} enableSwipe={true} />
+      <div className='cool-carousel-2'>
+        <Carousel goToSlide={goToSlide} slides={slides} offsetRadius={4} enableSwipe={true} />
+      </div>
+      
     </>
   )
 
