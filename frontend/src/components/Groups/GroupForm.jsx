@@ -53,39 +53,40 @@ export default function GroupForm ( { userId, groupId } ) {
     }
 
     return (
-        <form className='group-form' onSubmit={handleSubmit}>
-            <h2>{formType}</h2>
-            <section className='group-name'>
-                <label>
-                    <input
-                    value={name}
-                    onChange={(e)=> setName(e.target.value)}
-                    placeholder="Group Name"
-                    />
-                </label>
-            </section>
-            <section className='group-members'>
-                <label>
-                    <input
-                    type="number"
-                    value={members}
-                    min="1"
-                    onChange={(e)=> setMembers(e.target.value)}
-                    placeholder="# of people"
-                    />
-                </label>
-            </section>
-            <section className='group-budget'>
-                <label>
-                    <input
-                    type="number"
-                    value={budget}
-                    onChange={(e)=> setBudget(e.target.value)}
-                    placeholder="Budget"
-                    />
-                </label>
-            </section>
-            <button className='submit-group'>{formType}</button>
-        </form>
+        // <form className='group-form' onSubmit={handleSubmit}>
+        //     <h2>{formType}</h2>
+        //     <section className='group-name'>
+        //         <label>
+        //             <input
+        //             value={name}
+        //             onChange={(e)=> setName(e.target.value)}
+        //             placeholder="Group Name"
+        //             />
+        //         </label>
+        //     </section>
+        //     <section className='group-members'>
+        //         <label>
+        //             <input
+        //             type="number"
+        //             value={members}
+        //             min="1"
+        //             onChange={(e)=> setMembers(e.target.value)}
+        //             placeholder="# of people"
+        //             />
+        //         </label>
+        //     </section>
+        //     <section className='group-budget'>
+        //         <label>
+        //             <input
+        //             type="number"
+        //             value={budget}
+        //             onChange={(e)=> setBudget(e.target.value)}
+        //             placeholder="Budget"
+        //             />
+        //         </label>
+        //     </section>
+        //     <button className='submit-group'>{formType}</button>
+        // </form>
+        <></>
     )
 }

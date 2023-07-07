@@ -52,13 +52,14 @@ export default function GroupIndex ( props ) {
         }
 
         const res = await dispatch(createTrip(tripData));
+        return history.push(`/users/${userId}/trips`)        
     }
 
     const handleClick = (e) => {
         e.preventDefault();
         (showForm === false ? setShowForm(true) : setShowForm(false))
 
-        return history.push(`/users/${userId}/trips`)
+
     }
 
 
@@ -72,7 +73,7 @@ export default function GroupIndex ( props ) {
                         {showForm && (
                         <GroupForm />
                     )}
-                    <form onSubmit={handleSubmit}>
+                    <form >
                         {groups === undefined ?
                             <p>no groups yet!</p> :
                             <ul className='group-list'>
@@ -87,9 +88,9 @@ export default function GroupIndex ( props ) {
                                     )
                                 })}
                             </ul>
-                        }
-                        <button className="trip-submit" type='Submit'>Submit Trip</button>                      
+                        }                    
                     </form>
+                    <button className="trip-submit" onClick={handleSubmit}>Submit Trip</button>
                 </section>
             </div>
         </>
