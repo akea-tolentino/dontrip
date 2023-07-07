@@ -81,7 +81,7 @@ export default function Experiences(props) {
                 
             ) :
             <div className="page">
-                <form className="experience-form" onSubmit={handleAiRequest}>
+                <form className="experience-form">
                     <label className="choose-month"> Choose a time of month 
                         <select onChange={(e)=>setCategory(e.target.value)}>
                             <option value={'January'}>January</option>
@@ -153,7 +153,7 @@ export default function Experiences(props) {
 
                 </div>
                 </form>      
-                <button className="experience-submit" type="Submit">Submit</button>
+                <button className="experience-submit" onClick={handleAiRequest}>Submit</button>
             </div>}
         </>
 
