@@ -5,11 +5,16 @@ import { useState } from 'react';
 import { Modal } from "../../context/Modal"
 import { SignInPage } from "../../NavBar/UserAuthPages/SignInPage/SignInPage"
 import { SignUpPage } from "../../NavBar/UserAuthPages/SignUpPage/SignUpPage"
+import { login } from '../../../store/session.js';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 export default function Splash () {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
-    const [showSplashInfo, setShowSplashInfo] = useState(true)
+    const [showSplashInfo, setShowSplashInfo] = useState(true);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     
     const handleModalClose = (e) => {
@@ -28,6 +33,18 @@ export default function Splash () {
         setShowSplashInfo(false);
     }
 
+    const handleDemoClick = async (e) => {
+        e.preventDefault();
+
+        const user = {
+            email: "demo@user.io",
+            password: "password"
+        }
+
+        const res = await dispatch(login(user));
+        return history.push(`/users/${res.currentUser._id}/trips`)
+    }
+
     return (
         <div>
             {showSplashInfo && <div className='splash-background'>
@@ -43,7 +60,7 @@ export default function Splash () {
                         <button onClick={handleSignUpModalOpen}>Sign Up</button>
                         <button onClick={handleSignInModalOpen}>Login</button>
 
-                        <button onClick={ ()=> {setShowSplashInfo(false)}}>Demo</button>
+                        <button onClick={handleDemoClick}>Demo</button>
                     </ul>
                   
                 </article>
