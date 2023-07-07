@@ -1,4 +1,8 @@
 .links-wrapper {
+    position:relative;
+    width: 100vw;
+    height: 10vh;
+    bottom: -5vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -39,5 +43,5 @@
 }
 
 .links {
-    color: blue
+    color: #022361d0;
 }
