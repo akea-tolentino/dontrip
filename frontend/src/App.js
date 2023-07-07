@@ -13,6 +13,7 @@ import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import UserShowPage from "./components/userShowPage/userShow.jsx";
 import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
 import Itinerary from "./components/Itinerary/Itinerary";
+import LinksFooter from "./components/LinksFooter/LinksFooter";
 
 
 function App() {
@@ -26,19 +27,20 @@ function App() {
     <>
       <NavBar/>
       <Switch>
-        
-        
+
+
         <ProtectedRoute path="/users/:userId/trips" component={UserShowPage} />
         <ProtectedRoute exact path="/location" component={GlobePage} />
         <ProtectedRoute exact path="/experiences" component={Experiences} />
         <ProtectedRoute exact path="/groups" component={GroupIndex} />
         <ProtectedRoute exact path="/itinerary" component={Itinerary} />
-             
-        <AuthRoute path="/" component={MainPage} />  
-        
 
-       
+        <AuthRoute path="/" component={MainPage} />
+
+
+
       </Switch>
+      <LinksFooter/>
     </>
   );
 }
