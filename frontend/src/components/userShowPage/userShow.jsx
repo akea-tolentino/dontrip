@@ -33,7 +33,14 @@ export default function UserShowPage () {
                 </div>
 
             </>
-             : null}
+             :
+             <div>
+                <section>
+                    <span>No trips made yet.</span>
+                </section>
+                <button onClick={handleCreateNewMemory}>Create Trip</button>
+             </div> 
+            }
         </>
 
     )
