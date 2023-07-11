@@ -65,8 +65,8 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                     <br/>
                     <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleClick(e, event)}>
                         {/* {selectedEventsDescription.includes(event.description) ? "remove" : "add"} */}select
-                    </button>Events </h3>
-                    <h3><a href={event.address} target="_blank">{event.address}</a></h3>
+                    </button></h3>
+                    <h3><a href={event.address} target="_blank" referrerPolicy="no-referrer" rel="noopener noreferrer" >{event.address}</a></h3>
                 </li>)}
             </ul>
         </section>
@@ -97,7 +97,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                     <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleDelete(e, event)}>
                         Delete Event
                     </button></h3>
-                    <h3><a href={event.address} target="_blank">{event.address}</a></h3>
+                    <h3><a href={event.address} target="_blank" referrerPolicy="no-referrer" rel="noopener noreferrer" >{event.address}</a></h3>
                 </li>
                 )}
             </ul>
