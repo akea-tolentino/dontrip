@@ -14,7 +14,7 @@ export default function UserShowPage () {
     const dispatch = useDispatch();
     const { userId } = useParams();
     const userTrips = useSelector(state => Object.values(state.trips));
-    
+
     useEffect(() => {
         dispatch(fetchUserTrips(userId))
     }, [dispatch])
@@ -22,19 +22,19 @@ export default function UserShowPage () {
     const handleCreateNewMemory = () => {
         return history.push("/experiences")
     }
-    
+
     return (
         <>
             {userTrips.length > 0 ?
             <>
                 <div className="user-show-container">
                     < CoolCarousel userTrips={userTrips}/>
-                    <button onClick={handleCreateNewMemory}>Create a new Memory</button>                  
+                    <button onClick={handleCreateNewMemory}>Create Trip</button>
                 </div>
 
             </>
              : null}
         </>
-        
+
     )
 }

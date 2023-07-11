@@ -32,7 +32,8 @@ export default function Experiences(props) {
             "messages": [{
                 "role": "user",
                 "content": `return only a string of 5 ${experience} destinations in ${category}, formatted in city, country, destination, and coordinates", split by a |, on a single line, without any text before and after`
-            }]
+            }],
+            "temperature": 0
         };
 
 
@@ -62,13 +63,13 @@ export default function Experiences(props) {
             }
         })
 
-        
+
 
         if (placesObject.length !== 5) return handleAiRequest(e)
         setloading(false)
         setErrors(false)
         return history.push("/location", {params: placesObject, experience: experience, month: category})
-        
+
     }
 
     const handleSetExperience = (experience, e) => {
@@ -78,23 +79,23 @@ export default function Experiences(props) {
 
 
     return (
-        <> 
+        <>
             {loading ? (
                 <>
                     { errors ? (
                     <div className="experiences-loading-container">
-                        <ClimbingBoxLoader color={"white"} height={100} width={30} radius={20} margin={5}/>    
+                        <ClimbingBoxLoader color={"white"} height={100} width={30} radius={20} margin={5}/>
                     </div>
                     ) : (
                     <div className="experiences-loading-container">
-                        <ScaleLoader color={"white"} height={100} width={30} radius={20} margin={5}/>    
+                        <ScaleLoader color={"white"} height={100} width={30} radius={20} margin={5}/>
                     </div>
                     )}
                 </>
             ) :
             <div className="page">
                 <form className="experience-form">
-                    <label className="choose-month"> Choose a time of month 
+                    <label className="choose-month"> Choose a time of month
                         <select onChange={(e)=>setCategory(e.target.value)}>
                             <option value={'January'}>January</option>
                             <option value={'February'}>February</option>
@@ -126,12 +127,12 @@ export default function Experiences(props) {
 
                             <li onClick={(e)=>handleSetExperience('Lake', e)}>
                                 <img className={toggle === 'Lake' ? 'cool-effect' : null} src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/lake.png'} alt="lake"/>
-                                Lake 
+                                Lake
                             </li>
 
                             <li onClick={(e)=>handleSetExperience('Beach', e)}>
                                 <img className={toggle === 'Beach' ? 'cool-effect' : null} src={'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/beach.png'} alt="beach"/>
-                                Beach 
+                                Beach
                             </li>
 
                             <li onClick={(e)=>handleSetExperience('Surf', e)}>
@@ -164,8 +165,8 @@ export default function Experiences(props) {
                     </div>
 
                 </div>
-                </form>      
-                <button className="experience-submit" onClick={handleAiRequest}>Submit</button>
+                </form>
+                <button className="experience-submit" onClick={handleAiRequest}>Find Locations</button>
             </div>}
         </>
 

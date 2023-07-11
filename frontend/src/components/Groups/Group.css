@@ -34,7 +34,7 @@
     height: 55vh;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: space-evenly;
     align-items: center;
     overflow-y: scroll;
