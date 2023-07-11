@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { createGroup, fetchGroup, fetchGroups, getGroup, updateGroup} from '../../store/groups'
 
-export default function GroupForm ( { userId, groupId } ) {
+
+export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
 
     //DEPENDENCIES
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function GroupForm ( { userId, groupId } ) {
     const sessionUser = useSelector(state => state.session.user);
     const [showForm, setShowForm] = useState(true);
 
-   
+
 
     if (formType === 'Create Group') {
         group = {
@@ -46,47 +47,48 @@ export default function GroupForm ( { userId, groupId } ) {
 
         if (newGroup !== undefined && formType === 'Create Group') {
             dispatch(createGroup(newGroup))
-            dispatch(fetchGroups(userId))
+            handleCoolClick(e)
         } else {
             dispatch(updateGroup(newGroup))
         }
+        dispatch(fetchGroups(userId))
     }
 
     return (
-        // <form className='group-form' onSubmit={handleSubmit}>
-        //     <h2>{formType}</h2>
-        //     <section className='group-name'>
-        //         <label>
-        //             <input
-        //             value={name}
-        //             onChange={(e)=> setName(e.target.value)}
-        //             placeholder="Group Name"
-        //             />
-        //         </label>
-        //     </section>
-        //     <section className='group-members'>
-        //         <label>
-        //             <input
-        //             type="number"
-        //             value={members}
-        //             min="1"
-        //             onChange={(e)=> setMembers(e.target.value)}
-        //             placeholder="# of people"
-        //             />
-        //         </label>
-        //     </section>
-        //     <section className='group-budget'>
-        //         <label>
-        //             <input
-        //             type="number"
-        //             value={budget}
-        //             onChange={(e)=> setBudget(e.target.value)}
-        //             placeholder="Budget"
-        //             />
-        //         </label>
-        //     </section>
-        //     <button className='submit-group'>{formType}</button>
-        // </form>
-        <></>
+        <form className='group-form' onSubmit={handleSubmit}>
+            <h2>{formType}</h2>
+            <section className='group-name'>
+                <label>
+                    <input
+                    value={name}
+                    onChange={(e)=> setName(e.target.value)}
+                    placeholder="Group Name"
+                    />
+                </label>
+            </section>
+            <section className='group-members'>
+                <label>
+                    <input
+                    type="number"
+                    value={members}
+                    min="1"
+                    onChange={(e)=> setMembers(e.target.value)}
+                    placeholder="# of people"
+                    />
+                </label>
+            </section>
+            <section className='group-budget'>
+                <label>
+                    <input
+                    type="number"
+                    value={budget}
+                    onChange={(e)=> setBudget(e.target.value)}
+                    placeholder="Budget"
+                    />
+                </label>
+            </section>
+            <button className='submit-group'>{formType}</button>
+            <></>
+        </form>
     )
 }

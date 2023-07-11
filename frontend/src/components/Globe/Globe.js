@@ -8,7 +8,7 @@ export default function GlobePage(props) {
 
     const history = useHistory();
     const[loading, setloading] = useState(false);
-    
+
     const [data, setData] = useState(null);
     const [mapCenter, setMapCenter] = useState({lat: 37.70091, lng: -122.18210, altitude: 2.5});
 
@@ -18,26 +18,26 @@ export default function GlobePage(props) {
     const locations = props.location.state.params
     const experience = props.location.state.experience
     const month = props.location.state.month
-
+    debugger
     const chatApiKey = process.env.REACT_APP_GPT_KEY;
-  
+
     useEffect(() => {
         globeEl.current.controls().autoRotate = true;
         globeEl.current.controls().autoRotateSpeed = 0.15;
         globeEl.current.pointOfView(mapCenter, 2000);
       }, [mapCenter]);
-      
+
     const newLocations = locations.map(place=> ({
-        lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1), 
-        lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1), 
+        lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1),
+        lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1),
         location: place.location
     }))
-    
+
     useEffect(()=>{
-        const loc = locations.map(place=>({ 
-            lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1), 
-            lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1), 
-            label:'' 
+        const loc = locations.map(place=>({
+            lat: place.latitude.replace(/[°NS]/gi, "")*(place.latitude.includes("S") ? -1 : 1),
+            lng: place.longitude.replace(/[°EW]/gi, "")*(place.longitude.includes("W") ? -1 : 1),
+            label:''
         }))
         setData(loc)
     },[])
@@ -62,10 +62,11 @@ export default function GlobePage(props) {
             "model": "gpt-3.5-turbo",
             "messages": [{
                 "role": "user",
-                "content": `return only a un-numbered list of 10 activities to do in ${userLocation.location}, formatted in a string of "activity name, activity company website", split by a | without any text before and after, without line breaks`
-            }]
+                "content": `return only a un-numbered list of 10 activities, including ${experience} to do in ${userLocation.location}, formatted in a string of "activity name, activity company website", split by a | without any text before and after, without line breaks`
+            }],
+            "temperature": 0
         };
-  
+
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
@@ -76,7 +77,7 @@ export default function GlobePage(props) {
         }).then((data) => {
             return data.json();
         }).then((data) => {
-  
+
             events = data.choices[0].message.content.split("|")
         });
 
@@ -88,40 +89,41 @@ export default function GlobePage(props) {
                 "address": info[1],
             }
         })
-    
+
 
         if (eventsObject.length !== 10) return handleAiRequest(e)
         setloading(false)
-     
+
         return history.push("/itinerary", {params: eventsObject, location: userLocation.location, experience: experience, month: month})
-        
-        
+
+
     }
 
     return (
         <>
             {loading ? (
                     <div className="experiences-loading-container">
-                        <ScaleLoader color={"white"} height={100} width={30} radius={20} margin={5}/>    
+                        <ScaleLoader color={"white"} height={100} width={30} radius={20} margin={5}/>
                     </div>
-                    
+
                 ) : <div className='globe-page-container'>
                 <div className='globe-container'>
-                    <Globe 
+                    <Globe
                     ref={globeEl}
-                    
-                    backgroundColor='rgba(4, 32, 79, 0.815)' 
+
+                    backgroundColor='rgba(4, 32, 79, 0.815)'
                     globeImageUrl='https://cdn.jsdelivr.net/npm/three-globe@2.27.4/example/img/earth-blue-marble.jpg'
                     width={800}
                     height={700}
-                    
+
                     labelsData={data}
                     labelText={"label"}
                     labelSize={1.6}
                     labelColor={() => "red"}
                     labelDotRadius={1}
                     labelAltitude={0.01}
-                    // onLabelClick={()=>console.log('yaa')}	
+
+
                     />
                 </div>
 
@@ -129,11 +131,11 @@ export default function GlobePage(props) {
                     <form onSubmit={handleAiRequest}>
                         <ul className='location-radio-ul'>
                             <h2>
-                                Choose a location from the following selections: 
-                            </h2> 
+                                Choose a location from the following selections:
+                            </h2>
                             {newLocations.map(place=>(
                                 <li>
-                                    <input name='location-radio' id={place.location} type='radio' value={place.latitude} 
+                                    <input name='location-radio' id={place.location} type='radio' value={place.latitude}
                                     onClick={handleRadioClick} className='radio'
                                     />
                                         <label htmlFor={place.location}>
@@ -141,8 +143,9 @@ export default function GlobePage(props) {
                                         </label>
                                 </li>
                             ))}
+                        <button type='submit' className="globe-submit-button">Submit Location</button>                    
                         </ul>
-                        <button type='submit' className="globe-submit-button">don'trip</button>                    
+
                     </form>
 
                 </div>
