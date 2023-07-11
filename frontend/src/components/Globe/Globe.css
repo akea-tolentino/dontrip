@@ -46,9 +46,13 @@ canvas {
 }
 
 .globe-submit-button {
-    position: fixed;
+    /* position: fixed; */
+    margin-top: 15px;
     right: 34vw;
-    width: 100px;
+    width: 200px;
     font-size: 18px;
     border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    background-color: #ccc;
 }
