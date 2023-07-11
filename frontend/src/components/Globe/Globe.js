@@ -121,7 +121,6 @@ export default function GlobePage(props) {
                     labelColor={() => "red"}
                     labelDotRadius={1}
                     labelAltitude={0.01}
-                    // onLabelClick={()=>console.log('yaa')}	
                     />
                 </div>
 
@@ -141,8 +140,8 @@ export default function GlobePage(props) {
                                         </label>
                                 </li>
                             ))}
+                        <button type='submit' className="globe-submit-button">Submit Location</button>                    
                         </ul>
-                        <button type='submit' className="globe-submit-button">don'trip</button>                    
                     </form>
 
                 </div>
