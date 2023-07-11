@@ -31,8 +31,9 @@ export default function Experiences(props) {
             "model": "gpt-3.5-turbo",
             "messages": [{
                 "role": "user",
-                "content": `return only a string of 5 ${experience} destinations in ${category}, formatted in city, country, destination, and coordinates", split by a |, on a single line, without any text before and after`
-            }]
+                "content": `return only a string of 5 ${experience} destinations in ${category}, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, without any text before and after`
+            }],
+            "temperature": 0
         };
 
 
@@ -51,14 +52,15 @@ export default function Experiences(props) {
                 return handleAiRequest(e)
             }
             places = data.choices[0].message.content.split("|")
+            debugger
         });
 
         const placesObject = await places.map( (place) => {
             let info = place.split(', ')
             return {
-                "location": info[0] + " " + info[1] + " " + info[2],
-                "latitude": info[3],
-                "longitude": info[4]
+                "location": info[0] + " " + info[1],
+                "latitude": info[2],
+                "longitude": info[3]
             }
         })
 
