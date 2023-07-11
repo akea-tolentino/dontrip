@@ -18,7 +18,7 @@ export default function GlobePage(props) {
     const locations = props.location.state.params
     const experience = props.location.state.experience
     const month = props.location.state.month
-
+    debugger
     const chatApiKey = process.env.REACT_APP_GPT_KEY;
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function GlobePage(props) {
             "model": "gpt-3.5-turbo",
             "messages": [{
                 "role": "user",
-                "content": `return only a un-numbered list of 10 activities to do in ${userLocation.location}, formatted in a string of "activity name, activity company website", split by a | without any text before and after, without line breaks`
+                "content": `return only a un-numbered list of 10 activities, including ${experience} to do in ${userLocation.location}, formatted in a string of "activity name, activity company website", split by a | without any text before and after, without line breaks`
             }],
             "temperature": 0
         };
