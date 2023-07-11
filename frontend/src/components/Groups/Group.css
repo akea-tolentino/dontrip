@@ -3,11 +3,13 @@
     height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: center;
 }
 
 .group-index-container {
-    width: 25vw;
+    width: 35vw;
+    min-width: 32vw;
     height: 65vh;
     overflow-y: scroll;
     border-color: white;
@@ -37,7 +39,7 @@
     /* flex-wrap: wrap; */
     justify-content: space-evenly;
     align-items: center;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .group-item-wrapper {
@@ -60,18 +62,29 @@ button.trip-submit {
     background-color: white;
     border-radius: 8px;
     color: #09234e90;
-    position: fixed;
-    bottom: 16vh;
-    right: 38vw
+    /* position: fixed; */
+    bottom: 7vh;
+    /* right: 38vw */
+    position: absolute;
+    width: 120px;
 }
 
 .group-list-item {
     display: flex;
+    border-bottom: 0.5px solid #eee;
+}
+
+.group-list-item li {
+    padding-left: 10px;
 }
 
 .group-index-container h2 {
     font-size: 24px;
     color: white;
     padding-top: 15px;
+    text-align: center;
+}
+
+.create-group-button {
     text-align: center;
 }
