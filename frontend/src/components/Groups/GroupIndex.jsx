@@ -69,7 +69,11 @@ export default function GroupIndex ( props ) {
             <div className='group-index-page-wrapper'>
                 <section className="group-index-container">
                     <h2>Select a group to add to your trip</h2>
-                    <button onClick={handleClick}>Create Group</button>
+
+                    <div className='create-group-button'>
+                        <button  onClick={handleClick}>Create Group</button>
+                    </div>
+
                         {showForm && (
                         <GroupForm userId={userId} handleCoolClick={handleClick} />
                     )}
@@ -90,8 +94,9 @@ export default function GroupIndex ( props ) {
                             </ul>
                         }
                     </form>
-                    <button className="trip-submit" onClick={handleSubmit}>Submit Trip</button>
                 </section>
+
+                        <button className="trip-submit" onClick={handleSubmit}>Submit Trip</button>
             </div>
         </>
     )
