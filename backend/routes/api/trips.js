@@ -33,18 +33,8 @@ router.get('/:tripId/users/:userId', async(req, res, next) => {
 
 
 router.patch('/:tripId/users/:userId', validateTripInput, async(req, res, next) => { // should also use requireUser
-    // let user;
-    // try {
-    //     user = await User.findById(req.params.userId);
-    // } catch(err) {
-    //     const error = new Error('User not found');
-    //     error.statusCode = 404;
-    //     error.errors = {message: "No user found with that id"};
-    //     return next(error);
-    // }
     try {
         const trip = await Trip.findByIdAndUpdate(req.params.tripId, req.body);
-        //more logic needed for updating the trip object
         return res.json(trip);
     } catch(err) {
         const error = new Error('Trip not found');
@@ -60,7 +50,7 @@ const deleteTrip = (trip) => {
     )
 }
 
-router.delete('/:tripId/users/:userId', async(req, res, next) => { // should also use requireUser
+router.delete('/:tripId', async(req, res, next) => { // should also use requireUser
     let user;
     try {
         user = await User.findById(req.params.userId);
@@ -71,7 +61,7 @@ router.delete('/:tripId/users/:userId', async(req, res, next) => { // should als
         return next(error);
     }
     try {
-        const trip = await Trip.findById(req.params.tripId);
+        const trip = await Trip.findByIdAndDelete(req.params.tripId);
         return res.json(deleteTrip(trip));
     } catch(err) {
         const error = new Error('Trip not found');

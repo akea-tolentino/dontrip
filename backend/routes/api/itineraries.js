@@ -57,7 +57,7 @@ const deleteItinerary = (itinerary) => {
 
 router.delete('/:itineraryId', async(req, res, next) => {
     try {
-        const itinerary = await Itinerary.findById(req.params.itineraryId);
+        const itinerary = await Itinerary.findByIdAndDelete(req.params.itineraryId);
         return res.json(deleteItinerary(itinerary));
     } catch(err) {
         const error = new Error('Itinerary not found');
