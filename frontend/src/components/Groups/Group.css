@@ -65,11 +65,11 @@ button.trip-submit {
     color: #09234e90;
     /* position: fixed; */
     bottom: -38vh;
-    right: 22vw;
+    /* right: 22vw; */
     /* position: relative; */
     width: 120px;
     z-index: 0;
-    margin-right: 38%;
+    margin-right: 41%;
 }
 
 .group-list-item {
@@ -96,12 +96,14 @@ button.trip-submit {
     border: 1px solid black;
     z-index: 1;
     position: absolute;
-    background-color: #ccc;
+    /* background-color: #ccc; */
+    background: linear-gradient(#ddd, gray);
     border-radius: 5px;
     width: 220px;
     display: flex;
     justify-content: center;
     box-shadow: 2px 2px 4px black;
+    margin-left: 3%;
 }
 
 .edit-x {
@@ -109,4 +111,18 @@ button.trip-submit {
     right: 2vh;
     top: 1vh;
     position: absolute;
+}
+
+.create-dropdown {
+    border: 1px solid black;
+    z-index: 2;
+    position: absolute;
+    /* background-color: #ccc; */
+    background: linear-gradient(#ddd, gray);
+    border-radius: 5px;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 2px 2px 4px black;
+    margin-left: 10%;
 }
