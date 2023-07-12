@@ -2,9 +2,10 @@ import Carousel from 'react-spring-3d-carousel';
 import "./CoolCarousel.css"
 import { useState } from 'react';
 import { Modal } from '../context/Modal';
-import { TripShow } from '../TripShow/TripShow';
+import { ItineraryShow } from '../TripShow/ItineraryShow';
 import { useDispatch } from 'react-redux';
 import { deleteTrip } from '../../store/trips';
+import { GroupShow } from '../TripShow/GroupShow';
 
 
 
@@ -14,7 +15,13 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   const [showItineraryModal, setShowItineraryModal] = useState(false);
 
-  const [currentTripId, setCurrentTripId] = useState("")
+  const [showGroupModal, setShowGroupModal] = useState(false);
+
+  const [currentTripData, setCurrentTripData] = useState({});
+
+  const [currentItineraryId, setCurrentItineraryId] = useState("");
+
+  const [currentGroupId, setCurrentGroupId] = useState("");
 
   const images = {
     Ski: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/ski.png',
@@ -34,19 +41,32 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   const onSlideCLick = (index) => {
     setGoToSlide(index)
-  }
+  };
 
-  const handledTripEdit = (trip) => {
-    setCurrentTripId(trip._id)
+  const handledItineraryEdit = (trip) => {
+    setCurrentTripData(trip)
+    setCurrentItineraryId(trip.itinerary)
     setShowItineraryModal(true)
+  };
 
+  const handleGroupEdit = (trip) => {
+    setCurrentTripData(trip)
+    setCurrentGroupId(trip.group)
+    setShowGroupModal(true)
   }
 
   const handleDeleteTrip = (trip) => {
     debugger
     dispatch(deleteTrip(trip._id, userId));
+  };
 
-}
+  const handleGroupModalClose = () => {
+    setShowGroupModal(false)
+  };
+
+  const handleItineraryModalClose = () => {
+    setShowItineraryModal(false)
+  };
 
   const slides = []
   if (userTrips) {
@@ -59,8 +79,8 @@ export const CoolCarousel = ({userTrips, userId}) => {
           <p>{trip.experience}</p>
           <p>{trip.month}</p>
           <p>{trip.location}</p>
-          <button onClick={() => {handledTripEdit(trip)}} id="trip-edit-button">Itinerary</button>
-          <button onClick={() => {handledTripEdit(trip)}} id="trip-edit-button">Event</button>
+          <button onClick={() => {handledItineraryEdit(trip)}} id="trip-edit-button">Itinerary</button>
+          <button onClick={() => {handleGroupEdit(trip)}} id="trip-edit-button">Group</button>
           <button onClick={() => {handleDeleteTrip(trip)}} id="trip-edit-button">Delete Trip</button>
         </div>
         )
@@ -68,7 +88,7 @@ export const CoolCarousel = ({userTrips, userId}) => {
       }) 
     })
 
-  }
+  } 
   
 
   return (
@@ -77,10 +97,12 @@ export const CoolCarousel = ({userTrips, userId}) => {
         <div className='cool-carousel-2'>
           <Carousel goToSlide={goToSlide} slides={slides} offsetRadius={4} enableSwipe={true} />
         </div>
-        {console.log(showItineraryModal)}
-        {showItineraryModal && (<Modal onClose={() => setShowItineraryModal(false)}>
-          <TripShow tripId={currentTripId} userId={userId}/>
-        </Modal>)}        
+        {showItineraryModal && (<Modal onClose={handleItineraryModalClose}>
+          <ItineraryShow trip={currentTripData} itineraryId={currentItineraryId} userId={userId}/>
+        </Modal>)}   
+        {showGroupModal && (<Modal onClose={handleGroupModalClose}>
+          <GroupShow trip={currentTripData} groupId={currentGroupId} userId={userId} handleModalClose={handleGroupModalClose}/>
+        </Modal>)}      
       </div>
 
     </>

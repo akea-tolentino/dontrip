@@ -97,7 +97,6 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                     <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleDelete(e, event)}>
                         Delete Event
                     </button></h3>
-                    {console.log(event.address)}
                     <h3><a href={`https://${event.address}`} target="_blank" referrerPolicy="no-referrer" rel="noopener noreferrer" >{event.address}</a></h3>
                 </li>
                 )}
