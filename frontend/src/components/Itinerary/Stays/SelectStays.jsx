@@ -114,7 +114,7 @@ export default function SelectStays( { changeStays, availableStays, experience, 
         </div> */}
 
         {dropDown && (
-            <form className="dropdown">
+            <form className="dropdown-stays">
                 <div className="x" onClick={()=>setDropDown(false)}>
                     X
                 </div>

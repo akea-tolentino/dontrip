@@ -94,9 +94,8 @@
     width: 100px;
 }
 
-.stays-button {
-    grid-column: 1;
-    width: 100px;
+.stay-buttons {
+    margin-bottom: 50%;
 }
 
 .select-events-add-button:hover {
@@ -132,7 +131,27 @@
     text-decoration: none;
     font-size: 16px;
 }
+.selected-stays-container h2 {
+    color: white;
+    font-size: 24px;
+    text-underline-position: below;
+    text-decoration: underline;
+}
 
+.selected-stays-list > li {
+    margin-top: 5px;
+    padding-left: 12px;
+}
+
+.selected-stays-list a:hover {
+    color: rgba(255, 255, 255, 0.874);
+}
+
+.selected-stays-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
 
 .dropdown {
     border: 1px solid black;
@@ -150,12 +169,37 @@
     justify-content: space-evenly;
     padding-top: 10px;
 }
+.dropdown-stays {
+    border: 1px solid black;
+    grid-column: 1;
+    z-index: 1;
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    height: 28vh;
+    width: 25vw;
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px black;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
 
 .dropdown label {
     padding: 20px;
 }
+.dropdown-stays label {
+    padding: 20px;
+    margin-left: 10%;
+}
 
 .dropdown label input {
+    margin: 5px;
+    margin-top: 15px;
+}
+.dropdown-stays label input {
+    width: 35%;
     margin: 5px;
     margin-top: 15px;
 }
@@ -184,18 +228,100 @@
 .select-events-container, .selected-events-container {
     text-align: center;
 }
+.select-stays-container, .selected-stays-container {
+    text-align: center;
+}
 
 .select-events-list h3 {
     font-size: 20px;
     color: #ddd;
 }
 
-.selected-events-list h3 {
+.selected-stays-list h3 {
     font-size: 20px;
     color: #ddd;
 }
 
 .event-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 15vh;
+    justify-content: space-around;
+}
+
+.selected-stays-container li {
+    list-style: none;
+    color: white;
+}
+
+.selected-stays-container {
+    grid-column: 3;
+    border-width: 2px;
+    border-color: #ddd;
+    border-style: double;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 12px;
+    overflow-y: scroll;
+    height: 71vh;
+    box-shadow: 2px 3px 2px rgba(255, 255, 255, 0.196);
+
+}
+
+.create-own-stay-container, .itinerary-submit-button {
+    display: flex;
+    justify-content: center;
+}
+
+.create-own-stay-container button:hover, .itinerary-submit-button button:hover {
+    cursor: pointer;
+    background-color: #dddddd2d;
+    color: white;
+    border-color: white;
+}
+
+.create-own-stay-container button, .itinerary-submit-button button {
+    width: 20vw;
+    height: 4vh;
+    border-radius: 15px;
+    z-index: 0;
+    font-size: 15px;
+}
+
+.itinerary-submit-button button {
+    font-size: 18px;
+}
+
+.select-stays-add-button:hover {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.874);
+}
+
+.select-stays-add-button {
+    width: 100px;
+    background-color: #ffffff00;
+    border: none;
+    color: white;
+}
+
+.add-stay-button {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0vh;
+    right: 10vw;
+}
+
+.add-stay-button button {
+    width: 100%;
+    margin-top: -4px;
+}
+
+.add-stay-button button:hover {
+    cursor: pointer;
+}
+
+.stay-buttons {
     display: flex;
     flex-direction: column;
     height: 15vh;
