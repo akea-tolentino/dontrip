@@ -42,7 +42,7 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
 
     return (
         <>
-            {(group) ? <div>
+            {(group) ? <div className="cool-group-show-page">
                 <h2>Group</h2>
                 <p>{group.name}</p>
                 <p>{group.members} members</p>

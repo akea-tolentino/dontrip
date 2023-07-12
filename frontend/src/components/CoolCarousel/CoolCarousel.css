@@ -35,3 +35,25 @@
   border: black 1px solid;
   color: black;
 }
+
+.cool-interary-show-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+.cool-interary-show-page *{
+  padding: 10px;
+}
+
+.cool-group-show-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+.cool-group-show-page *{
+  padding: 10px;
+}

@@ -51,7 +51,7 @@ export const clearTripErrors = errors => ({
 // jwtfetch calls ---------------------------------------
 
 export const patchTrip = (body) => async dispatch => {
-  debugger
+
   try {
     const res = await jwtFetch(`/api/trips/${body.tripId}/users/${body.owner}`, {
     method: 'PATCH',
@@ -59,7 +59,7 @@ export const patchTrip = (body) => async dispatch => {
     });
 
     const trip = await res.json();
-    debugger
+
     dispatch(updateTrip(trip));
 } catch(err) {
 
@@ -152,7 +152,6 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
 };
 
 const tripsReducer = (state = {}, action) => {
-    debugger
     Object.freeze(state);
     let newState = {...state};
     switch(action.type) {

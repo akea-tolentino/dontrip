@@ -31,6 +31,7 @@ router.post('/users/:userId', validateItineraryInput, async(req, res, next) => {
         });
        let itinerary = await newItinerary.save();
        itinerary = await itinerary.populate("_id events.description events.date events.address stays.description stays.check_in_date stays.check_out_date stays.address");
+       console.log(itinerary)
        return res.json(itinerary);
     } catch(err) {
        next(err);
