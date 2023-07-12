@@ -56,7 +56,7 @@ export const CoolCarousel = ({userTrips, userId}) => {
   }
 
   const handleDeleteTrip = (trip) => {
-    debugger
+
     dispatch(deleteTrip(trip._id, userId));
   };
 

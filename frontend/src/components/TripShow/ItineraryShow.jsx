@@ -9,7 +9,7 @@ export const ItineraryShow = ({tripId, itineraryId, userId}) => {
     const dispatch = useDispatch();
 
     const itinerary = useSelector(state => state.itinerary)
-    debugger
+
 
     useEffect(() => {
         dispatch(getItinerary(itineraryId))
@@ -19,8 +19,7 @@ export const ItineraryShow = ({tripId, itineraryId, userId}) => {
     return (
         <>
             {itinerary.events ? 
-            <div>
-                <h1>Itinerary</h1>
+            <div className="cool-interary-show-page">
                 <h2>Events</h2>
                 {itinerary.events.map( event => {
                     return (
@@ -29,8 +28,7 @@ export const ItineraryShow = ({tripId, itineraryId, userId}) => {
                             <p>{event.address}</p>
                         </>
                     )
-                }) }
-                <button>Delete Itinerary</button>                
+                }) }               
             </div> 
             : null }
 

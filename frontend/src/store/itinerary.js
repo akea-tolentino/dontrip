@@ -21,7 +21,6 @@ export const postItinerary = (itineraryInfo, userId) => async dispatch => {
       method: "POST",
       body: JSON.stringify(itineraryInfo)
     });
-
     const data = await res.json();
     dispatch(createItinerary(data));
     return data
@@ -31,7 +30,7 @@ export const getItinerary = (itineraryId) => async dispatch => {
   const res = await fetch(`/api/itineraries/${itineraryId}`)
 
   const data = await res.json();
-  debugger
+
   dispatch(receiveItinerary(data))
 
 }

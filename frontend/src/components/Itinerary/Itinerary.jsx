@@ -44,9 +44,11 @@ export default function Itinerary ( props ) {
         }
 
         //dispatches itinerary post request
-        const res = dispatch(postItinerary(itineraryBody, user._id));
+        //no matter what any TA might say, this await is indeed doing something
+        const res = await dispatch(postItinerary(itineraryBody, user._id));
+        const id = await res._id
 
-        const id = res._id
+        debugger
         return history.push("/groups", {itinerary: id, location: location, experience: experience, month: month, userId: user._id})
     }
 

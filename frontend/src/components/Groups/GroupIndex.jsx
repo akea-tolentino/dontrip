@@ -18,7 +18,6 @@ export default function GroupIndex ( props ) {
     const location = props.location.state.location;
     const itineraryId = props.location.state.itinerary;
     const userId = props.location.state.userId;
-
     //DEPENDENCY
     const dispatch = useDispatch();
 
