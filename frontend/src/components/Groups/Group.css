@@ -96,7 +96,8 @@ button.trip-submit {
     border: 1px solid black;
     z-index: 1;
     position: absolute;
-    background-color: #ccc;
+    /* background-color: #ccc; */
+    background: linear-gradient(#ddd, gray);
     border-radius: 5px;
     width: 220px;
     display: flex;
@@ -116,7 +117,8 @@ button.trip-submit {
     border: 1px solid black;
     z-index: 2;
     position: absolute;
-    background-color: #ccc;
+    /* background-color: #ccc; */
+    background: linear-gradient(#ddd, gray);
     border-radius: 5px;
     width: 220px;
     display: flex;
