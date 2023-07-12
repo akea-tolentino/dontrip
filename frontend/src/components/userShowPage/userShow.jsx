@@ -28,13 +28,8 @@ export default function UserShowPage () {
             {userTrips.length > 0 ?
             <>
                 <div className="user-show-container">
-<<<<<<< HEAD
                     < CoolCarousel userTrips={userTrips} userId={userId}/>
                     <button onClick={handleCreateNewMemory}>Create a new Memory</button>                  
-=======
-                    < CoolCarousel userTrips={userTrips}/>
-                    <button onClick={handleCreateNewMemory}>Create Trip</button>
->>>>>>> main
                 </div>
 
             </>
