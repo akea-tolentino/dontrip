@@ -8,6 +8,12 @@ const RECEIVE_ITINERARY = "trips/RECEIVE_ITINERARY";
 const REMOVE_ITINERARY = "trips/REMOVE_ITINERARY";
 const RECEIVE_TRIP_ERRORS = "trips/RECEIVE_TRIP_ERRORS"
 const CLEAR_TRIP_ERRORS = "trips/CLEAR_TRIP_ERRORS"
+const UPDATE_TRIP = "UPDATE_TRIP"
+
+const updateTrip = trips => ({
+  type: UPDATE_TRIP,
+  trips
+})
 
 const receiveTrips = trips => ({
     type: RECEIVE_TRIPS,
@@ -44,18 +50,38 @@ export const clearTripErrors = errors => ({
 
 // jwtfetch calls ---------------------------------------
 
-export const fetchTrips = () => async dispatch => {
-    try {
-      const res = await jwtFetch ('/api/trips');
-      const trips = await res.json();
-      dispatch(receiveTrips(trips));
-    } catch (err) {
-      const resBody = await err.json();
-      if (resBody.statusCode === 400) {
-        dispatch(receiveErrors(resBody.errors));
-      }
+export const patchTrip = (body) => async dispatch => {
+  debugger
+  try {
+    const res = await jwtFetch(`/api/trips/${body.tripId}/users/${body.owner}`, {
+    method: 'PATCH',
+    body: JSON.stringify(body)
+    });
+
+    const trip = await res.json();
+    debugger
+    dispatch(updateTrip(trip));
+} catch(err) {
+
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+    return dispatch(receiveErrors(resBody.errors));
     }
-  };
+}
+}
+
+export const fetchTrips = () => async dispatch => {
+  try {
+    const res = await jwtFetch ('/api/trips');
+    const trips = await res.json();
+    dispatch(receiveTrips(trips));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
 
   export const fetchUserTrips = (userId) => async dispatch => {
 
@@ -94,7 +120,6 @@ export const createTrip = data => async dispatch => {
 };
 
 export const deleteTrip = (tripId, userId) => async dispatch => {
-
     try {
         const res = await jwtFetch(`/api/trips/${tripId}/users/${userId}`, {
         method: 'DELETE'
@@ -127,7 +152,7 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
 };
 
 const tripsReducer = (state = {}, action) => {
-
+    debugger
     Object.freeze(state);
     let newState = {...state};
     switch(action.type) {
@@ -139,6 +164,8 @@ const tripsReducer = (state = {}, action) => {
         return state
       case REMOVE_TRIP:
         return  action.trips;
+      case UPDATE_TRIP:
+        return action.trips
       case RECEIVE_ITINERARY:
         return // ?
       case REMOVE_ITINERARY:
