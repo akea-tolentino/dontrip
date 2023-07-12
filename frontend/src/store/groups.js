@@ -1,24 +1,32 @@
 import { createSelector } from '@reduxjs/toolkit'
 import jwtFetch from './jwt';
 
-const RECEIVE_GROUP = 'groups/RECEIVE_GROUP';
-const RECEIVE_GROUPS = 'groups/RECEIVE_GROUPS';
-const REMOVE_GROUP = 'groups/REMOVE_GROUP';
-const RECEIVE_ERRORS = "session/RECEIVE_ERRORS";
+export const RECEIVE_GROUP = 'groups/RECEIVE_GROUP';
+export const RECEIVE_GROUPS = 'groups/RECEIVE_GROUPS';
+export const REMOVE_GROUP = 'groups/REMOVE_GROUP';
+export const RECEIVE_ERRORS = "session/RECEIVE_ERRORS";
+export const CREATE_GROUP = "session/CREATE_GROUP";
 
-const receiveGroup = (group) => {
+export const receiveGroup = (group) => {
     return {
         type: RECEIVE_GROUP,
-        group
+        group,
     }
 }
 
-const receiveErrors = errors => ({
+export const postGroup = (group) => {
+    return {
+        type: CREATE_GROUP,
+        group,
+    }
+}
+
+export const receiveErrors = errors => ({
     type: RECEIVE_ERRORS,
     errors
 });
 
-const receiveGroups = (payload, userId) => {
+export const receiveGroups = (payload, userId) => {
     return {
         type: RECEIVE_GROUPS,
         payload,
@@ -26,7 +34,7 @@ const receiveGroups = (payload, userId) => {
     }
 }
 
-const removeGroup = (groupId) => {
+export const removeGroup = (groupId) => {
     return {
         type: REMOVE_GROUP,
         groupId
@@ -68,7 +76,8 @@ export const createGroup = data => async dispatch => {
         });
 
         const group = await res.json();
-        dispatch(receiveGroup(group));
+
+        dispatch(postGroup(group));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -112,7 +121,6 @@ export const deleteGroup = groupId => async dispatch => {
 // Reducer
 
 export default function groupsReducer (state = {}, action) {
- 
     Object.freeze(state);
     let newState = {...state};
     switch(action.type) {
@@ -120,8 +128,14 @@ export default function groupsReducer (state = {}, action) {
             newState[action.userId] = action.payload
             return newState
         case RECEIVE_GROUP:
-            return { ...newState, ...action.group, new: undefined};
+            newState[action.owner] = action.groupId
+            // return { ...newState, ...action.group, new: undefined};
+            return newState;
+        case CREATE_GROUP:
+
+            return {...newState, ...action.group}
         case REMOVE_GROUP:
+            delete newState[action.groupId];
             return { ...newState, new: action.group};
         default:
             return state;

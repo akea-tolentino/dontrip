@@ -1,5 +1,5 @@
 .user-auth-container {
-    height: 40vh;
+    height: 42vh;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(10px);

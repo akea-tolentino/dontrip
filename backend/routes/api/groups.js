@@ -58,7 +58,7 @@ const deleteGroup = (group) => {
     )
 }
 
-router.delete('/:groupId/users/:userId', async(req, res, next) => {
+router.delete('/:groupId', async(req, res, next) => {
     //group destroy route for a user
     let user;
     try {
@@ -70,7 +70,7 @@ router.delete('/:groupId/users/:userId', async(req, res, next) => {
         return next(error);
     }
     try {
-        const group = await Group.findById(req.params.groupId);
+        const group = await Group.findByIdAndDelete(req.params.groupId);
         return res.json(deleteGroup(group));
     } catch(err) {
         const error = new Error('Group not found');
@@ -105,7 +105,7 @@ router.get('/users/:userId', async(req, res, next) => {
 });
 
 router.post('/users/:userId', validateGroupInput, async(req, res, next) => {
-    //group index route for a user
+
     try {
         const newGroup = new Group({
             name: req.body.name,

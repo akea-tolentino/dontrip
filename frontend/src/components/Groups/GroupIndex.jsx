@@ -11,7 +11,7 @@ import './Group.css';
 export default function GroupIndex ( props ) {
 
     const history = useHistory();
-   
+
     //VARIABLES FROM PREVIOUS QUERIES
     const experience = props.location.state.experience;
     const month = props.location.state.month;
@@ -23,7 +23,7 @@ export default function GroupIndex ( props ) {
     const dispatch = useDispatch();
 
     //CUSTOM SELECTOR TO GET USER GROUPS
-    let groups = useSelector(state => state.groups[userId])
+    const groups = useSelector(state => state.groups[userId])
 
     //FETCH GROUPS EVERY LOAD
     useEffect(()=> {
@@ -51,8 +51,8 @@ export default function GroupIndex ( props ) {
             owner: userId
         }
 
-        const res = await dispatch(createTrip(tripData));
-        return history.push(`/users/${userId}/trips`)        
+        const res = dispatch(createTrip(tripData));
+        return history.push(`/users/${userId}/trips`)
     }
 
     const handleClick = (e) => {
@@ -63,15 +63,19 @@ export default function GroupIndex ( props ) {
     }
 
 
-  
+
     return (
         <>
-            <div className='group-index-page-wrapper'>   
+            <div className='group-index-page-wrapper'>
                 <section className="group-index-container">
                     <h2>Select a group to add to your trip</h2>
-                    <button onClick={handleClick}>Or start a new group!</button>
+
+                    <div className='create-group-button'>
+                        <button  onClick={handleClick}>Create Group</button>
+                    </div>
+
                         {showForm && (
-                        <GroupForm />
+                        <GroupForm userId={userId} handleCoolClick={handleClick} />
                     )}
                     <form >
                         {groups === undefined ?
@@ -80,18 +84,19 @@ export default function GroupIndex ( props ) {
                                 {groups.map(group =>{
                                     return (
                                         <li className='group-list-item'>
-                                            <input name='location-radio' id={group._id} type='radio' 
+                                            <input name='location-radio' id={group._id} type='radio'
                                             onClick={handleRadioClick} className='radio'
                                             />
-                                            <GroupItem key={group._id} group={group} />
+                                            <GroupItem userId={userId} key={group._id} group={group} />
                                         </li>
                                     )
                                 })}
                             </ul>
-                        }                    
+                        }
                     </form>
-                    <button className="trip-submit" onClick={handleSubmit}>Submit Trip</button>
                 </section>
+
+                        <button className="trip-submit" onClick={handleSubmit}>Submit Trip</button>
             </div>
         </>
     )

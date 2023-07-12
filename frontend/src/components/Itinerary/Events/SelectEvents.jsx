@@ -48,7 +48,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
         setEvent('');
         setSite('');
         setPrice('')
-    }  
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -66,7 +66,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                     <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleClick(e, event)}>
                         {/* {selectedEventsDescription.includes(event.description) ? "remove" : "add"} */}select
                     </button></h3>
-                    <h3><a href={event.address} target="_blank">{event.address}</a></h3>
+                    <h3><a href={`https://${event.address}`} target="_blank" referrerPolicy="no-referrer" rel="noopener noreferrer" >{event.address}</a></h3>
                 </li>)}
             </ul>
         </section>
@@ -77,11 +77,11 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
             </h3>
             <section className="event-buttons">
                 <div className="create-own-event-container">
-                    <button onClick={handleCreate}>Create your own event</button>
+                    <button onClick={handleCreate}>Create Event</button>
                 </div>
                 <div className="itinerary-submit-button" onClick={handleSubmit}>
                     <button>
-                        don'trip, let's go!
+                        Submit Itinerary
                     </button>
                 </div>
             </section>
@@ -95,9 +95,10 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                     <br/>
 
                     <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleDelete(e, event)}>
-                        remove
+                        Delete Event
                     </button></h3>
-                    <h3><a href={event.address} target="_blank">{event.address}</a></h3>
+                    {console.log(event.address)}
+                    <h3><a href={`https://${event.address}`} target="_blank" referrerPolicy="no-referrer" rel="noopener noreferrer" >{event.address}</a></h3>
                 </li>
                 )}
             </ul>
@@ -121,7 +122,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                     <input type="text" value={site} placeholder="www." onChange={(e)=>setSite(e.target.value)} required/>
                 </label>
                 <br/>
-                
+
                 <label>Date
                     <input value={date} type="date" onChange={(e)=>setDate(e.target.value)}/>
                 </label>
@@ -134,7 +135,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
 
                 <div className="add-event-button">
                     <button onClick={handleCreateEvent}>
-                        Add event
+                        Add Event
                     </button>
                 </div>
             </form>
