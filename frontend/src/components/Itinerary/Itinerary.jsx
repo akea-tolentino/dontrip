@@ -24,7 +24,7 @@ export default function Itinerary ( props ) {
 
     //STATE VARIABLE FOR STAYS
     const [staysList, setStaysList] = useState([])
-    const [currentPage, setCurrentPage] = useState("stay")
+    const [currentPage, setCurrentPage] = useState('event')
 
     //GETS USER FROM CURRENT USER
     const user = useSelector(state => state.session.user)
