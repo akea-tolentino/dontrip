@@ -12,10 +12,6 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
     const formType = (groupId !== undefined ? 'Edit Group' : 'Create Group');
     const sessionUser = useSelector(state => state.session.user);
 
-    const [name, setName] = useState('');
-    const [members, setMembers] = useState('');
-    const [budget, setBudget] = useState('');
-
     if (formType === 'Create Group') {
         group = {
             name: '',
@@ -24,6 +20,10 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
             owner: userId
         }
     }
+
+    const [name, setName] = useState('');
+    const [members, setMembers] = useState('');
+    const [budget, setBudget] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,10 +37,11 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
         }
 
         if (newGroup !== undefined && formType === 'Create Group') {
-            dispatch(createGroup(newGroup))
-            handleCoolClick(e)
+            dispatch(createGroup(newGroup));
+            handleCoolClick(e);
         } else {
-            dispatch(updateGroup(newGroup))
+            dispatch(updateGroup(newGroup));
+            window.location.reload(false);
         }
         dispatch(fetchGroups(userId))
     }
@@ -53,7 +54,7 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
     }, [dispatch, groupId, userId])
     
     useEffect(()=> {
-        if (group) {
+        if (group && formType !== 'Create Group') {   
             setName(group.name);
             setMembers(group.members);
             setBudget(group.budget);
