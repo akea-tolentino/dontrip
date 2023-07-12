@@ -37,10 +37,11 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
         }
 
         if (newGroup !== undefined && formType === 'Create Group') {
-            dispatch(createGroup(newGroup))
-            handleCoolClick(e)
+            dispatch(createGroup(newGroup));
+            handleCoolClick(e);
         } else {
-            dispatch(updateGroup(newGroup))
+            dispatch(updateGroup(newGroup));
+            window.location.reload(false);
         }
         dispatch(fetchGroups(userId))
     }
