@@ -11,9 +11,10 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
     let group = useSelector(getGroup(groupId));
     const formType = (groupId !== undefined ? 'Edit Group' : 'Create Group');
     const sessionUser = useSelector(state => state.session.user);
-    const [showForm, setShowForm] = useState(true);
 
-
+    const [name, setName] = useState('');
+    const [members, setMembers] = useState('');
+    const [budget, setBudget] = useState('');
 
     if (formType === 'Create Group') {
         group = {
@@ -23,16 +24,6 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
             owner: userId
         }
     }
-
-    useEffect(()=> {
-        if (formType === 'Edit Group') {
-            dispatch(fetchGroup(groupId))
-        }
-    }, [groupId, dispatch])
-
-    const [name, setName] = useState("");
-    const [members, setMembers] = useState("");
-    const [budget, setBudget] = useState("group.budget");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,9 +45,27 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
         dispatch(fetchGroups(userId))
     }
 
+    useEffect(()=> {
+        // if (formType === 'Edit Group') {
+        if (groupId && userId) {
+            dispatch(fetchGroup(groupId, userId));
+        }
+    }, [dispatch, groupId, userId])
+    
+    useEffect(()=> {
+        if (group) {
+            setName(group.name);
+            setMembers(group.members);
+            setBudget(group.budget);
+        }
+    }, [group])
+
     return (
         <form className='group-form' onSubmit={handleSubmit}>
-            <h2>{formType}</h2>
+            <h2>
+                {formType}
+            </h2>
+
             <section className='group-name'>
                 <label>
                     <input
@@ -66,6 +75,7 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
                     />
                 </label>
             </section>
+
             <section className='group-members'>
                 <label>
                     <input
@@ -77,6 +87,7 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
                     />
                 </label>
             </section>
+
             <section className='group-budget'>
                 <label>
                     <input
@@ -87,8 +98,11 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
                     />
                 </label>
             </section>
-            <button className='submit-group'>{formType}</button>
-            <></>
+
+            <button className='submit-group'>
+                {formType}
+            </button>
+
         </form>
     )
 }

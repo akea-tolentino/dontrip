@@ -57,9 +57,7 @@ export default function GroupIndex ( props ) {
 
     const handleClick = (e) => {
         e.preventDefault();
-        (showForm === false ? setShowForm(true) : setShowForm(false))
-
-
+        (showForm === false) ? setShowForm(true) : setShowForm(false);
     }
 
 
@@ -77,26 +75,34 @@ export default function GroupIndex ( props ) {
                         {showForm && (
                         <GroupForm userId={userId} handleCoolClick={handleClick} />
                     )}
-                    <form >
+                    {/* <form> */}
                         {groups === undefined ?
                             <p>no groups yet!</p> :
                             <ul className='group-list'>
+
                                 {groups.map(group =>{
                                     return (
                                         <li className='group-list-item'>
-                                            <input name='location-radio' id={group._id} type='radio'
+                                            <input name='location-radio' 
+                                            id={group._id} 
+                                            type='radio'
                                             onClick={handleRadioClick} className='radio'
                                             />
                                             <GroupItem userId={userId} key={group._id} group={group} />
                                         </li>
                                     )
                                 })}
+
                             </ul>
                         }
-                    </form>
+                    {/* </form> */}
+
+                        <button className="trip-submit" onClick={handleSubmit}>
+                            Submit Trip
+                        </button>
+
                 </section>
 
-                        <button className="trip-submit" onClick={handleSubmit}>Submit Trip</button>
             </div>
         </>
     )

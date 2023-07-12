@@ -30,8 +30,8 @@ router.get('/:groupId/users/:userId', async(req, res, next) => {
     }
 });
 
-router.patch('/:groupId/users/:userId', validateGroupInput, async(req, res, next) => {
-    //group update route for a user
+router.patch('/:groupId', validateGroupInput, async(req, res, next) => {
+    //group update route for a user, '/:groupId/users/:userId'
     let user;
     try {
         user = await User.findById(req.params.userId);
