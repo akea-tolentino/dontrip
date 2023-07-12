@@ -142,7 +142,7 @@ export default function GlobePage(props) {
                                         </label>
                                 </li>
                             ))}
-                        <button type='submit' className="globe-submit-button">Submit Location</button>                    
+                        <button type='submit' className="globe-submit-button">Submit Location</button>
                         </ul>
 
                     </form>

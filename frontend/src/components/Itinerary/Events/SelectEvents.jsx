@@ -10,7 +10,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
     const handleClick = (e, event) => {
         e.preventDefault();
         if (selectedEventsDescription.includes(event.description)) {
-            const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.id !== event.id);
+            const updatedSelectedEvents = selectedEvents.filter((selectedEvent) => selectedEvent.description !== event.description);
             setSelectedEvents(updatedSelectedEvents);
             setSelectedEventsDescription(updatedSelectedEvents.map((e) => e.description));
         } else {
@@ -81,7 +81,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 </div>
                 <div className="itinerary-submit-button" onClick={handleSubmit}>
                     <button>
-                        Submit Itinerary
+                        Submit Events
                     </button>
                 </div>
             </section>
