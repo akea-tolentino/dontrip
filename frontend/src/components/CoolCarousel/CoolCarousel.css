@@ -25,3 +25,13 @@
 .cool-image-container p {
   margin-top: 1vh;
 }
+
+#trip-edit-button {
+  height: 4vh;
+
+}
+
+#trip-edit-button:hover {
+  background-color: rgb(182, 181, 181);
+
+}
