@@ -44,8 +44,10 @@ router.patch('/:tripId/users/:userId', validateTripInput, async(req, res, next) 
     // }
     try {
         const trip = await Trip.findByIdAndUpdate(req.params.tripId, req.body);
-        //more logic needed for updating the trip object
-        return res.json(trip);
+        const user_trips = await Trip.find({owner: req.params.userId})
+                                .sort({createdAt: -1 })
+                                .populate("month location experience");
+        return res.json(user_trips)
     } catch(err) {
         const error = new Error('Trip not found');
         error.statusCode = 404;
