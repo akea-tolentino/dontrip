@@ -34,11 +34,12 @@ export default function UserShowPage () {
 
             </>
              :
-             <div>
-                <section>
-                    <span>No trips made yet.</span>
+             <div className="user-no-trips-show-page">
+                <section className="user-no-trips-show-container">
+                    <img className="cooler-image" src="https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJhdmVsJTIwbGFuZHNjYXBlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" />
+                    <span className="cooler-text">No trips made yet. Click below to create a new everlasting memory! </span>
                 </section>
-                <button onClick={handleCreateNewMemory}>Create Trip</button>
+                <button className="cooler-button" onClick={handleCreateNewMemory}>Create a new Memory</button>
              </div> 
             }
         </>

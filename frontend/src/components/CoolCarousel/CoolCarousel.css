@@ -14,7 +14,6 @@
   align-items: center ;
   background-color: white;
   width: 25vw;
-  height: 50vh;
   padding-top: 1vh;
   padding-left: 1vh;
   padding-right: 1vh;
@@ -27,11 +26,12 @@
 }
 
 #trip-edit-button {
-  height: 4vh;
+  height: 3vh;
 
 }
 
 #trip-edit-button:hover {
   background-color: rgb(182, 181, 181);
-
+  border: black 1px solid;
+  color: black;
 }

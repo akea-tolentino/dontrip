@@ -18,3 +18,64 @@
    border-color: white;
    cursor: pointer;
 }
+
+.user-no-trips-show-page {
+    width: 100vw;
+    height: 81vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-no-trips-show-container {
+    width: 80%;
+    margin-left: 10%;
+    height: 30%;
+    margin-top: 5%;
+    color: black;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 40px;
+    overflow: hidden;
+    z-index: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.cooler-button {
+    width: 40%;
+    margin-left: 30%;
+    height: 10%;
+    margin-top: 5%;
+    border-radius: 15px;
+}
+
+.cooler-button:hover {
+    width: 40%;
+    margin-left: 30%;
+    height: 10%;
+    margin-top: 5%;
+    border-radius: 15px;
+    background-color: rgba(254, 196, 148, 0.918);
+}
+
+.cooler-image {
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    bottom: 150%;
+    opacity: 1;
+}
+
+.cooler-text {
+    z-index: 999;
+    position: absolute;
+    opacity: 0.8;
+    margin-left: 10%;
+    margin-top: 5%;
+    
+    padding: 10px;
+    width: 80%;
+    border-radius: 15px;
+}
