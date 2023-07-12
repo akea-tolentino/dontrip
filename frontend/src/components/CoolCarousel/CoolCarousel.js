@@ -1,9 +1,16 @@
 import Carousel from 'react-spring-3d-carousel';
 import "./CoolCarousel.css"
 import { useState } from 'react';
+import { Modal } from '../context/Modal';
+import { TripShow } from '../TripShow/TripShow';
 
 
-export const CoolCarousel = ({userTrips}) => {
+
+export const CoolCarousel = ({userTrips, userId}) => { 
+
+  const [showItineraryModal, setShowItineraryModal] = useState(false);
+
+  const [currentTripId, setCurrentTripId] = useState("")
 
   const images = {
     Ski: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/ski.png',
@@ -15,11 +22,21 @@ export const CoolCarousel = ({userTrips}) => {
     Camping: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/camping.png',
     "Wine tasting": 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/winetasting.png'
 
+  };
+
+
+ 
+  const [goToSlide, setGoToSlide] = useState(0)
+
+  const onSlideCLick = (index) => {
+    setGoToSlide(index)
   }
 
+  const handledTripEdit = (trip) => {
+    setCurrentTripId(trip._id)
+    setShowItineraryModal(true)
 
-
-  const [goToSlide, setGoToSlide] = useState(0)
+  }
 
   const slides = []
   if (userTrips) {
@@ -28,11 +45,11 @@ export const CoolCarousel = ({userTrips}) => {
         key: index,
         content: (
         <div className='cool-image-container'>
-          <img onClick={() => setGoToSlide(index)} className='cool-images' src={images[trip.experience]} alt={trip.experience} />
+          <img onClick={() => onSlideCLick(index)} className='cool-images' src={images[trip.experience]} alt={trip.experience} />
           <p>{trip.experience}</p>
           <p>{trip.month}</p>
           <p>{trip.location}</p>
-  
+          <button onClick={() => {handledTripEdit(trip)}} id="trip-edit-button">Itinerary</button>
         </div>
         )
         
@@ -44,10 +61,16 @@ export const CoolCarousel = ({userTrips}) => {
 
   return (
     <>
-      <div className='cool-carousel-2'>
-        <Carousel goToSlide={goToSlide} slides={slides} offsetRadius={4} enableSwipe={true} />
+      <div>
+        <div className='cool-carousel-2'>
+          <Carousel goToSlide={goToSlide} slides={slides} offsetRadius={4} enableSwipe={true} />
+        </div>
+        {console.log(showItineraryModal)}
+        {showItineraryModal && (<Modal onClose={() => setShowItineraryModal(false)}>
+          <TripShow tripId={currentTripId} userId={userId}/>
+        </Modal>)}        
       </div>
-      
+
     </>
   )
 
