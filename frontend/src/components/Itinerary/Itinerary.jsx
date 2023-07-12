@@ -20,10 +20,11 @@ export default function Itinerary ( props ) {
     const location = props.location.state.location;
     const month = props.location.state.month;
     const events = props.location.state.params
-
+    const stays = props.location.state.params
 
     //STATE VARIABLE FOR STAYS
     const [staysList, setStaysList] = useState([])
+    const [currentPage, setCurrentPage] = useState("stay")
 
     //GETS USER FROM CURRENT USER
     const user = useSelector(state => state.session.user)
@@ -36,17 +37,27 @@ export default function Itinerary ( props ) {
     //ON SUBMIT FOR ITINERARIES
     const changeEvents = async (eventsArray) => {
 
-        //takes in events array and makes a itinerary body 
+        //takes in events array and makes a itinerary body
         const itineraryBody = {
             events: eventsArray,
             stays: staysList
         }
 
         //dispatches itinerary post request
-        const res = await dispatch(postItinerary(itineraryBody, user._id));
+        const res = dispatch(postItinerary(itineraryBody, user._id));
 
         const id = res._id
         return history.push("/groups", {itinerary: id, location: location, experience: experience, month: month, userId: user._id})
+    }
+
+
+    let showCurrentPage;
+    if (currentPage === "event") {
+        showCurrentPage = <SelectEvents changeEvents={changeEvents} availableEvents={events} experience={experience} location={location} month={month} />
+    } else if (currentPage === "stay") {
+        showCurrentPage = <SelectStays changeEvents={changeEvents} availableStays={stays} experience={experience} location={location} month={month} />
+    } else {
+        showCurrentPage = null
     }
 
 
@@ -58,8 +69,7 @@ export default function Itinerary ( props ) {
             </div>
 
             <div className="itinerary-page-container">
-                <SelectEvents changeEvents={changeEvents} availableEvents={events} experience={experience} location={location} month={month} /> 
-                <SelectStays /> 
+                {showCurrentPage}
             </div>
 
         </>

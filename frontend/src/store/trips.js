@@ -94,17 +94,15 @@ export const createTrip = data => async dispatch => {
 };
 
 export const deleteTrip = (tripId, userId) => async dispatch => {
-    debugger
+
     try {
         const res = await jwtFetch(`/api/trips/${tripId}/users/${userId}`, {
         method: 'DELETE'
         });
         const trips = await res.json();
-        debugger
         dispatch(removeTrip(trips));
     } catch(err) {
         const resBody = await err.json();
-        debugger
         if (resBody.statusCode === 400) {
         return dispatch(receiveErrors(resBody.errors));
         }
@@ -132,7 +130,6 @@ const tripsReducer = (state = {}, action) => {
 
     Object.freeze(state);
     let newState = {...state};
-    debugger
     switch(action.type) {
       case RECEIVE_TRIPS:
           return state

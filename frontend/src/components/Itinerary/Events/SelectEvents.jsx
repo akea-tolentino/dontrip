@@ -81,7 +81,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 </div>
                 <div className="itinerary-submit-button" onClick={handleSubmit}>
                     <button>
-                        Submit Itinerary
+                        Submit Events
                     </button>
                 </div>
             </section>
