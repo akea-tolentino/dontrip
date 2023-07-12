@@ -52,7 +52,7 @@ export default function Experiences(props) {
                 return handleAiRequest(e)
             }
             places = data.choices[0].message.content.split("|")
-            debugger
+            // debugger
         });
 
         const placesObject = await places.map( (place) => {
