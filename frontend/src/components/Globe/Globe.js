@@ -18,7 +18,6 @@ export default function GlobePage(props) {
     const locations = props.location.state.params
     const experience = props.location.state.experience
     const month = props.location.state.month
-    debugger
     const chatApiKey = process.env.REACT_APP_GPT_KEY;
 
     useEffect(() => {

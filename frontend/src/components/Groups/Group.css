@@ -18,6 +18,7 @@
     text-align: right;
     border-radius: 14px;
     justify-content: space-around;
+    z-index: 0;
 }
 
 .group-index-container button:hover {
@@ -63,10 +64,12 @@ button.trip-submit {
     border-radius: 8px;
     color: #09234e90;
     /* position: fixed; */
-    bottom: 7vh;
-    /* right: 38vw */
-    position: absolute;
+    bottom: -38vh;
+    right: 22vw;
+    /* position: relative; */
     width: 120px;
+    z-index: 0;
+    margin-right: 38%;
 }
 
 .group-list-item {
@@ -87,4 +90,23 @@ button.trip-submit {
 
 .create-group-button {
     text-align: center;
+}
+
+.edit-form-dropdown {
+    border: 1px solid black;
+    z-index: 1;
+    position: absolute;
+    background-color: #ccc;
+    border-radius: 5px;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 2px 2px 4px black;
+}
+
+.edit-x {
+    cursor: pointer;
+    right: 2vh;
+    top: 1vh;
+    position: absolute;
 }

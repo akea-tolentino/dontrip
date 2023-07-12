@@ -54,10 +54,10 @@ export const fetchGroups = (userId) => async dispatch => {
 
 };
 
-export const fetchGroup = (groupId) => async dispatch => {
+export const fetchGroup = (groupId, userId) => async dispatch => {
     try {
-      const res = await jwtFetch (`/api/groups/${groupId}`);
-      const group = await res.json();
+        const res = await jwtFetch (`/api/groups/${groupId}/users/${userId}`);
+        const group = await res.json();
       dispatch(receiveGroup(group));
     } catch (err) {
       const resBody = await err.json();
@@ -88,11 +88,10 @@ export const createGroup = data => async dispatch => {
 
 export const updateGroup = data => async dispatch => {
     try {
-        const res = await jwtFetch(`/api/groups/${data.id}`, {
+        const res = await jwtFetch(`/api/groups/${data._id}`, {
         method: 'PATCH',
         body: JSON.stringify(data)
         });
-
         const group = await res.json();
         dispatch(receiveGroup(group));
     } catch(err) {
@@ -128,7 +127,7 @@ export default function groupsReducer (state = {}, action) {
             newState[action.userId] = action.payload
             return newState
         case RECEIVE_GROUP:
-            newState[action.owner] = action.groupId
+            newState[action.group._id] = action.group
             // return { ...newState, ...action.group, new: undefined};
             return newState;
         case CREATE_GROUP:
