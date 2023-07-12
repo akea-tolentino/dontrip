@@ -25,9 +25,9 @@ const receiveTrip = trip => ({
     trip
 })
 
-const removeTrip = tripId => ({
+const removeTrip = trips => ({
     type: REMOVE_TRIP,
-    tripId
+    trips
 })
 
 
@@ -93,15 +93,18 @@ export const createTrip = data => async dispatch => {
     }
 };
 
-export const deleteTrip = tripId => async dispatch => {
+export const deleteTrip = (tripId, userId) => async dispatch => {
+    debugger
     try {
-        const res = await jwtFetch(`/api/trips/${tripId}`, {
+        const res = await jwtFetch(`/api/trips/${tripId}/users/${userId}`, {
         method: 'DELETE'
         });
-        const trip = await res.json();
-        dispatch(removeTrip(trip));
+        const trips = await res.json();
+        debugger
+        dispatch(removeTrip(trips));
     } catch(err) {
         const resBody = await err.json();
+        debugger
         if (resBody.statusCode === 400) {
         return dispatch(receiveErrors(resBody.errors));
         }
@@ -129,7 +132,7 @@ const tripsReducer = (state = {}, action) => {
 
     Object.freeze(state);
     let newState = {...state};
-
+    debugger
     switch(action.type) {
       case RECEIVE_TRIPS:
           return state
@@ -138,7 +141,7 @@ const tripsReducer = (state = {}, action) => {
       case RECEIVE_TRIP:
         return state
       case REMOVE_TRIP:
-        return { ...newState, new: action.trip};
+        return  action.trips;
       case RECEIVE_ITINERARY:
         return // ?
       case REMOVE_ITINERARY:

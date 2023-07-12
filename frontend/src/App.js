@@ -14,6 +14,7 @@ import UserShowPage from "./components/userShowPage/userShow.jsx";
 import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
 import Itinerary from "./components/Itinerary/Itinerary";
 import LinksFooter from "./components/LinksFooter/LinksFooter";
+import { Redirect } from "react-router-dom/cjs/react-router-dom";
 
 
 function App() {
@@ -36,8 +37,7 @@ function App() {
         <ProtectedRoute exact path="/itinerary" component={Itinerary} />
 
         <AuthRoute path="/" component={MainPage} />
-
-
+        {/* <Redirect /> */}
 
       </Switch>
       <LinksFooter/>

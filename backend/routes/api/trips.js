@@ -54,11 +54,6 @@ router.patch('/:tripId/users/:userId', validateTripInput, async(req, res, next) 
     }
 });
 
-const deleteTrip = (trip) => {
-    return (
-        {message: "trip is deleted"}
-    )
-}
 
 router.delete('/:tripId/users/:userId', async(req, res, next) => { // should also use requireUser
     let user;
@@ -71,8 +66,11 @@ router.delete('/:tripId/users/:userId', async(req, res, next) => { // should als
         return next(error);
     }
     try {
-        const trip = await Trip.findById(req.params.tripId);
-        return res.json(deleteTrip(trip));
+        const trip = await Trip.findByIdAndDelete(req.params.tripId);
+        const user_trips = await Trip.find({owner: req.params.userId})
+                                .sort({createdAt: -1 })
+                                .populate("month location experience");
+        return res.json(user_trips)
     } catch(err) {
         const error = new Error('Trip not found');
         error.statusCode = 404;
