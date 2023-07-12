@@ -5,7 +5,7 @@ export default function SelectStays( { changeStays, availableStays, experience, 
     const [selectedStays, setSelectedStays] = useState([]);
     const [selectedStaysDescription, setSelectedStaysDescription] = useState([]);
     const [dropDown, setDropDown] = useState(false);
-    const date = new Date().toISOString().slice(8);
+    const date = new Date().toISOString().split("T")[0];
 
 
     const handleClick = (e, stay) => {
