@@ -60,8 +60,6 @@ export default function GroupIndex ( props ) {
         (showForm === false) ? setShowForm(true) : setShowForm(false);
     }
 
-
-
     return (
         <>
             <div className='group-index-page-wrapper'>
@@ -73,7 +71,11 @@ export default function GroupIndex ( props ) {
                     </div>
 
                         {showForm && (
-                        <GroupForm userId={userId} handleCoolClick={handleClick} />
+                            <div className="create-dropdown">
+                                <div className="edit-x" onClick={()=>setShowForm(false)}>X</div>
+
+                                <GroupForm userId={userId} handleCoolClick={handleClick} />
+                            </div>
                     )}
                     {/* <form> */}
                         {groups === undefined ?
