@@ -9,7 +9,7 @@ export const TripShow = ({tripId, userId}) => {
 
     const handleDeleteTrip = (e) => {
         e.preventDefault();
-        debugger
+
         dispatch(deleteTrip(tripId, userId));
 
     }
