@@ -3,10 +3,14 @@ import "./CoolCarousel.css"
 import { useState } from 'react';
 import { Modal } from '../context/Modal';
 import { TripShow } from '../TripShow/TripShow';
+import { useDispatch } from 'react-redux';
+import { deleteTrip } from '../../store/trips';
 
 
 
 export const CoolCarousel = ({userTrips, userId}) => { 
+
+  const dispatch = useDispatch();
 
   const [showItineraryModal, setShowItineraryModal] = useState(false);
 
@@ -38,6 +42,12 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   }
 
+  const handleDeleteTrip = (trip) => {
+    debugger
+    dispatch(deleteTrip(trip._id, userId));
+
+}
+
   const slides = []
   if (userTrips) {
     userTrips.map( (trip, index) => {
@@ -50,6 +60,8 @@ export const CoolCarousel = ({userTrips, userId}) => {
           <p>{trip.month}</p>
           <p>{trip.location}</p>
           <button onClick={() => {handledTripEdit(trip)}} id="trip-edit-button">Itinerary</button>
+          <button onClick={() => {handledTripEdit(trip)}} id="trip-edit-button">Event</button>
+          <button onClick={() => {handleDeleteTrip(trip)}} id="trip-edit-button">Delete Trip</button>
         </div>
         )
         
