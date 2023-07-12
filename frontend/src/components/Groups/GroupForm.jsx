@@ -54,7 +54,7 @@ export default function GroupForm ( { userId, groupId, handleCoolClick } ) {
     }, [dispatch, groupId, userId])
     
     useEffect(()=> {
-        if (group && formType !== 'Create Group') { 
+        if (group && formType !== 'Create Group') {   
             setName(group.name);
             setMembers(group.members);
             setBudget(group.budget);
