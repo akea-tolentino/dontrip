@@ -48,7 +48,6 @@ export default function Itinerary ( props ) {
         const res = await dispatch(postItinerary(itineraryBody, user._id));
         const id = await res._id
 
-        debugger
         return history.push("/groups", {itinerary: id, location: location, experience: experience, month: month, userId: user._id})
     }
 
