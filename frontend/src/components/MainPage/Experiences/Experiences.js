@@ -47,7 +47,7 @@ export default function Experiences(props) {
         }).then((data) => {
             return data.json();
         }).then((data) => {
-            debugger
+
             if (data.error) {
                 setErrors(true)
                 return handleAiRequest(e)
