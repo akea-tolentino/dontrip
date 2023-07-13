@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../../../store/session";
-
 
 export const SignUpPage = () => {
 
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState("");
     
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("");
 
+    const errors = useSelector(state => state.sessionErrors);
     
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -51,6 +51,9 @@ export const SignUpPage = () => {
                         </label>                        
                     </div>
                     <button className="user-auth-button" type="submit">Submit</button>
+                    {errors ? <h1>
+                        {errors.email}
+                    </h1> : null}
                 </form>
             </div>
         </>

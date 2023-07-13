@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../UserAuth.css"
 import { login } from "../../../../store/session";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -12,9 +12,11 @@ export const SignInPage = () => {
 
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState("");
     
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("");
+
+    const errors = useSelector(state => state.sessionErrors);
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -26,7 +28,8 @@ export const SignInPage = () => {
 
     
         const res = await dispatch(login(userInfo))
-        return history.push(`/users/${res.currentUser._id}/trips`)
+
+        if (res.statusCode !== 400) return history.push(`/users/${res.currentUser._id}/trips`)
 
     }
 
@@ -56,6 +59,9 @@ export const SignInPage = () => {
                             </label>                        
                         </div>
                         <button className="user-auth-button" type="submit">Submit</button>
+                        {errors ? <h1>
+                        {errors.email}
+                    </h1> : null}
                     </form>
             </div>
         </>
