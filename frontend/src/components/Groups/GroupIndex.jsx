@@ -30,9 +30,11 @@ export default function GroupIndex ( props ) {
     }, [dispatch, userId])
 
     //STATE VARIABLE FOR USER GROUP INPUT
-    const [userGroup, setUserGroup] = useState()
+    const [userGroup, setUserGroup] = useState({})
     const [showForm, setShowForm] = useState(false);
 
+    //STATE VARIABLE FOR ERRORS
+    const [errors, setErrors] = useState()
 
     const handleRadioClick = (event) => {
         const selectedGroup = groups.find(group => group._id === event.target.id)
@@ -41,6 +43,7 @@ export default function GroupIndex ( props ) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         const tripData = {
             experience: experience,
             month: month,
@@ -50,7 +53,13 @@ export default function GroupIndex ( props ) {
             owner: userId
         }
 
-        const res = dispatch(createTrip(tripData));
+        if (userGroup._id === undefined) {
+            setErrors("Please select a Group!");
+            return ;
+        }
+
+        const res = await dispatch(createTrip(tripData));
+
         return history.push(`/users/${userId}/trips`)
     }
 
@@ -93,10 +102,11 @@ export default function GroupIndex ( props ) {
                                         </li>
                                     )
                                 })}
-
+                            {errors ? <h1 className='errors'>{errors}</h1> : null}
                             </ul>
                         }
                     {/* </form> */}
+                       
 
                         <button className="trip-submit" onClick={handleSubmit}>
                             Submit Trip

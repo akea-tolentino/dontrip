@@ -126,3 +126,8 @@ button.trip-submit {
     box-shadow: 2px 2px 4px black;
     margin-left: 10%;
 }
+
+.errors {
+    color: white;
+    font-size: 20px;
+}
