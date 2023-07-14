@@ -33,7 +33,8 @@ export default function Experiences(props) {
                 "role": "user",
                 "content": `return only a string of 5 ${experience} destinations in ${category}, in North America, South America, Europe, or Asia, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, without any text before and after`
             }],
-            "temperature": 0
+            "temperature": 0,
+            "max_tokens": 1000
         };
 
 

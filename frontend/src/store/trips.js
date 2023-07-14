@@ -108,7 +108,6 @@ export const createTrip = data => async dispatch => {
         });
 
         const trip = await res.json();
-        
         dispatch(receiveTrip(trip));
         return trip
     } catch(err) {
