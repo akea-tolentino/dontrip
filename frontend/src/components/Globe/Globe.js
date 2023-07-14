@@ -89,7 +89,7 @@ export default function GlobePage(props) {
                 "address": info[1],
             }
         })
-        console.log(month)
+   
 
         if (eventsObject.length !== 10) return handleAiRequest(e)
         setloading(false)

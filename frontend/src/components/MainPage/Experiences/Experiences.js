@@ -8,7 +8,7 @@ export default function Experiences(props) {
 
 
 
-    const[category, setCategory] = useState('');
+    const[category, setCategory] = useState('January');
     const[experience, setExperience] = useState('');
     const[loading, setloading] = useState(false);
 
@@ -71,7 +71,6 @@ export default function Experiences(props) {
         setloading(false)
         setErrors(false)
 
-        console.log(category)
         return history.push("/location", {params: placesObject, experience: experience, month: category})
 
     }
@@ -101,7 +100,7 @@ export default function Experiences(props) {
                 <form className="experience-form">
                     <label className="choose-month"> Choose a time of month
                         <select onChange={(e)=>setCategory(e.target.value)}>
-                            <option value={'January'}>January</option>
+                            <option value={'January'} selected={true}>January</option>
                             <option value={'February'}>February</option>
                             <option value={'March'}>March</option>
                             <option value={'April'}>April</option>

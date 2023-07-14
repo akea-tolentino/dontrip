@@ -42,7 +42,6 @@ export default function Itinerary ( props ) {
             events: eventsArray,
             stays: staysList
         }
-        console.log(month)
         //dispatches itinerary post request
         //no matter what any TA might say, this await is indeed doing something
         const res = await dispatch(postItinerary(itineraryBody, user._id));
