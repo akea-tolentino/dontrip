@@ -19,8 +19,6 @@ async function jwtFetch(url, options = {}) {
     const res = await fetch(url, options);
     // If the response status code is 400 or above, then throw an error with the
     // error being the response.
-    console.log(url);
-    console.log(options)
     if (res.status >= 400) throw res;
     // If the response status code is under 400, then return the response to the
     // next promise chain.

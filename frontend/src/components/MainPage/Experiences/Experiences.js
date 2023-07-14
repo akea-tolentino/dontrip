@@ -31,7 +31,7 @@ export default function Experiences(props) {
             "model": "gpt-3.5-turbo",
             "messages": [{
                 "role": "user",
-                "content": `return only a string of 5 ${experience} destinations in ${category}, in North America, South America, Europe, or Asia, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, without any text before and after`
+                "content": `return only a string of 5 ${experience} destinations in ${category}, located in North America, South America, Europe, or Asia, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, without any text before and after`
             }],
             "temperature": 0,
             "max_tokens": 1000
@@ -70,7 +70,7 @@ export default function Experiences(props) {
         if (placesObject.length !== 5) return handleAiRequest(e)
         setloading(false)
         setErrors(false)
-
+        debugger
         return history.push("/location", {params: placesObject, experience: experience, month: category})
 
     }
