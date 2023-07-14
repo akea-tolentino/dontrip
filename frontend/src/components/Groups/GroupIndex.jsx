@@ -59,7 +59,7 @@ export default function GroupIndex ( props ) {
             setErrors("Please select a Group!");
             return ;
         }
-
+        console.log(tripData)
         const res = await dispatch(createTrip(tripData));
 
         return history.push(`/users/${userId}/trips`)

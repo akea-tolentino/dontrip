@@ -70,6 +70,8 @@ export default function Experiences(props) {
         if (placesObject.length !== 5) return handleAiRequest(e)
         setloading(false)
         setErrors(false)
+
+        console.log(category)
         return history.push("/location", {params: placesObject, experience: experience, month: category})
 
     }
