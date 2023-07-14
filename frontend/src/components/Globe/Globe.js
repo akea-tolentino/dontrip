@@ -63,7 +63,8 @@ export default function GlobePage(props) {
                 "role": "user",
                 "content": `return only a un-numbered list of 10 activities, including ${experience} to do in ${userLocation.location}, formatted in a string of "activity name, activity company website", split by a | without any text before and after, without line breaks`
             }],
-            "temperature": 0
+            "temperature": 0,
+            "max_tokens": 1000
         };
 
         await fetch("https://api.openai.com/v1/chat/completions", {
