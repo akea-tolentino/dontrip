@@ -102,7 +102,6 @@ export default function SelectStays( { changeStays, availableStays, experience, 
                     <h3>{stay.description} <button className="select-stays-add-button" onClick={(e)=>handleDelete(e, stay)}>
                         Delete Stay
                     </button></h3>
-                    {console.log(stay.address)}
                     <h3><a href={`https://${stay.address}`} target="_blank" referrerPolicy="no-referrer" rel="noopener noreferrer" >{stay.address}</a></h3>
                 </li>
                 )}
@@ -130,7 +129,6 @@ export default function SelectStays( { changeStays, availableStays, experience, 
 
                 <label>Check In Date
                     <input  type="date" max={checkOutDate} min={date} value={checkInDate} onChange={(e)=>setCheckInDate(e.target.value)}/>
-                    <p>{console.log(date)}</p>
                 </label>
                 <br/>
 
