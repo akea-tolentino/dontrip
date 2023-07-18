@@ -22,13 +22,11 @@ const updateItinerary = payload => ({
 
 
 export const patchItinerary = (itineraryInfo, itineraryId) => async dispatch => {
-  debugger
   const res = await jwtFetch(`/api/itineraries/${itineraryId}`, {
     method: "PATCH",
     body: JSON.stringify(itineraryInfo)
   });
   const data = await res.json();
-  debugger
 }
 
 

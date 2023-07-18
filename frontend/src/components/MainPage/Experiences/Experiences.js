@@ -48,7 +48,6 @@ export default function Experiences(props) {
         }).then((data) => {
             return data.json();
         }).then((data) => {
-            debugger
             if (data.error) {
                 setErrors(true)
                 return handleAiRequest(e)
@@ -70,7 +69,6 @@ export default function Experiences(props) {
         if (placesObject.length !== 5) return handleAiRequest(e)
         setloading(false)
         setErrors(false)
-        debugger
         return history.push("/location", {params: placesObject, experience: experience, month: category})
 
     }
