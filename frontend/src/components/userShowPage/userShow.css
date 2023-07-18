@@ -79,3 +79,8 @@
     width: 80%;
     border-radius: 15px;
 }
+
+.user-itinerary-show-events {
+    text-decoration: none;
+    color: black;
+}

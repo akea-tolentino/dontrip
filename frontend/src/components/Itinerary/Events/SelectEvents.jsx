@@ -63,8 +63,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 {availableEvents.map(event =>
                 <li key={event.id}>
                     <br/>
-                    <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleClick(e, event)}>
-                        {/* {selectedEventsDescription.includes(event.description) ? "remove" : "add"} */}select
+                    <h3>{event.description} <button className="select-events-add-button" onClick={(e)=>handleClick(e, event)}>select
                     </button></h3>
                     <h3><a href={`https://${event.address}`} target="_blank" referrerPolicy="no-referrer" rel="noopener noreferrer" >{event.address}</a></h3>
                 </li>)}
