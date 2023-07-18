@@ -23,6 +23,16 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   const [currentGroupId, setCurrentGroupId] = useState("");
 
+  const [loading, setLoading] = useState(true)
+
+  const changeLoading = () => {
+    if (loading) {
+      setLoading(false)
+    } else {
+      setLoading(true)
+    }
+  }
+
   const images = {
     Ski: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/ski.png',
     Lake: 'https://dontrip-seeds.s3.us-west-1.amazonaws.com/dontrip/lake.png',
@@ -43,10 +53,13 @@ export const CoolCarousel = ({userTrips, userId}) => {
     setGoToSlide(index)
   };
 
-  const handledItineraryEdit = (trip) => {
+  const handledItineraryEdit = async (trip) => {
     setCurrentTripData(trip)
     setCurrentItineraryId(trip.itinerary)
     setShowItineraryModal(true)
+    setTimeout(() => {
+      changeLoading();
+    }, 500)
   };
 
   const handleGroupEdit = (trip) => {
@@ -66,6 +79,7 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   const handleItineraryModalClose = () => {
     setShowItineraryModal(false)
+    changeLoading();
   };
 
   const slides = []
@@ -98,10 +112,10 @@ export const CoolCarousel = ({userTrips, userId}) => {
           <Carousel goToSlide={goToSlide} slides={slides} offsetRadius={4} enableSwipe={true} />
         </div>
         {showItineraryModal && (<Modal onClose={handleItineraryModalClose}>
-          <ItineraryShow trip={currentTripData} itineraryId={currentItineraryId} userId={userId}/>
+          <ItineraryShow loading={loading} changeLoading={changeLoading} trip={currentTripData} itineraryId={currentItineraryId} userId={userId}/>
         </Modal>)}   
         {showGroupModal && (<Modal onClose={handleGroupModalClose}>
-          <GroupShow trip={currentTripData} groupId={currentGroupId} userId={userId} handleModalClose={handleGroupModalClose}/>
+          <GroupShow  trip={currentTripData} groupId={currentGroupId} userId={userId} handleModalClose={handleGroupModalClose}/>
         </Modal>)}      
       </div>
 

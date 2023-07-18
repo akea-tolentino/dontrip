@@ -41,6 +41,8 @@
   flex-direction: column;
   align-items: center;
   background-color: white;
+  max-height: 60vh;
+  overflow-y: scroll;
 }
 
 .cool-interary-show-page *{

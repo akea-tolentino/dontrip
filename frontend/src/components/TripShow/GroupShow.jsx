@@ -59,7 +59,7 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
                     </label>
                     <button type="submit">Change Group</button>
                 </form> : null }
-            </div> : null }
+            </div> : <h1>Loading Groups...</h1> }
   
         </>
     )
