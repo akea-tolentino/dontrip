@@ -10,7 +10,7 @@ export const SignUpPage = () => {
     
     const [password, setPassword] = useState("");
 
-    const errors = useSelector(state => state.sessionErrors);
+    const [errors, setErrors] = useState([]);
     
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -19,8 +19,10 @@ export const SignUpPage = () => {
             email: email,
             password: password
         }
-
+    
         const res = await dispatch(signup(userInfo))
+
+        setErrors(Object.values(res.errors))
     }
 
 
@@ -51,9 +53,12 @@ export const SignUpPage = () => {
                         </label>                        
                     </div>
                     <button className="user-auth-button" type="submit">Submit</button>
-                    {errors ? <h1>
-                        {errors.email}
-                    </h1> : null}
+                    {errors ? 
+                        <ul>
+                            {errors.map(error => {
+                                return <li>{error}</li>
+                            })}
+                        </ul> : null}
                 </form>
             </div>
         </>
