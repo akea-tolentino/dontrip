@@ -59,3 +59,15 @@
 .cool-group-show-page *{
   padding: 10px;
 }
+
+.change-group-button, .edit-group-button {
+  margin-top: 5px;
+}
+
+.group-form {
+  text-align: center;
+}
+
+.edit-group-button {
+  margin-left: 5px;
+}

@@ -15,6 +15,7 @@ import { CoolCarousel } from "./components/CoolCarousel/CoolCarousel";
 import Itinerary from "./components/Itinerary/Itinerary";
 import LinksFooter from "./components/LinksFooter/LinksFooter";
 import { Redirect } from "react-router-dom/cjs/react-router-dom";
+import GroupEditPage from "./components/Groups/GroupEditPage";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <ProtectedRoute exact path="/experiences" component={Experiences} />
         <ProtectedRoute exact path="/groups" component={GroupIndex} />
         <ProtectedRoute exact path="/itinerary" component={Itinerary} />
+        <ProtectedRoute exact path="/editgroup" component={GroupEditPage} />
 
         <AuthRoute path="/" component={MainPage} />
         {/* <Redirect /> */}
