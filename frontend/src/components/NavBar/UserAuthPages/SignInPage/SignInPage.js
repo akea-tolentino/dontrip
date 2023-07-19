@@ -16,7 +16,7 @@ export const SignInPage = () => {
     
     const [password, setPassword] = useState("");
 
-    const errors = useSelector(state => state.sessionErrors);
+    const [errors, setErrors] = useState([]);
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -26,8 +26,10 @@ export const SignInPage = () => {
             password: password
         }
 
-    
+        
         const res = await dispatch(login(userInfo))
+        setErrors(Object.values(res.errors))
+
 
         if (res.statusCode !== 400) return history.push(`/users/${res.currentUser._id}/trips`)
 
@@ -59,9 +61,12 @@ export const SignInPage = () => {
                             </label>                        
                         </div>
                         <button className="user-auth-button" type="submit">Submit</button>
-                        {errors ? <h1>
-                        {errors.email}
-                    </h1> : null}
+                        {errors ? 
+                        <ul>
+                            {errors.map(error => {
+                                return <li>{error}</li>
+                            })}
+                        </ul> : null}
                     </form>
             </div>
         </>
