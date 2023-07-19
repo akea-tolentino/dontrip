@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react";
-import { fetchGroup, fetchGroups } from "../../store/groups";
+import { deleteGroup, fetchGroup, fetchGroups } from "../../store/groups";
 import { patchTrip } from "../../store/trips";
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
 
     const dispatch = useDispatch();
-
+    const history = useHistory();
 
 
     const group = useSelector(state => state.groups[groupId] );
@@ -37,6 +37,9 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
         handleModalClose();
     }   
 
+    const handleClick = () => {
+       return history.push('/editgroup', {experience: trip.experience, month: trip.month, location: trip.location, itinerary: trip.itinerary, tripId: trip._id})
+    }
 
 
 
@@ -48,7 +51,7 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
                 <p>{group.members} members</p>
                 <p>${group.budget}</p>
                 {groups ? 
-                <form onSubmit={handleGroupEdit}>
+                <form onSubmit={handleGroupEdit} className="group-form">
                     <label>Change your Group
                         <select onChange={(e) => setSelectGroup(e.target.value)}>
                             {groups.map(individualGroup => {
@@ -57,7 +60,9 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
                         </select>
 
                     </label>
-                    <button type="submit">Change Group</button>
+                    <br/>
+                    <button className="change-group-button" type="submit">Change Group</button>
+                    <button className="edit-group-button" onClick={handleClick}>Edit Group</button>
                 </form> : null }
             </div> : <h1>Loading Groups...</h1> }
   
