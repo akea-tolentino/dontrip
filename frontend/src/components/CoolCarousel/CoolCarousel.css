@@ -71,3 +71,9 @@
 .edit-group-button {
   margin-left: 5px;
 }
+
+.no-current-group {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

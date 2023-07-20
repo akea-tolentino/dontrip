@@ -55,15 +55,14 @@ export const fetchGroups = (userId) => async dispatch => {
 };
 
 export const fetchGroup = (groupId, userId) => async dispatch => {
+    debugger
     try {
         const res = await jwtFetch (`/api/groups/${groupId}/users/${userId}`);
         const group = await res.json();
       dispatch(receiveGroup(group));
     } catch (err) {
-      const resBody = await err.json();
-      if (resBody.statusCode === 400) {
-        dispatch(receiveErrors(resBody.errors));
-      }
+        debugger
+      return ("Group not found")
     }
   };
 

@@ -14,6 +14,7 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
     const group = useSelector(state => state.groups[groupId] );
     const groups = useSelector(state => state.groups[userId]);
 
+    const [groupName, setGroupName] = useState(group ? group.name : null)
     const [selectGroup, setSelectGroup] = useState(group);
 
     useEffect(() => {
@@ -42,7 +43,7 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
     }
 
 
-
+    debugger
     return (
         <>
             {(group) ? <div className="cool-group-show-page">
@@ -50,21 +51,23 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
                 <p>{group.name}</p>
                 <p>{group.members} members</p>
                 <p>${group.budget}</p>
-                {groups ? 
+            </div> : <h1 className="no-current-group">No Current Group associated</h1> }
+            {groups ? 
                 <form onSubmit={handleGroupEdit} className="group-form">
                     <label>Change your Group
                         <select onChange={(e) => setSelectGroup(e.target.value)}>
                             {groups.map(individualGroup => {
-                                return <option value={individualGroup._id} selected={individualGroup.name === group.name ? true : false}>{individualGroup.name}</option>                     
+                                return <option value={individualGroup._id}  selected={individualGroup.name === groupName ? true : false} > {individualGroup.name}</option>                     
                             })}                            
                         </select>
 
                     </label>
                     <br/>
-                    <button className="change-group-button" type="submit">Change Group</button>
+                    { group ? 
+                    <button className="change-group-button" type="submit">Change Group</button> : 
+                    <button className="change-group-button" type="submit">Select Group</button>}
                     <button className="edit-group-button" onClick={handleClick}>Edit Group</button>
-                </form> : null }
-            </div> : <h1>Loading Groups...</h1> }
+            </form> : null }
   
         </>
     )
