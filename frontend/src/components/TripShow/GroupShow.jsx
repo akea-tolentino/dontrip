@@ -53,7 +53,7 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
                 {groups ? 
                 <form onSubmit={handleGroupEdit} className="group-form">
                     <label>Change your Group
-                        <select onChange={(e) => setSelectGroup(e.target.value)}>
+                        <select className="group-select" onChange={(e) => setSelectGroup(e.target.value)}>
                             {groups.map(individualGroup => {
                                 return <option value={individualGroup._id} selected={individualGroup.name === group.name ? true : false}>{individualGroup.name}</option>                     
                             })}                            
