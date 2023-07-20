@@ -95,9 +95,11 @@ export const CoolCarousel = ({userTrips, userId}) => {
           <p>{trip.experience}</p>
           <p>{trip.month}</p>
           <p>{trip.location}</p>
-          <button onClick={() => {handledItineraryEdit(trip)}} id="trip-edit-button">Itinerary</button>
-          <button onClick={() => {handleGroupEdit(trip)}} id="trip-edit-button">Group</button>
-          <button onClick={() => {handleDeleteTrip(trip)}} id="trip-edit-button">Delete Trip</button>
+          <div className='trip-edit-buttons'>
+            <button onClick={() => {handledItineraryEdit(trip)}} id="trip-edit-button">Itinerary</button>
+            <button onClick={() => {handleGroupEdit(trip)}} id="trip-edit-button">Group</button>
+            <button onClick={() => {handleDeleteTrip(trip)}} id="trip-edit-button">Delete Trip</button>
+          </div>
         </div>
         )
         

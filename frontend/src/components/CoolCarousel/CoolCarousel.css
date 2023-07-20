@@ -18,22 +18,29 @@
   padding-left: 1vh;
   padding-right: 1vh;
   text-align: center;
-  cursor: pointer;
+  cursor: grab;
 }
 
 .cool-image-container p {
   margin-top: 1vh;
 }
 
+.trip-edit-buttons {
+  display: flex;
+  flex-direction: row;
+  /* flex-direction: column; */
+  padding: 3vh 1vw 2vh;
+}
+
 #trip-edit-button {
   height: 3vh;
-
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
 }
 
 #trip-edit-button:hover {
-  background-color: rgb(182, 181, 181);
-  border: black 1px solid;
-  color: black;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.599);
 }
 
 .cool-interary-show-page {
@@ -64,6 +71,10 @@
   margin-top: 5px;
 }
 
+.change-group-button:hover, .edit-group-button:hover {
+  cursor: pointer;
+}
+
 .group-form {
   text-align: center;
 }
@@ -72,8 +83,19 @@
   margin-left: 5px;
 }
 
+
 .no-current-group {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.group-select {
+  margin: 0 0 0 1vw;
+  border-color: rgba(0, 0, 0, 0.26);
+  border-radius: 4px;
+}
+
+.group-select:hover {
+  cursor: pointer;
 }
