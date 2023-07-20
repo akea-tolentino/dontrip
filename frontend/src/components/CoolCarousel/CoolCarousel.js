@@ -17,7 +17,7 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   const [showGroupModal, setShowGroupModal] = useState(false);
 
-  const [currentTripData, setCurrentTripData] = useState({});
+  const [currentTripData, setCurrentTripData] = useState(userTrips ? userTrips[0] : {});
 
   const [currentItineraryId, setCurrentItineraryId] = useState("");
 
@@ -45,16 +45,16 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   };
 
-
  
   const [goToSlide, setGoToSlide] = useState(0)
 
-  const onSlideCLick = (index) => {
+  const onSlideCLick = (index, trip) => {
     setGoToSlide(index)
+    setCurrentTripData(trip)
   };
 
   const handledItineraryEdit = async (trip) => {
-    setCurrentTripData(trip)
+    if (trip._id !== currentTripData._id) return ;
     setCurrentItineraryId(trip.itinerary)
     setShowItineraryModal(true)
     setTimeout(() => {
@@ -62,14 +62,16 @@ export const CoolCarousel = ({userTrips, userId}) => {
     }, 500)
   };
 
+
   const handleGroupEdit = (trip) => {
-    setCurrentTripData(trip)
-    setCurrentGroupId(trip.group)
-    setShowGroupModal(true)
+    if (trip._id !== currentTripData._id) return ;
+    debugger
+    setCurrentGroupId(trip.group);
+    setShowGroupModal(true);
   }
 
   const handleDeleteTrip = (trip) => {
-
+    if (trip._id !== currentTripData._id) return ;
     dispatch(deleteTrip(trip._id, userId));
   };
 
@@ -89,7 +91,7 @@ export const CoolCarousel = ({userTrips, userId}) => {
         key: index,
         content: (
         <div className='cool-image-container'>
-          <img onClick={() => onSlideCLick(index)} className='cool-images' src={images[trip.experience]} alt={trip.experience} />
+          <img onClick={() => onSlideCLick(index, trip)} className='cool-images' src={images[trip.experience]} alt={trip.experience} />
           <p>{trip.experience}</p>
           <p>{trip.month}</p>
           <p>{trip.location}</p>
