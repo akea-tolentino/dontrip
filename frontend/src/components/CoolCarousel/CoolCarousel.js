@@ -54,7 +54,7 @@ export const CoolCarousel = ({userTrips, userId}) => {
   };
 
   const handledItineraryEdit = async (trip) => {
-    if (trip._id !== currentTripData._id) return ;
+    if (trip._id !== currentTripData._id && slides.length !== 2) return ;
     setCurrentItineraryId(trip.itinerary)
     setShowItineraryModal(true)
     setTimeout(() => {
@@ -64,13 +64,13 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
 
   const handleGroupEdit = (trip) => {
-    if (trip._id !== currentTripData._id) return ;
+    if (trip._id !== currentTripData._id && slides.length !== 2) return ;
     setCurrentGroupId(trip.group);
     setShowGroupModal(true);
   }
 
   const handleDeleteTrip = (trip) => {
-    if (trip._id !== currentTripData._id) return ;
+    if (trip._id !== currentTripData._id && slides.length !== 2) return ;
     dispatch(deleteTrip(trip._id, userId));
   };
 
@@ -107,13 +107,19 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   } 
   
-
+  debugger
   return (
     <>
       <div>
+        {slides.length === 2 ? 
+        <div className='cool-carousel-3'>
+            {slides.map(slide => {
+              return <div>{slide.content}</div>
+            })}
+        </div>:
         <div className='cool-carousel-2'>
           <Carousel goToSlide={goToSlide} slides={slides} offsetRadius={4} enableSwipe={true} />
-        </div>
+        </div>}
         {showItineraryModal && (<Modal onClose={handleItineraryModalClose}>
           <ItineraryShow loading={loading} changeLoading={changeLoading} trip={currentTripData} itineraryId={currentItineraryId} userId={userId}/>
         </Modal>)}   

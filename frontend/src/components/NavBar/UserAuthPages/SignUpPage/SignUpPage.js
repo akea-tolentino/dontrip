@@ -21,8 +21,8 @@ export const SignUpPage = () => {
         }
     
         const res = await dispatch(signup(userInfo))
-
-        setErrors(Object.values(res.errors))
+        if (res.errors) setErrors(Object.values(res.errors))
+        
     }
 
 
