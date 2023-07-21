@@ -85,7 +85,7 @@ export default function GlobePage(props) {
                 events = [];
                 eventsData.map((eventer, index)=> {
                     if (index % 2 !== 0) {
-                        events[Math.floor(index / 2)] =  events[Math.floor(index / 2)] + eventer;
+                        events[Math.floor(index / 2)] =  events[Math.floor(index / 2)] + ", " + eventer;
                     } else {
                         events.push(eventer)
                     };
