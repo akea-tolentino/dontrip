@@ -65,7 +65,6 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   const handleGroupEdit = (trip) => {
     if (trip._id !== currentTripData._id) return ;
-    debugger
     setCurrentGroupId(trip.group);
     setShowGroupModal(true);
   }
