@@ -31,7 +31,7 @@ export default function Experiences(props) {
             "model": "gpt-3.5-turbo",
             "messages": [{
                 "role": "user",
-                "content": `return only a string of 5 ${experience} destinations in ${category}, located in North America, South America, Europe, or Asia, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, Don’t justify your answers. Don’t give information not mentioned in the CONTEXT INFORMATION.`
+                "content": `return only a string of 5 ${experience} destinations in ${category}, located in North America, South America, Europe, or Asia, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, Don’t justify your answers. `
             }],
             "temperature": 0,
             "max_tokens": 1000
@@ -52,7 +52,13 @@ export default function Experiences(props) {
                 setErrors(true)
                 return handleAiRequest(e)
             }
-            places = data.choices[0].message.content.split("|")
+            places = data.choices[0].message.content.split("|");
+            if (experience === 'Lake' && places.length !== 5) {
+                places = data.choices[0].message.content.slice(174 + category.length).split("\n");
+                if (places.length !== 5) places = places[0].split("|")
+            } else if (places.length !== 5) {
+                places = data.choices[0].message.content.split("\n");
+            }
         });
 
         const placesObject = await places.map( (place) => {

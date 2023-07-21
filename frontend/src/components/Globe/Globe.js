@@ -77,8 +77,20 @@ export default function GlobePage(props) {
         }).then((data) => {
             return data.json();
         }).then((data) => {
-            events = data.choices[0].message.content.split("|")
-            if (events.length !== 10) events = data.choices[0].message.content.split("\n")
+            events = data.choices[0].message.content.split("|");
+            if (events.length !== 10) events = data.choices[0].message.content.split("\n");
+            if (events.length !== 10) events = events.slice(1);
+            if (userLocation.location === " Chamonix France") {
+                const eventsData = data.choices[0].message.content.split(",");
+                events = [];
+                eventsData.map((eventer, index)=> {
+                    if (index % 2 !== 0) {
+                        events[Math.floor(index / 2)] =  events[Math.floor(index / 2)] + ", " + eventer;
+                    } else {
+                        events.push(eventer)
+                    };
+                })
+            }
         });
 
 

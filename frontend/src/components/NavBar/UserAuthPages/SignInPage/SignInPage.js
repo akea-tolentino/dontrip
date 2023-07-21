@@ -28,7 +28,7 @@ export const SignInPage = () => {
 
         
         const res = await dispatch(login(userInfo))
-        setErrors(Object.values(res.errors))
+        if (res.errors) setErrors(Object.values(res.errors))
 
 
         if (res.statusCode !== 400) return history.push(`/users/${res.currentUser._id}/trips`)
