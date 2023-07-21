@@ -30,6 +30,15 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
     const [date, setDate] = useState('');
     const [price, setPrice] = useState('');
 
+    const todaysDate = new Date();
+    const todaysYear = todaysDate.getFullYear();
+    const todaysMonth = (todaysDate.getMonth() + 1).toString().padStart(2, '0');
+    const todaysDay = todaysDate.getDate();
+    
+    const todaysFormattedDate = todaysYear + "-" + todaysMonth + "-" + todaysDay;
+    console.log(todaysFormattedDate);
+
+
     const handleCreate = () => {
         if (!dropDown) {
             setDropDown(true)
@@ -122,7 +131,7 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
                 <br/>
 
                 <label>Date
-                    <input value={date} type="date" onChange={(e)=>setDate(e.target.value)}/>
+                    <input value={date} type="date" min={todaysFormattedDate} onChange={(e)=>setDate(e.target.value)}/>
                 </label>
                 <br/>
 
