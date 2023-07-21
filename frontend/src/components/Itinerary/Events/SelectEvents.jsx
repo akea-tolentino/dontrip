@@ -36,7 +36,6 @@ export default function SelectEvents ( { changeEvents, availableEvents, experien
     const todaysDay = todaysDate.getDate();
     
     const todaysFormattedDate = todaysYear + "-" + todaysMonth + "-" + todaysDay;
-    console.log(todaysFormattedDate);
 
 
     const handleCreate = () => {
