@@ -8,6 +8,21 @@
   width: 95vw;
 }
 
+.cool-carousel-3 {
+  height: 80vh;
+  width: 95vw;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-left: 14%;
+  margin-top: 5%;
+  margin-bottom: -5%;
+}
+
+.cool-carousel-3 div {
+  margin-left: 5%;
+}
+
 .cool-image-container {
   display: flex;
   flex-direction: column;
