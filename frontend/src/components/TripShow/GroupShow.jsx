@@ -43,7 +43,6 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
     }
 
 
-    debugger
     return (
         <>
             {(group) ? <div className="cool-group-show-page">
@@ -53,7 +52,7 @@ export const GroupShow = ({trip, groupId, userId, handleModalClose}) => {
                 <p>${group.budget}</p>
             </div> : <h1 className="no-current-group">No Current Group associated</h1> }
             {groups ? 
-                <form onSubmit={handleGroupEdit} className="group-form">
+                <form onSubmit={handleGroupEdit} className="group-form-show">
                     <label>Change your Group
                         <select className="group-select" onChange={(e) => setSelectGroup(e.target.value)}>
                             {groups.map(individualGroup => {
