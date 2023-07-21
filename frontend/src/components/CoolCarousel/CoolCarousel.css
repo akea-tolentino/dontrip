@@ -115,3 +115,29 @@
 .group-select:hover {
   cursor: pointer;
 }
+
+.dropdown-show {
+  background-color: white;
+  text-align: left;
+}
+
+#add-event-show {
+  margin: 10px;
+}
+
+.dropdown-show input {
+  margin: 2px;
+}
+
+.dropdown-show {
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* width: 300px; */
+}
+
+.event-show {
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  width: 70%;
+}
