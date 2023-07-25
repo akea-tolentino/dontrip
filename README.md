@@ -18,7 +18,7 @@ Going on vacation is something that most people look forward to all year long. H
 
 - Location: users can choose a trip location from an AI generated list of locations to enjoy the desired trip at the desired time of year
 
-&nbsp; &nbsp; ![Alt Text](/globe.gif)
+&nbsp; &nbsp; &nbsp; ![Alt Text](/globe.gif)
 
 - Itinerary: users can create, update, destroy and save itineraries
 ![Alt Text](/itinerary.png)
@@ -36,8 +36,19 @@ Going on vacation is something that most people look forward to all year long. H
 
 ### API usage:
 
-- ChatGPT API
 - AWS
+- ChatGPT API
+```
+   const apiRequestBody = {
+            "model": "gpt-3.5-turbo",
+            "messages": [{
+                "role": "user",
+                "content": `return only a string of 5 ${experience} destinations in ${category}, located in North America, South America, Europe, or Asia, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, Don’t justify your answers. `
+            }],
+            "temperature": 0,
+            "max_tokens": 1000
+        };
+```
 
 ## Technical challenges:
 
