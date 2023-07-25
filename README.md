@@ -18,7 +18,7 @@ Going on vacation is something that most people look forward to all year long. H
 
 - Location: users can choose a trip location from an AI generated list of locations to enjoy the desired trip at the desired time of year
 
-![Alt Text](/globe.gif)
+&nbsp; &nbsp; ![Alt Text](/globe.gif)
 
 - Itinerary: users can create, update, destroy and save itineraries
 ![Alt Text](/itinerary.png)
