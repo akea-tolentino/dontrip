@@ -11,9 +11,17 @@ Going on vacation is something that most people look forward to all year long. H
 ## Functionality and MVP
 
 - User Authorization: sign up and log in  
+![Alt Text](./signin.png)
+
 - Trip: users can select a desired trip type and time of year from pre-set options
+![Alt Text](/trips.png)
+
 - Location: users can choose a trip location from an AI generated list of locations to enjoy the desired trip at the desired time of year
-- Itinerary: users can create, update, destroy and save itineraries to their Google Calendar
+![Alt Text](/globe.gif)
+
+- Itinerary: users can create, update, destroy and save itineraries
+![Alt Text](/itinerary.png)
+
 - Event/Stay: users can choose events and resorts to add to itinerary from an AI generated list of events
 
 ### Bonus Features
@@ -28,29 +36,12 @@ Going on vacation is something that most people look forward to all year long. H
 ### API usage:
 
 - ChatGPT API
-- Google Maps API
-- Google Places API
-- Google Geocoder API
-- Google Calendar API
 - AWS
 
 ## Technical challenges:
 
 - Formatting ChatGPT queries to return responses in a usable format that can be passed back into our code
 
-## Group Members & Work Breakdown
+## Group Members
 
 Akea Tolentino, Anthony Wong, Thomas Ly, Rocco Lattanzio
-
-#### Accomplished over the weekend
-
-- All members of team read and completed MERN tutorials
-- Designed project layout with wireframes
-- Investigate ChatGPT API
-
-### July 3rd
-
-- Build skeloten project, set up AWS and MongoDB - Akea
-- Test ChatGPT request/response formats, create sign in/up form modals - Thomas
-- Build skeloten React site, create navbar functional component - Anthony
-- Build User Auth
