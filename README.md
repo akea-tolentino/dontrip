@@ -12,16 +12,20 @@ Going on vacation is something that most people look forward to all year long. H
 
 - User Authorization: sign up and log in  
 ![Alt Text](./signin.png)
+<br/>
 
 - Trip: users can select a desired trip type and time of year from pre-set options
 ![Alt Text](/trips.png)
+<br/>
 
 - Location: users can choose a trip location from an AI generated list of locations to enjoy the desired trip at the desired time of year
 
 &nbsp; &nbsp; &nbsp; ![Alt Text](/globe.gif)
+<br/>
 
 - Itinerary: users can create, update, destroy and save itineraries
 ![Alt Text](/itinerary.png)
+<br/>
 
 - Event/Stay: users can choose events and resorts to add to itinerary from an AI generated list of events
 
