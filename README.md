@@ -11,9 +11,22 @@ Going on vacation is something that most people look forward to all year long. H
 ## Functionality and MVP
 
 - User Authorization: sign up and log in  
+![Alt Text](./signin.png)
+<br/>
+
 - Trip: users can select a desired trip type and time of year from pre-set options
+![Alt Text](/trips.png)
+<br/>
+
 - Location: users can choose a trip location from an AI generated list of locations to enjoy the desired trip at the desired time of year
-- Itinerary: users can create, update, destroy and save itineraries to their Google Calendar
+
+&nbsp; &nbsp; &nbsp; ![Alt Text](/globe.gif)
+<br/>
+
+- Itinerary: users can create, update, destroy and save itineraries
+![Alt Text](/itinerary.png)
+<br/>
+
 - Event/Stay: users can choose events and resorts to add to itinerary from an AI generated list of events
 
 ### Bonus Features
@@ -27,30 +40,24 @@ Going on vacation is something that most people look forward to all year long. H
 
 ### API usage:
 
-- ChatGPT API
-- Google Maps API
-- Google Places API
-- Google Geocoder API
-- Google Calendar API
 - AWS
+- ChatGPT API
+```
+   const apiRequestBody = {
+            "model": "gpt-3.5-turbo",
+            "messages": [{
+                "role": "user",
+                "content": `return only a string of 5 ${experience} destinations in ${category}, located in North America, South America, Europe, or Asia, formatted in city, country, and coordinates using the World Geodetic System WGS84 standard", split by a |, on a single line, Don’t justify your answers. `
+            }],
+            "temperature": 0,
+            "max_tokens": 1000
+        };
+```
 
 ## Technical challenges:
 
 - Formatting ChatGPT queries to return responses in a usable format that can be passed back into our code
 
-## Group Members & Work Breakdown
+## Group Members
 
 Akea Tolentino, Anthony Wong, Thomas Ly, Rocco Lattanzio
-
-#### Accomplished over the weekend
-
-- All members of team read and completed MERN tutorials
-- Designed project layout with wireframes
-- Investigate ChatGPT API
-
-### July 3rd
-
-- Build skeloten project, set up AWS and MongoDB - Akea
-- Test ChatGPT request/response formats, create sign in/up form modals - Thomas
-- Build skeloten React site, create navbar functional component - Anthony
-- Build User Auth

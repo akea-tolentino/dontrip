@@ -60,7 +60,6 @@ export default function Itinerary ( props ) {
         showCurrentPage = null
     }
 
-
     return (
         <>
 
