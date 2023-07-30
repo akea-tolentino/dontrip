@@ -71,7 +71,8 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   const handleDeleteTrip = (trip) => {
     if (trip._id !== currentTripData._id && slides.length !== 2) return ;
-    dispatch(deleteTrip(trip._id, userId));
+    const confirm = window.confirm(`Are you sure you want to delete ${trip.experience} trip of ${trip.month}?`)
+    if (confirm) dispatch(deleteTrip(trip._id, userId));
   };
 
   const handleGroupModalClose = () => {
@@ -107,7 +108,6 @@ export const CoolCarousel = ({userTrips, userId}) => {
 
   } 
   
-  debugger
   return (
     <>
       <div>

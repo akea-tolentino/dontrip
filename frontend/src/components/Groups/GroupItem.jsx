@@ -15,8 +15,11 @@ export default function GroupItem ( { group, userId} ) {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        dispatch(deleteGroup(group._id));
-        dispatch(fetchGroups(userId));
+        const confirm = window.confirm(`Are you sure you want to delete ${group.name}?`)
+        if (confirm) {
+            dispatch(deleteGroup(group._id));
+            dispatch(fetchGroups(userId));
+        } 
     }
 
     return (
