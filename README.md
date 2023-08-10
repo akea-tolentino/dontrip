@@ -41,6 +41,7 @@ Going on vacation is something that most people look forward to all year long. H
 ### API usage:
 
 - AWS
+- Google Maps API
 - ChatGPT API
 ```
    const apiRequestBody = {
