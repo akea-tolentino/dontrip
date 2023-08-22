@@ -29,7 +29,7 @@ export default function LinksFooter() {
                 <a className="links" target="_blank" href={"https://github.com/akea-tolentino"}>
                     <FaGithubSquare size={50}/>
                 </a>
-                <a className="links" target="_blank" href={"https://www.linkedin.com/in/jamesbradley-tolentino-813555229/"}>
+                <a className="links" target="_blank" href={"https://www.linkedin.com/in/jamesbradley-akea-tolentino-813555229/"}>
                     <FaLinkedin size={50}/>
                 </a>
                 <p>Akea Tolentino</p>
