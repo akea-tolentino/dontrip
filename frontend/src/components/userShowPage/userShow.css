@@ -10,6 +10,7 @@
     height: 5vh;
     width: 8vw;
     border-radius: 15px;
+    z-index: 1;
 }
 
 .user-show-container button:hover {

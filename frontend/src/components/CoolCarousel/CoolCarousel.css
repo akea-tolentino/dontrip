@@ -17,6 +17,7 @@
   margin-left: 14%;
   margin-top: 5%;
   margin-bottom: -5%;
+  z-index: 0;
 }
 
 .cool-carousel-3 div {
